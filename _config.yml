@@ -13,8 +13,8 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://leslie-kung.github.io/leslieBlog.github.io/
-root: /
+url: https://leslie-kung.github.io/leslieBlog.github.io
+root: /leslieBlog.github.io/
 #permalink: :year/:month/:day/:title/
 permalink: :category/:title/
 permalink_defaults:
