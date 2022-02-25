@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>docker容器</title>
-    <url>/leslieBlog.github.io/docker/docker%E5%AE%B9%E5%99%A8/</url>
+    <url>/docker/docker%E5%AE%B9%E5%99%A8/</url>
     <content><![CDATA[<h2 id="docker容器"><a href="#docker容器" class="headerlink" title="docker容器"></a>docker容器</h2><h3 id="容器介绍"><a href="#容器介绍" class="headerlink" title="容器介绍"></a>容器介绍</h3><p>&emsp;&emsp;容器是独立运行的一个或一组应用，以及它们的运行态环境。对应的，虚拟机可以理解为模拟运行的一整套操作系统和跑在上面的应用。</p>
 <h3 id="新建启动容器"><a href="#新建启动容器" class="headerlink" title="新建启动容器"></a>新建启动容器</h3><p>&emsp;&emsp;启动容器的主要命令是docker run，下面的命令输出一个“hello world”，之后终止容器</p>
 <a id="more"></a>
@@ -66,7 +66,7 @@
   </entry>
   <entry>
     <title>docker镜像</title>
-    <url>/leslieBlog.github.io/docker/docker%E9%95%9C%E5%83%8F/</url>
+    <url>/docker/docker%E9%95%9C%E5%83%8F/</url>
     <content><![CDATA[<h2 id="docker-镜像"><a href="#docker-镜像" class="headerlink" title="docker 镜像"></a>docker 镜像</h2><h3 id="获取镜像"><a href="#获取镜像" class="headerlink" title="获取镜像"></a>获取镜像</h3><p>&emsp;&emsp;镜像是docker的三大组件之一，docker运行容器需要本地存在对应的镜像，如果镜像不存在，docker会从镜像仓库下载，默认是从docker hub 公共注册服务器的仓库中下载。可以通过 docker pull 命令从仓库中获取需要的镜像；</p>
 <a id="more"></a>
 <figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 拉取Ubuntu12.04镜像</span></span><br><span class="line">1 $ sudo docker pull ubuntu:12.04</span><br><span class="line">2 Pulling repository ubuntu</span><br><span class="line">3 ab8e2728644c: Pulling dependent layers</span><br><span class="line">4 511136ea3c5a: Download complete</span><br><span class="line">5 5f0ffaa9455e: Download complete</span><br><span class="line">6 a300658979be: Download complete</span><br><span class="line">7 904483ae0c30: Download complete</span><br><span class="line">8 ffdaafd1ca50: Download complete</span><br><span class="line">9 d047ae21eeaf: Download complete</span><br></pre></td></tr></table></figure>
@@ -108,7 +108,7 @@
   </entry>
   <entry>
     <title>numpy学习</title>
-    <url>/leslieBlog.github.io/python/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/numpy%E5%AD%A6%E4%B9%A0/</url>
+    <url>/python/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/numpy%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h2 id="numpy学习小结"><a href="#numpy学习小结" class="headerlink" title="numpy学习小结"></a>numpy学习小结</h2><h3 id="安装numpy包"><a href="#安装numpy包" class="headerlink" title="安装numpy包"></a>安装numpy包</h3><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip3 <span class="keyword">install</span> numpy</span><br></pre></td></tr></table></figure>
 <h3 id="导包"><a href="#导包" class="headerlink" title="导包"></a>导包</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -170,7 +170,7 @@
   </entry>
   <entry>
     <title>python图片转字符串</title>
-    <url>/leslieBlog.github.io/python/python%E5%9B%BE%E7%89%87%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+    <url>/python/python%E5%9B%BE%E7%89%87%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
     <content><![CDATA[<h2 id="python-图片转成字符串"><a href="#python-图片转成字符串" class="headerlink" title="python 图片转成字符串"></a>python 图片转成字符串</h2><a id="more"></a>
 
 <h3 id="下面是原始图片"><a href="#下面是原始图片" class="headerlink" title="下面是原始图片"></a>下面是原始图片</h3><p><img src="/image/crawl/red_heart.jpg" alt="红心"></p>
@@ -188,7 +188,7 @@
   </entry>
   <entry>
     <title>jupyter搭建</title>
-    <url>/leslieBlog.github.io/python/jupyter/jupyter%E6%90%AD%E5%BB%BA/</url>
+    <url>/python/jupyter/jupyter%E6%90%AD%E5%BB%BA/</url>
     <content><![CDATA[<h2 id="搭建jupyter服务器"><a href="#搭建jupyter服务器" class="headerlink" title="搭建jupyter服务器"></a>搭建jupyter服务器</h2><h3 id="安装jupyter"><a href="#安装jupyter" class="headerlink" title="安装jupyter"></a>安装jupyter</h3><h3 id="一、选择安装anaconda"><a href="#一、选择安装anaconda" class="headerlink" title="一、选择安装anaconda"></a>一、选择安装anaconda</h3><ol>
 <li><p>根目录下创建一个文件夹用来放anaconda安装包</p>
 </li>
@@ -239,7 +239,7 @@
   </entry>
   <entry>
     <title>mongo去重</title>
-    <url>/leslieBlog.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93/mongo/mongo%E5%8E%BB%E9%87%8D/</url>
+    <url>/%E6%95%B0%E6%8D%AE%E5%BA%93/mongo/mongo%E5%8E%BB%E9%87%8D/</url>
     <content><![CDATA[<h2 id="mongo-去重"><a href="#mongo-去重" class="headerlink" title="mongo 去重"></a>mongo 去重</h2><p>进入到Mongo的安装目录，进入到bin文件夹下</p>
 <p>导出数据：</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">mongoexport</span><span class="selector-class">.exe</span> <span class="selector-tag">-d</span> <span class="selector-tag">database</span> <span class="selector-tag">-c</span> <span class="selector-tag">collection</span> <span class="selector-tag">-o</span> <span class="selector-tag">filename</span><span class="selector-class">.json</span></span><br></pre></td></tr></table></figure>
@@ -265,7 +265,7 @@
   </entry>
   <entry>
     <title>解决api变化问题</title>
-    <url>/leslieBlog.github.io/python/%E7%88%AC%E8%99%AB/%E8%A7%A3%E5%86%B3api%E5%8F%98%E5%8C%96%E9%97%AE%E9%A2%98/</url>
+    <url>/python/%E7%88%AC%E8%99%AB/%E8%A7%A3%E5%86%B3api%E5%8F%98%E5%8C%96%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h2 id="python解决api变化的问题"><a href="#python解决api变化的问题" class="headerlink" title="python解决api变化的问题"></a>python解决api变化的问题</h2><p>案例：<a href="http://cic.org.vn" target="_blank" rel="noopener">http://cic.org.vn</a></p>
 <p>&emsp;&emsp;该网站用python进行模拟登录时，url链接是经过js加载生成的，当我们用requests发送get请求的时候，返回的结果并不是真正的主页数据，而是一段js代码，但是直接从这段js代码中解析我们需要的登录页url很困难，因此这里我们可以构造一个轻量级的js环境，执行js代码来获取我们需要的数据。</p>
 <p>环境：<br>我们通过jsdom来构造一个轻量的环境，它是基于node的，因此我们需要安装node环境，这里安装的是node8的版本；</p>
@@ -301,7 +301,7 @@
   </entry>
   <entry>
     <title>lambda函数</title>
-    <url>/leslieBlog.github.io/lambda/lambda%E5%87%BD%E6%95%B0/</url>
+    <url>/lambda/lambda%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h2 id="记一次项目中lambda函数的应用"><a href="#记一次项目中lambda函数的应用" class="headerlink" title="记一次项目中lambda函数的应用"></a>记一次项目中lambda函数的应用</h2><p>lambda函数也叫做匿名函数，它允许我们快速定义，并且让代码更简洁<br>此次记录一下在项目中使用到lambda函数的场景</p>
 <a id="more"></a>
 
@@ -321,7 +321,7 @@
   </entry>
   <entry>
     <title>百度贴吧图片抓取</title>
-    <url>/leslieBlog.github.io/python/%E7%88%AC%E8%99%AB/%E7%99%BE%E5%BA%A6%E8%B4%B4%E5%90%A7%E5%9B%BE%E7%89%87%E6%8A%93%E5%8F%96/</url>
+    <url>/python/%E7%88%AC%E8%99%AB/%E7%99%BE%E5%BA%A6%E8%B4%B4%E5%90%A7%E5%9B%BE%E7%89%87%E6%8A%93%E5%8F%96/</url>
     <content><![CDATA[<h2 id="python爬取百度贴吧张国荣图片"><a href="#python爬取百度贴吧张国荣图片" class="headerlink" title="python爬取百度贴吧张国荣图片"></a>python爬取百度贴吧张国荣图片</h2><p>一直喜欢哥哥的歌，也一直听哥哥的歌，突然想着收集一些哥哥的照片，所以写了一个爬虫爬取哥哥的图片，也给大家参考一下；</p>
 <h4 id="这里我用的request-html这个包"><a href="#这里我用的request-html这个包" class="headerlink" title="这里我用的request-html这个包"></a>这里我用的request-html这个包</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> requests_html <span class="keyword">import</span> HTMLSession</span><br><span class="line"><span class="keyword">from</span> requests_html <span class="keyword">import</span> HTML</span><br></pre></td></tr></table></figure>
 
@@ -350,7 +350,7 @@
   </entry>
   <entry>
     <title>python3中Unicode字符转中文</title>
-    <url>/leslieBlog.github.io/python/%E7%88%AC%E8%99%AB/python3%E4%B8%ADUnicode%E5%AD%97%E7%AC%A6%E8%BD%AC%E4%B8%AD%E6%96%87/</url>
+    <url>/python/%E7%88%AC%E8%99%AB/python3%E4%B8%ADUnicode%E5%AD%97%E7%AC%A6%E8%BD%AC%E4%B8%AD%E6%96%87/</url>
     <content><![CDATA[<h2 id="python3中将Unicode字符串转成中文"><a href="#python3中将Unicode字符串转成中文" class="headerlink" title="python3中将Unicode字符串转成中文"></a>python3中将Unicode字符串转成中文</h2><p>用python爬虫爬取数据时，有时候会发现爬取的数据类似于</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">\u3010\u6f14\u5531\u4f1a\u30112000-\u62c9\u9614\u97f3\u4e50\u4f1a</span><br></pre></td></tr></table></figure>
 <p>这样的Unicode字符串，在python的交互环境里可以直接打印输出查看内容；</p>
@@ -376,7 +376,7 @@
   </entry>
   <entry>
     <title>python返回每个月最大天数</title>
-    <url>/leslieBlog.github.io/python/python%E8%BF%94%E5%9B%9E%E6%AF%8F%E4%B8%AA%E6%9C%88%E6%9C%80%E5%A4%A7%E5%A4%A9%E6%95%B0/</url>
+    <url>/python/python%E8%BF%94%E5%9B%9E%E6%AF%8F%E4%B8%AA%E6%9C%88%E6%9C%80%E5%A4%A7%E5%A4%A9%E6%95%B0/</url>
     <content><![CDATA[<h2 id="python返回过去时间里的每月最大天数"><a href="#python返回过去时间里的每月最大天数" class="headerlink" title="python返回过去时间里的每月最大天数"></a>python返回过去时间里的每月最大天数</h2><h3 id="导包"><a href="#导包" class="headerlink" title="导包"></a>导包</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br></pre></td></tr></table></figure>
 
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><a id="more"></a>
@@ -396,7 +396,7 @@
   </entry>
   <entry>
     <title>python中元素替换</title>
-    <url>/leslieBlog.github.io/python/python%E4%B8%AD%E5%85%83%E7%B4%A0%E6%9B%BF%E6%8D%A2/</url>
+    <url>/python/python%E4%B8%AD%E5%85%83%E7%B4%A0%E6%9B%BF%E6%8D%A2/</url>
     <content><![CDATA[<h2 id="python中元素进行替换有很多方法，下面是我学习中的一些总结"><a href="#python中元素进行替换有很多方法，下面是我学习中的一些总结" class="headerlink" title="python中元素进行替换有很多方法，下面是我学习中的一些总结"></a>python中元素进行替换有很多方法，下面是我学习中的一些总结</h2><h3 id="1、字符串替换str-replace-方法"><a href="#1、字符串替换str-replace-方法" class="headerlink" title="1、字符串替换str.replace()方法"></a>1、字符串替换str.replace()方法</h3><p>python中的replace()方法是把字符串中的old字符串替换成new的字符串，如果指定替换次数max,则按照替换次数进行替换</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">str.replace(old,new,count=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -424,7 +424,7 @@
   </entry>
   <entry>
     <title>python中arrow库的使用</title>
-    <url>/leslieBlog.github.io/python/python%E4%B8%ADarrow%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/python/python%E4%B8%ADarrow%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p> Arrow是一个Python库，为创建，操作，格式化和转换日期，时间和时间戳提供了一种明智的，人性化的方法。 它实现和更新日期时间类型，填补功能上的空白，并提供支持许多常见创建场景的智能模块API。 简而言之，它可以帮助您使用更少的进口和更少的代码来处理日期和时间。</p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">pip <span class="keyword">install</span> arrow</span><br></pre></td></tr></table></figure>
 
@@ -460,7 +460,7 @@
   </entry>
   <entry>
     <title>python中random库使用</title>
-    <url>/leslieBlog.github.io/python/python%E4%B8%ADrandom%E5%BA%93%E4%BD%BF%E7%94%A8/</url>
+    <url>/python/python%E4%B8%ADrandom%E5%BA%93%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h3 id="1、random-random-生成一个随机的浮点数，范围在0-0-0-1之间；"><a href="#1、random-random-生成一个随机的浮点数，范围在0-0-0-1之间；" class="headerlink" title="1、random.random() 生成一个随机的浮点数，范围在0.0~0.1之间；"></a>1、random.random() 生成一个随机的浮点数，范围在0.0~0.1之间；</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">num = random.random()</span><br><span class="line">print(num)  <span class="comment"># num=0.4329135788510704</span></span><br></pre></td></tr></table></figure>
 <h3 id="2、random-uniform-函数可以设定浮点数的范围，需要两个参数，一个上限，另一个下限；"><a href="#2、random-uniform-函数可以设定浮点数的范围，需要两个参数，一个上限，另一个下限；" class="headerlink" title="2、random.uniform() 函数可以设定浮点数的范围，需要两个参数，一个上限，另一个下限；"></a>2、random.uniform() 函数可以设定浮点数的范围，需要两个参数，一个上限，另一个下限；</h3><a id="more"></a>
 
@@ -478,7 +478,7 @@
   </entry>
   <entry>
     <title>python处理简单验证码</title>
-    <url>/leslieBlog.github.io/python/python%E5%A4%84%E7%90%86%E7%AE%80%E5%8D%95%E9%AA%8C%E8%AF%81%E7%A0%81/</url>
+    <url>/python/python%E5%A4%84%E7%90%86%E7%AE%80%E5%8D%95%E9%AA%8C%E8%AF%81%E7%A0%81/</url>
     <content><![CDATA[<h4 id="利用python对简单的验证码进行处理"><a href="#利用python对简单的验证码进行处理" class="headerlink" title="利用python对简单的验证码进行处理"></a>利用python对简单的验证码进行处理</h4><p>验证码如下所示：<br><img src="/image/code/code.png" alt="这里写图片描述"><br>首先导入我们需要的包文件</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> ascii_lowercase</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> numpy</span><br></pre></td></tr></table></figure>
 <p>将验证码进行切分，其中进行切分的坐标可以自行调整最佳；Image模块的convert()函数，用于不同模式图像之间的转换。</p>
@@ -502,7 +502,7 @@
   </entry>
   <entry>
     <title>python进行excel转json</title>
-    <url>/leslieBlog.github.io/python/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/python%E8%BF%9B%E8%A1%8Cexcel%E8%BD%ACjson/</url>
+    <url>/python/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/python%E8%BF%9B%E8%A1%8Cexcel%E8%BD%ACjson/</url>
     <content><![CDATA[<h2 id="使用python进行excel转json文件"><a href="#使用python进行excel转json文件" class="headerlink" title="使用python进行excel转json文件"></a>使用python进行excel转json文件</h2><h3 id="1、首先导入我们需要用到的库"><a href="#1、首先导入我们需要用到的库" class="headerlink" title="1、首先导入我们需要用到的库"></a>1、首先导入我们需要用到的库</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> xlrd</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line"><span class="keyword">import</span> json</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 
@@ -523,7 +523,7 @@
   </entry>
   <entry>
     <title>python字典多次嵌套</title>
-    <url>/leslieBlog.github.io/python/python%E5%AD%97%E5%85%B8%E5%A4%9A%E6%AC%A1%E5%B5%8C%E5%A5%97/</url>
+    <url>/python/python%E5%AD%97%E5%85%B8%E5%A4%9A%E6%AC%A1%E5%B5%8C%E5%A5%97/</url>
     <content><![CDATA[<h2 id="python实现字典多层嵌套"><a href="#python实现字典多层嵌套" class="headerlink" title="python实现字典多层嵌套"></a>python实现字典多层嵌套</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 对于字典</span></span><br><span class="line">dict1 = &#123;<span class="string">"a"</span>:<span class="number">1</span>, <span class="string">"b"</span>:<span class="number">2</span>, <span class="string">"c.1"</span>:<span class="number">3</span>, <span class="string">"c.2"</span>:<span class="number">4</span>, <span class="string">"d.5.2"</span>:<span class="number">5</span>, <span class="string">"d.5.3"</span>:<span class="number">6</span>, <span class="string">"d.4.1"</span>:<span class="number">7</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将其实现多次嵌套效果</span></span><br><span class="line">dict2 = &#123;<span class="string">'a'</span>: <span class="number">1</span>, <span class="string">'b'</span>: <span class="number">2</span>, <span class="string">'c'</span>: &#123;<span class="string">'1'</span>: <span class="number">3</span>, <span class="string">'2'</span>: <span class="number">4</span>&#125;, </span><br><span class="line">        <span class="string">'d'</span>: &#123;<span class="string">'5'</span>: &#123;<span class="string">'2'</span>: <span class="number">5</span>, <span class="string">'3'</span>: <span class="number">6</span>&#125;, <span class="string">'4'</span>: &#123;<span class="string">'1'</span>: <span class="number">7</span>&#125;&#125;&#125;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 
@@ -544,7 +544,7 @@
   </entry>
   <entry>
     <title>python中闭包和装饰器</title>
-    <url>/leslieBlog.github.io/python/python%E4%B8%AD%E9%97%AD%E5%8C%85%E5%92%8C%E8%A3%85%E9%A5%B0%E5%99%A8/</url>
+    <url>/python/python%E4%B8%AD%E9%97%AD%E5%8C%85%E5%92%8C%E8%A3%85%E9%A5%B0%E5%99%A8/</url>
     <content><![CDATA[<h2 id="1-闭包"><a href="#1-闭包" class="headerlink" title="1.闭包"></a>1.闭包</h2><h3 id="闭包的理解"><a href="#闭包的理解" class="headerlink" title="闭包的理解"></a>闭包的理解</h3><p>   <em>闭包</em> 是引用了变量的函数，这个被引用的自由变量将和这个函数一同存在，即使离开了创造这个变量的环境也不例外。所以，<em>闭包</em> 是由函数和与其相关的引用环境组合而成的实体。简单来说，<em>闭包</em> 就是数据和功能的结合。</p>
 <a id="more"></a>
 <h3 id="闭包的优缺点"><a href="#闭包的优缺点" class="headerlink" title="闭包的优缺点"></a>闭包的优缺点</h3><p> <strong>优点：</strong> 可以提高代码的可复用性<br> <strong>缺点：</strong> 由于闭包是引用了外部函数的局部变量，导致外部函数的局部变量没有及时释放，消耗内存。</p>
@@ -571,7 +571,7 @@
   </entry>
   <entry>
     <title>python之copy</title>
-    <url>/leslieBlog.github.io/python/python%E4%B9%8Bcopy/</url>
+    <url>/python/python%E4%B9%8Bcopy/</url>
     <content><![CDATA[<h2 id="Python中的引用、浅拷贝和深拷贝"><a href="#Python中的引用、浅拷贝和深拷贝" class="headerlink" title="Python中的引用、浅拷贝和深拷贝"></a>Python中的引用、浅拷贝和深拷贝</h2><p>在python中，有一句话：<em>一切皆为对象，一切皆为对象的引用</em>，所以<br>只要记住这句话就很容易清楚python中的引用、浅拷贝和深拷贝了。</p>
 <h3 id="1、引用"><a href="#1、引用" class="headerlink" title="1、引用"></a>1、引用</h3><p>python中的引用是经常使用的，python的引用可以节省内存，加快速度，因为它不需要开辟内存空间。例如：</p>
 <a id="more"></a>
@@ -598,7 +598,7 @@
   </entry>
   <entry>
     <title>python版布隆过滤器</title>
-    <url>/leslieBlog.github.io/python/python%E7%89%88%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/</url>
+    <url>/python/python%E7%89%88%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/</url>
     <content><![CDATA[<h2 id="布隆过滤器介绍"><a href="#布隆过滤器介绍" class="headerlink" title="布隆过滤器介绍"></a>布隆过滤器介绍</h2><p>本质上布隆过滤器是一种数据结构，比较巧妙的概率型数据结构（probabilistic data structure），特点是高效地插入和查询，可以用来告诉你 “某样东西一定不存在或者可能存在”。</p>
 <p>相比于传统的 List、Set、Map 等数据结构，它更高效、占用空间更少，但是缺点是其返回的结果是概率性的，而不是确切的。</p>
 <a id="more"></a>
@@ -619,7 +619,7 @@
   </entry>
   <entry>
     <title>pep8的使用</title>
-    <url>/leslieBlog.github.io/python/pep8/</url>
+    <url>/python/pep8/</url>
     <content><![CDATA[<h2 id="1-介绍-Introduction"><a href="#1-介绍-Introduction" class="headerlink" title="1 介绍(Introduction)"></a>1 介绍(Introduction)</h2><p>本文档给出了包含主要Python发行版中的标准库的Python代码的编码约定。<br>随着时间的推移，随着更多的约定被识别，过去的约定被语言本身的变化所淘汰，这种风格指南也在不断发展。</p>
 <a id="more"></a>
 <h2 id="2-代码布局-Code-Lay-Out"><a href="#2-代码布局-Code-Lay-Out" class="headerlink" title="2 代码布局(Code Lay-Out)"></a>2 代码布局(Code Lay-Out)</h2><h3 id="2-1-缩进-Indentation"><a href="#2-1-缩进-Indentation" class="headerlink" title="2.1 缩进(Indentation)"></a>2.1 缩进(Indentation)</h3><p>每个缩进需要使用4个空格。</p>
