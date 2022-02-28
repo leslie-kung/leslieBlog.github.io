@@ -125,13 +125,10 @@
                 <i class="fa  fa-fw fa-{{ theme.links_icon | default('globe') | lower }}"></i>
                 {{ theme.links_title }}
               </div>
-              <ul class="links-of-blogroll-list">
                 {% for name, link in theme.links %}
-                  <li class="links-of-blogroll-item">
                     <a href="{{ link }}" title="{{ name }}" rel="external nofollow" target="_blank">{{ name }}</a>
-                  </li>
                 {% endfor %}
-              </ul>
+
             </div>
           {% endif %}
 

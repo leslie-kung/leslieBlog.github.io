@@ -27,10 +27,10 @@ override: false
 # For example, you put your favicons into `hexo-site/source/images` directory.
 # Then need to rename & redefine they on any other names, otherwise icons from Next will rewrite your custom icons in Hexo.
 favicon:
-  favicon: /bitbug.ico
-  small: /images/favicon-16x16-next.png
-  medium: /images/favicon-32x32-next.png
-  apple_touch_icon: /images/apple-touch-icon-next.png
+  favicon: /images/favicon.ico
+  small: /images/favicon.ico
+  medium: /images/favicon.ico
+  apple_touch_icon: /images/favicon.ico
   safari_pinned_tab: /images/logo.svg
   #android_manifest: /images/manifest.json
   #ms_browserconfig: /images/browserconfig.xml
@@ -135,6 +135,7 @@ scheme: Pisces
 social:
   GitHub: https://github.com/leslie-kung || github
   csdn: https://blog.csdn.net/soft_kind
+  博客园: https://www.cnblogs.com/gjq168
   #E-Mail: mailto:yourname@gmail.com || envelope
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
@@ -159,7 +160,8 @@ links_title: 友情链接
 links_layout: block
 #links_layout: inline
 links:
-  张大傻子: https://www.luciferarmy.cn/
+  路西法: https://www.luciferarmy.com
+  万红门窗: https://wanhong.leslie168.com
 
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.gif
