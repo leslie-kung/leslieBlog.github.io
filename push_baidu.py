@@ -19,7 +19,7 @@ def get_(data):
     headers={'User-Agent':'curl/7.12.1 ',
              'Content-Type':'text/plain '}
     try:
-        r = requests.post(url='http://data.zz.baidu.com/urls?site=blog.leslie168.com&token=这里改写成你的token',data=data)
+        r = requests.post(url='http://data.zz.baidu.com/urls?site=https://blog.leslie168.com&token=05lqs7XGJIo4QFv5',data=data)
         print (r.status_code)
         print (r.content)
     except Exception as e:
