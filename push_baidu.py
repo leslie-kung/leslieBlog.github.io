@@ -12,7 +12,7 @@ try:
     with open("./public/baidusitemap.xml") as f:
         content = f.read()
     data_ = bp(content,'lxml')
-    print(data_)
+    # print(data_)
 except Exception as e:
     print (e)
 
@@ -32,6 +32,16 @@ print ('---------------------------------')
 for x,y in enumerate(data_.find_all('loc')):
     print (x,y.string)
     list_url.append(y.string)
+
+# 添加万红门窗网站链接
+print("添加万红门窗网站链接")
+wanhong = ["https://wanhong.leslie168.com/", 
+            "https://wanhong.leslie168.com/index",
+            "https://wanhong.leslie168.com/about",
+            "https://wanhong.leslie168.com/services",
+            "https://wanhong.leslie168.com/contact"]
+
+list_url.extend(wanhong)
 
 print ('---------------------------------')
 
