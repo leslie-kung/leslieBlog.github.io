@@ -3,13 +3,16 @@ import requests
 import time
 from bs4 import BeautifulSoup as bp
 
-print('LeslieBlog 自动推送开启....','utf-8')
+print('LeslieBlog 自动推送开启....')
 time.sleep(0.5)
-site_url = 'http://blog.leslie168.com/baidusitemap.xml'
+# site_url = 'http://blog.leslie168.com/baidusitemap.xml'
 
 try:
-    print('LeslieBlog 获取sitemap链接....','utf-8')
-    data_ = bp(requests.get(site_url).content,'lxml')
+    # print('LeslieBlog 获取sitemap链接....')
+    with open("./public/baidusitemap.xml") as f:
+        content = f.read()
+    data_ = bp(content,'lxml')
+    print(data_)
 except Exception as e:
     print (e)
 
@@ -28,12 +31,12 @@ def get_(data):
 print ('---------------------------------')
 for x,y in enumerate(data_.find_all('loc')):
     print (x,y.string)
-    list_url.append(y.string.replace('http://','http://www.'))
+    list_url.append(y.string)
 
 print ('---------------------------------')
 
-print ('LeslieBlog 开始推送....','utf-8')
+print ('LeslieBlog 开始推送....')
 
 for x in list_url:
-    print('LeslieBlog 当前推送条目为:','utf-8') + x
+    print('LeslieBlog 当前推送条目为: %s' % x)
     get_(x)
