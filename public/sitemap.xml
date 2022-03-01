@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.leslie168.com/python/tcp/socket/tcp-socket/</loc>
+    
+    <lastmod>2022-03-01T06:56:37.630Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.leslie168.com/python/%E6%8E%92%E5%BA%8F/%E6%8E%92%E5%BA%8F/</loc>
+    
+    <lastmod>2022-03-01T06:39:20.335Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.leslie168.com/categories/index.html</loc>
+    
+    <lastmod>2022-03-01T06:33:12.384Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.leslie168.com/archives/index.html</loc>
+    
+    <lastmod>2022-03-01T06:32:43.034Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.leslie168.com/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/mysql%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E6%95%B0%E6%8D%AE/</loc>
     
     <lastmod>2022-02-27T14:07:32.069Z</lastmod>
@@ -44,7 +72,7 @@
   </url>
   
   <url>
-    <loc>https://blog.leslie168.com/categories/index.html</loc>
+    <loc>https://blog.leslie168.com/python/%E7%88%AC%E8%99%AB/%E8%A7%A3%E5%86%B3api%E5%8F%98%E5%8C%96%E9%97%AE%E9%A2%98/</loc>
     
     <lastmod>2022-02-25T08:37:09.092Z</lastmod>
     
@@ -58,21 +86,7 @@
   </url>
   
   <url>
-    <loc>https://blog.leslie168.com/python/%E7%88%AC%E8%99%AB/%E8%A7%A3%E5%86%B3api%E5%8F%98%E5%8C%96%E9%97%AE%E9%A2%98/</loc>
-    
-    <lastmod>2022-02-25T08:37:09.092Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.leslie168.com/python/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/python%E8%BF%9B%E8%A1%8Cexcel%E8%BD%ACjson/</loc>
-    
-    <lastmod>2022-02-25T08:37:09.091Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.leslie168.com/python/python%E8%BF%94%E5%9B%9E%E6%AF%8F%E4%B8%AA%E6%9C%88%E6%9C%80%E5%A4%A7%E5%A4%A9%E6%95%B0/</loc>
     
     <lastmod>2022-02-25T08:37:09.091Z</lastmod>
     
@@ -86,6 +100,13 @@
   </url>
   
   <url>
+    <loc>https://blog.leslie168.com/python/python%E8%BF%94%E5%9B%9E%E6%AF%8F%E4%B8%AA%E6%9C%88%E6%9C%80%E5%A4%A7%E5%A4%A9%E6%95%B0/</loc>
+    
+    <lastmod>2022-02-25T08:37:09.091Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.leslie168.com/python/python%E7%89%88%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/</loc>
     
     <lastmod>2022-02-25T08:37:09.091Z</lastmod>
@@ -93,21 +114,14 @@
   </url>
   
   <url>
-    <loc>https://blog.leslie168.com/python/python%E5%9B%BE%E7%89%87%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/</loc>
-    
-    <lastmod>2022-02-25T08:37:09.090Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.leslie168.com/python/python%E4%B9%8Bcopy/</loc>
-    
-    <lastmod>2022-02-25T08:37:09.090Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.leslie168.com/python/python%E5%A4%84%E7%90%86%E7%AE%80%E5%8D%95%E9%AA%8C%E8%AF%81%E7%A0%81/</loc>
+    
+    <lastmod>2022-02-25T08:37:09.090Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.leslie168.com/python/python%E5%9B%BE%E7%89%87%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/</loc>
     
     <lastmod>2022-02-25T08:37:09.090Z</lastmod>
     
@@ -121,7 +135,14 @@
   </url>
   
   <url>
-    <loc>https://blog.leslie168.com/python/python%E4%B8%AD%E5%85%83%E7%B4%A0%E6%9B%BF%E6%8D%A2/</loc>
+    <loc>https://blog.leslie168.com/python/python%E4%B9%8Bcopy/</loc>
+    
+    <lastmod>2022-02-25T08:37:09.090Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.leslie168.com/python/python%E4%B8%AD%E9%97%AD%E5%8C%85%E5%92%8C%E8%A3%85%E9%A5%B0%E5%99%A8/</loc>
     
     <lastmod>2022-02-25T08:37:09.089Z</lastmod>
     
@@ -142,21 +163,21 @@
   </url>
   
   <url>
-    <loc>https://blog.leslie168.com/python/python%E4%B8%AD%E9%97%AD%E5%8C%85%E5%92%8C%E8%A3%85%E9%A5%B0%E5%99%A8/</loc>
+    <loc>https://blog.leslie168.com/python/python%E4%B8%AD%E5%85%83%E7%B4%A0%E6%9B%BF%E6%8D%A2/</loc>
     
     <lastmod>2022-02-25T08:37:09.089Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.leslie168.com/python/%E7%88%AC%E8%99%AB/python3%E4%B8%ADUnicode%E5%AD%97%E7%AC%A6%E8%BD%AC%E4%B8%AD%E6%96%87/</loc>
+    <loc>https://blog.leslie168.com/python/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/numpy%E5%AD%A6%E4%B9%A0/</loc>
     
     <lastmod>2022-02-25T08:37:09.088Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.leslie168.com/python/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/numpy%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://blog.leslie168.com/python/%E7%88%AC%E8%99%AB/python3%E4%B8%ADUnicode%E5%AD%97%E7%AC%A6%E8%BD%AC%E4%B8%AD%E6%96%87/</loc>
     
     <lastmod>2022-02-25T08:37:09.088Z</lastmod>
     
@@ -170,7 +191,14 @@
   </url>
   
   <url>
-    <loc>https://blog.leslie168.com/lambda/lambda%E5%87%BD%E6%95%B0/</loc>
+    <loc>https://blog.leslie168.com/python/jupyter/jupyter%E6%90%AD%E5%BB%BA/</loc>
+    
+    <lastmod>2022-02-25T08:37:09.087Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.leslie168.com/docker/docker%E9%95%9C%E5%83%8F/</loc>
     
     <lastmod>2022-02-25T08:37:09.087Z</lastmod>
     
@@ -184,14 +212,7 @@
   </url>
   
   <url>
-    <loc>https://blog.leslie168.com/python/jupyter/jupyter%E6%90%AD%E5%BB%BA/</loc>
-    
-    <lastmod>2022-02-25T08:37:09.087Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.leslie168.com/docker/docker%E9%95%9C%E5%83%8F/</loc>
+    <loc>https://blog.leslie168.com/lambda/lambda%E5%87%BD%E6%95%B0/</loc>
     
     <lastmod>2022-02-25T08:37:09.087Z</lastmod>
     
