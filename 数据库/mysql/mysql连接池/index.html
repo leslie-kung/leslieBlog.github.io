@@ -21,6 +21,16 @@
     
   <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
   <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+  <script>
+    (function(){
+        if('leslie'){
+            if (prompt('请输入文章密码') !== 'leslie'){
+                alert('密码错误');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 
 
@@ -94,7 +104,7 @@
 <meta property="og:site_name" content="Leslie&#39;s Blog">
 <meta property="og:description" content="mysql连接池1、执行带参数的ＳＱＬ时，请先用sql语句指定需要输入的条件列表，然后再用tuple&#x2F;list进行条件批配 ２、在格式ＳＱＬ中不需要使用引号指定数据类型，系统会根据输入参数自动识别 ３、在输入的值中不需要使用转意函数，系统会自动处理">
 <meta property="article:published_time" content="2022-02-27T13:08:22.000Z">
-<meta property="article:modified_time" content="2022-02-27T13:15:37.563Z">
+<meta property="article:modified_time" content="2022-03-01T07:28:06.797Z">
 <meta property="article:author" content="leslie">
 <meta property="article:tag" content="数据库">
 <meta property="article:tag" content="mysql">
@@ -235,6 +245,16 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            留言
           </a>
         </li>
       
@@ -380,6 +400,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/mysql%E8%BF%9E%E6%8E%A5%E6%B1%A0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/mysql%E8%BF%9E%E6%8E%A5%E6%B1%A0/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -536,6 +566,9 @@
           
 
   
+    <div class="comments" id="comments">
+    </div>
+  
 
 
 
@@ -584,11 +617,11 @@
 
             
               <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/%7C%7C%20archive">
-              
+
+                <a href="/archives">
+      
                   <span class="site-state-item-count">28</span>
-                  <span class="site-state-item-name">日志</span>
+                  <span class="site-state-item-name">文章</span>
                 </a>
               </div>
             
@@ -889,6 +922,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'NAq5a5hj1nNITXlgGNDonOzJ-gzGzoHsz',
+        appKey: 'N9sGHhCSkskzJHkhL0xovOmY',
+        placeholder: '欢迎留下你的宝贵意见^_^',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
