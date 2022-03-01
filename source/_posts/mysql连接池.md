@@ -7,6 +7,7 @@ tags:
     - 数据库
     - mysql
 categories: [数据库, mysql]
+password: leslie
 ---
 
 ## mysql连接池

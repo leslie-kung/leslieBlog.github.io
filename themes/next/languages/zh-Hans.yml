@@ -16,6 +16,7 @@ menu:
   schedule: 日程表
   sitemap: 站点地图
   commonweal: 公益404
+  guestbook: 留言
 
 sidebar:
   overview: 站点概览
@@ -66,7 +67,7 @@ counter:
     other: "目前共计 %d 篇日志。"
 
 state:
-  posts: 日志
+  posts: 文章
   pages: 页面
   tags: 标签
   categories: 分类
