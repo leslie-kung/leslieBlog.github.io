@@ -1,6 +1,497 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>myql查询语句优化</title>
+    <url>/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/myql%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<script type="text/javascript" src="/js/src/bai.js"></script>
+
+<h2 id="Sql语句优化和索引"><a href="#Sql语句优化和索引" class="headerlink" title="Sql语句优化和索引"></a>Sql语句优化和索引</h2><h3 id="Innerjoin和左连接，右连接，子查询"><a href="#Innerjoin和左连接，右连接，子查询" class="headerlink" title="Innerjoin和左连接，右连接，子查询"></a>Innerjoin和左连接，右连接，子查询</h3><ul>
+<li><p>inner join内连接也叫等值连接是，left/rightjoin是外连接。</p>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">SELECT <span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>id,<span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>name,<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>id,<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>name FROM A LEFT JOIN B ON <span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>id =<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>id;</span><br><span class="line">SELECT <span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>id,<span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>name,<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>id,<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>name FROM A RIGHT JOIN ON B <span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>id= <span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>id;</span><br><span class="line">SELECT <span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>id,<span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>name,<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>id,<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>name FROM A INNER JOIN ON <span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>id =<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>id;</span><br></pre></td></tr></table></figure>
+<p>经过来之多方面的证实inner join性能比较快，因为inner join是等值连接，或许返回的行数比较少。但是我们要记得有些语句隐形的用到了等值连接，如：</p>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">SELECT <span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>id,<span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>name,<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>id,<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>name FROM A,B WHERE <span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>id = <span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>id;</span><br></pre></td></tr></table></figure>
+<p>推荐：能用inner join连接尽量使用inner join连接</p>
+<a id="more"></a>
+</li>
+<li><p>子查询的性能又比外连接性能慢，尽量用外连接来替换子查询。</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line">  <span class="keyword">Select</span>* <span class="keyword">from</span> A <span class="keyword">where</span> <span class="keyword">exists</span> (<span class="keyword">select</span> * <span class="keyword">from</span> B <span class="keyword">where</span> id&gt;=<span class="number">3000</span> <span class="keyword">and</span> A.<span class="built_in">uuid</span>=B.<span class="built_in">uuid</span>);</span><br></pre></td></tr></table></figure>
+<p>A表的数据为十万级表，B表为百万级表，在本机执行差不多用2秒左右，我们可以通过explain可以查看到子查询是一个相关子查询(DEPENDENCE SUBQUERY);Mysql是先对外表A执行全表查询，然后根据uuid逐次执行子查询，如果外层表是一个很大的表，我们可以想象查询性能会表现比这个更加糟糕。<br>一种简单的优化就是用innerjoin的方法来代替子查询，查询语句改为：</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line">   <span class="keyword">Select</span>* <span class="keyword">from</span> A <span class="keyword">inner</span> <span class="keyword">join</span> B <span class="keyword">using</span>(<span class="built_in">uuid</span>) <span class="keyword">where</span> b.<span class="built_in">uuid</span>&gt;=<span class="number">3000</span>;</span><br></pre></td></tr></table></figure>
+<p>这个语句执行测试不到一秒；</p>
+</li>
+<li><p>在使用ON 和 WHERE 的时候，记得它们的顺序，如：</p>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">SELECT <span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>id,<span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>name,<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>id,<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>name FROM A LEFT JOIN B ON <span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>id =<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>id WHERE B.NAME=’XXX’</span><br></pre></td></tr></table></figure>
+<p>执行过程会先执行ON 后面先过滤掉B表的一些行数。然而WHERE是后再过滤他们两个连接产生的记录。<br>不过在这里提醒一下大家：ON后面的条件只能过滤出B表的条数，但是连接返回的记录的行数还是A表的行数是一样。如：</p>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">SELECT <span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>id,<span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>name,<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>id,<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>name FROM A LEFT JOIN B ON <span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>id =<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>id;</span><br></pre></td></tr></table></figure>
+<p>返回的记录数是A表的条数，ON后面的条件只起到过滤B表的记录数，而</p>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">SELECT <span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>id,<span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>name,<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>id,<span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>name FROM A ,B WHERE <span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>id = <span class="module-access"><span class="module"><span class="identifier">B</span>.</span></span>id</span><br></pre></td></tr></table></figure>
+<p>返回的条数，是笛卡尔积后，符合A.id = B.id这个条件的记录</p>
+</li>
+<li><p>使用JOIN时候，应该用小的结果驱动打的结果（left join 左边表结果尽量小，如果有条件应该放到左边先处理，right join同理反向），同事尽量把牵涉到多表联合的查询拆分多个query(多个表查询效率低，容易锁表和阻塞)。如：</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> * <span class="keyword">from</span> A <span class="keyword">left</span> <span class="keyword">join</span> B ona.id=B.ref_id <span class="keyword">where</span> B.ref_id&gt;<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<p>可以优化为：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> (<span class="keyword">select</span> * <span class="keyword">from</span> A wehre <span class="keyword">id</span> &gt;<span class="number">10</span>) T1 <span class="keyword">left</span> <span class="keyword">join</span> B onT1.id=B.ref_id;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="建立索引-加快查询性能"><a href="#建立索引-加快查询性能" class="headerlink" title="建立索引,加快查询性能."></a>建立索引,加快查询性能.</h3><h3 id="limit千万级分页的时候优化"><a href="#limit千万级分页的时候优化" class="headerlink" title="limit千万级分页的时候优化"></a>limit千万级分页的时候优化</h3><ul>
+<li>在我们平时用limit,如：<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> * <span class="keyword">from</span> A <span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">id</span> <span class="keyword">limit</span> <span class="number">1</span>,<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+这样在表数据很少的时候，看不出什么性能问题，倘若到达千万级，如：<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> * <span class="keyword">from</span> A <span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">id</span> limit10000000,<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+虽然都是只查询10记录，但是这个就性能就让人受不了了。所以为什么当表数据很大的时候，我们还继续用持久层框架如hibernate,ibatis就会有一些性能问题，除非持久层框架对这些大数据表做过优化。</li>
+<li>在遇见上面的情况，我们可以用另外一种语句优化，如：<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> * <span class="keyword">from</span> A <span class="keyword">where</span> <span class="keyword">id</span>&gt;=(<span class="keyword">Select</span> idfrom a <span class="keyword">limit</span> <span class="number">10000000</span>,<span class="number">1</span>) <span class="keyword">limit</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+确实这样快了很多，不过前提是，id字段建立了索引。也许这个还不是最优的，其实还可以这样写：<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> * <span class="keyword">from</span> A <span class="keyword">where</span> <span class="keyword">id</span> <span class="keyword">between</span> <span class="number">10000000</span><span class="keyword">and</span> <span class="number">10000010</span>;</span><br></pre></td></tr></table></figure>
+这样的效率更加高。</li>
+</ul>
+<h3 id="尽量避免Select-命令"><a href="#尽量避免Select-命令" class="headerlink" title="尽量避免Select * 命令"></a>尽量避免Select * 命令</h3><p>从表中读取越多的数据，查询会变得更慢。它会增加磁盘的操作时间，还是在数据库服务器与web服务器是独立分开的情况下，你将会经历非常漫长的网络延迟。仅仅是因为数据不必要的在服务器之间传输</p>
+<h3 id="尽量不要使用BY-RAND-命令"><a href="#尽量不要使用BY-RAND-命令" class="headerlink" title="尽量不要使用BY RAND()命令"></a>尽量不要使用BY RAND()命令</h3><p>如果您真需要随机显示你的结果，有很多更好的途径实现。而这个函数可能会为表中每一个独立的行执行BY RAND()命令—这个会消耗处理器的处理能力，然后给你仅仅返回一行</p>
+<h3 id="利用limit-1取得唯一行"><a href="#利用limit-1取得唯一行" class="headerlink" title="利用limit 1取得唯一行"></a>利用limit 1取得唯一行</h3><p>有时要查询一张表时，你要知道需要看一行，你可能去查询一条独特的记录。你可以使用limit 1.来终止数据库引擎继续扫描整个表或者索引,如：</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Select</span> * <span class="keyword">from</span> A  <span class="keyword">where</span> namelike ‘%xxx’ <span class="keyword">limit</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>这样只要查询符合like ‘%xxx’的记录，那么引擎就不会继续扫描表或者索引了。</p>
+<h3 id="尽量少排序"><a href="#尽量少排序" class="headerlink" title="尽量少排序"></a>尽量少排序</h3><p>排序操作会消耗较多的CPU资源，所以减少排序可以在缓存命中率高等</p>
+<h3 id="尽量少OR"><a href="#尽量少OR" class="headerlink" title="尽量少OR"></a>尽量少OR</h3><p>当where子句中存在多个条件以“或”并存的时候，Mysql的优化器并没有很好的解决其执行计划优化问题，再加上mysql特有的sql与Storage分层架构方式，造成了其性能比较地下，很多时候使用union all或者union(必要的时候)的方式代替“or”会得到更好的效果。</p>
+<h3 id="尽量用union-all-代替union"><a href="#尽量用union-all-代替union" class="headerlink" title="尽量用union all 代替union"></a>尽量用union all 代替union</h3><p>union和union all的差异主要是前者需要将两个（或者多个）结果集合并后再进行唯一性过滤操作，这就会涉及到排序，增加大量的cpu运算，加大资源消耗及延迟。所以当我们可以确认不可能出现重复结果集或者不在乎重复结果集的时候，尽量使用union all而不是union.</p>
+<h3 id="避免类型转换"><a href="#避免类型转换" class="headerlink" title="避免类型转换"></a>避免类型转换</h3><p>这里所说的“类型转换”是指where子句中出现column字段的类型和传入的参数类型不一致的时候发生的类型转换。人为的上通过转换函数进行转换，直接导致mysql无法使用索引。如果非要转型，应该在传入参数上进行转换</p>
+<h3 id="不要在列上进行运算"><a href="#不要在列上进行运算" class="headerlink" title="不要在列上进行运算"></a>不要在列上进行运算</h3><p>如下面:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> * fromusers <span class="keyword">where</span> <span class="keyword">YEAR</span>(adddate)&lt;<span class="number">2007</span>;</span><br></pre></td></tr></table></figure>
+<p>将在每个行进行运算，这些导致索引失效进行全表扫描，因此我们可以改成：</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">Select * <span class="keyword">from</span><span class="built_in"> users </span>where adddate&lt;’2007-01-01’;</span><br></pre></td></tr></table></figure>
+<h3 id="尽量不要使用NOT-IN和-lt-gt-操作"><a href="#尽量不要使用NOT-IN和-lt-gt-操作" class="headerlink" title="尽量不要使用NOT IN和&lt;&gt;操作"></a>尽量不要使用NOT IN和&lt;&gt;操作</h3><ul>
+<li><p>NOT IN和&lt;&gt;操作都不会使用索引，而是将会进行全表扫描。NOT IN可以NOT EXISTS代替，id&lt;&gt;3则可以使用id&gt;3 or id &lt;3;如果NOT EXISTS是子查询，还可以尽量转化为外连接或者等值连接，要看具体sql的业务逻辑。</p>
+</li>
+<li><p>把NOT IN转化为LEFT JOIN如：</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> customerinfo <span class="keyword">WHERE</span> CustomerIDNOT <span class="keyword">in</span> (<span class="keyword">SELECT</span> CustomerID <span class="keyword">FROM</span> salesinfo );</span><br></pre></td></tr></table></figure>
+<p>优化：</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> customerinfo <span class="keyword">LEFT</span> JOINsalesinfoON customerinfo.CustomerID=salesinfo. CustomerID WHEREsalesinfo.CustomerID <span class="keyword">IS</span> <span class="literal">NULL</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="使用批量插入节省交互（最好是使用存储过程）"><a href="#使用批量插入节省交互（最好是使用存储过程）" class="headerlink" title="使用批量插入节省交互（最好是使用存储过程）"></a>使用批量插入节省交互（最好是使用存储过程）</h3></li>
+</ul>
+<h3 id="锁定表"><a href="#锁定表" class="headerlink" title="锁定表"></a>锁定表</h3><p>尽管事务是维护数据库完整性的一个非常好的方法,但却因为它的独占性,有时会影响数据库的性能,尤其是在很多的应用系统中.由于事务执行的过程中,数据库将会被锁定,因此其他的用户请求只能暂时等待直到该事务结算.如果一个数据库系统只有少数几个用户来使用,事务造成的影响不会成为一个太大问题;但假设有成千上万的用户同时访问一个数据库系统,例如访问一个电子商务网站,就会产生比较严重的响应延迟.其实有些情况下我们可以通过锁定表的方法来获得更好的性能.如:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">LOCK</span> <span class="keyword">TABLE</span> inventory write</span><br><span class="line"><span class="keyword">Select</span> quanity <span class="keyword">from</span> inventory whereitem=’book’;</span><br><span class="line">…</span><br><span class="line"><span class="keyword">Update</span> inventory <span class="keyword">set</span> quantity=<span class="number">11</span> whereitem=’book’;</span><br><span class="line"><span class="keyword">UNLOCK</span> <span class="keyword">TABLES</span>;</span><br></pre></td></tr></table></figure>
+<p>这里，我们用一个select语句取出初始数据，通过一些计算，用update语句将新值更新到列表中。包含有write关键字的LOCK TABLE语句可以保证在UNLOCK TABLES命令被执行之前，不会有其他的访问来对inventory进行插入，更新或者删除的操作。</p>
+<h3 id="对多表关联的查询，建立视图"><a href="#对多表关联的查询，建立视图" class="headerlink" title="对多表关联的查询，建立视图"></a>对多表关联的查询，建立视图</h3><p>对多表的关联可能会有性能上的问题，我们可以对多表建立视图，这样操作简单话，增加数据安全性，通过视图，用户只能查询和修改指定的数据。且提高表的逻辑独立性，视图可以屏蔽原有表结构变化带来的影响</p>
+]]></content>
+      <categories>
+        <category>数据库</category>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql索引</title>
+    <url>/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/mysql%E7%B4%A2%E5%BC%95/</url>
+    <content><![CDATA[<script type="text/javascript" src="/js/src/bai.js"></script>
+
+<h2 id="mysql索引"><a href="#mysql索引" class="headerlink" title="mysql索引"></a>mysql索引</h2><h3 id="索引的优点"><a href="#索引的优点" class="headerlink" title="索引的优点"></a>索引的优点</h3><ul>
+<li>可以大大加快数据的检索速度，这也是创建索引的最主要的原因。</li>
+<li>通过使用索引，可以在查询的过程中，使用优化隐藏器，提高系统的性能。</li>
+</ul>
+<h3 id="索引的缺点"><a href="#索引的缺点" class="headerlink" title="索引的缺点"></a>索引的缺点</h3><ul>
+<li>时间方面：创建索引和维护索引要耗费时间，具体地，当对表中的数据进行增加、删除和修改的时候，索引也要动态的维护，会降低增/改/删的执行效率；</li>
+<li>空间方面：索引需要占物理空间。</li>
+</ul>
+<a id="more"></a>
+<p>从存储结构上来划分：BTree索引（B-Tree或B+Tree索引），Hash索引，full-index全文索引，R-Tree索引。这里所描述的是索引存储时保存的形式，</p>
+<p>从应用层次来分：普通索引，唯一索引，复合索引。</p>
+<ul>
+<li>普通索引：即一个索引只包含单个列，一个表可以有多个单列索引</li>
+<li>唯一索引：索引列的值必须唯一，但允许有空值</li>
+<li>复合索引：多列值组成一个索引，专门用于组合搜索，其效率大于索引合并</li>
+<li>聚簇索引(聚集索引)：并不是一种单独的索引类型，而是一种数据存储方式。具体细节取决于不同的实现，InnoDB的聚簇索引其实就是在同一个结构中保存了B-Tree索引(技术上来说是B+Tree)和数据行。</li>
+<li>非聚簇索引： 不是聚簇索引，就是非聚簇索引</li>
+</ul>
+<p>根据中数据的物理顺序与键值的逻辑（索引）顺序关系： 聚集索引，非聚集索引。</p>
+<h3 id="联合索引"><a href="#联合索引" class="headerlink" title="联合索引"></a>联合索引</h3><p>MySQL可以使用多个字段同时建立一个索引，叫做联合索引。在联合索引中，如果想要命中索引，需要按照建立索引时的字段顺序挨个使用，否则无法命中索引。</p>
+<p>具体原因为:</p>
+<p>MySQL使用索引时需要索引有序，假设现在建立了”name，age，school”的联合索引，那么索引的排序为: 先按照name排序，如果name相同，则按照age排序，如果age的值也相等，则按照school进行排序。</p>
+<p>当进行查询时，此时索引仅仅按照name严格有序，因此必须首先使用name字段进行等值查询，之后对于匹配到的列而言，其按照age字段严格有序，此时可以使用age字段用做索引查找，以此类推。因此在建立联合索引的时候应该注意索引列的顺序，一般情况下，将查询需求频繁或者字段选择性高的列放在前面。此外可以根据特例的查询或者表结构进行单独的调整。</p>
+<h3 id="最左前缀原则"><a href="#最左前缀原则" class="headerlink" title="最左前缀原则"></a>最左前缀原则</h3><p>最左前缀原则就是最左优先，在创建多列索引时，要根据业务需求，where子句中使用最频繁的一列放在最左边。</p>
+<p>mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)就停止匹配，比如a = 1 and b = 2 and c &gt; 3 and d = 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的，如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整。</p>
+<p>=和in可以乱序，比如a = 1 and b = 2 and c = 3 建立(a,b,c)索引可以任意顺序，mysql的查询优化器会帮你优化成索引可以识别的形式。</p>
+<h3 id="前缀索引"><a href="#前缀索引" class="headerlink" title="前缀索引"></a>前缀索引</h3><p>因为可能我们索引的字段非常长，这既占内存空间，也不利于维护。所以我们就想，如果只把很长字段的前面的公共部分作为一个索引，就会产生超级加倍的效果。但是，我们需要注意，order by不支持前缀索引 。</p>
+<ul>
+<li>先计算完整列的选择性 : select count(distinct col_1)/count(1) from table_1</li>
+<li>再计算不同前缀长度的选择性 : select count(distinct left(col_1,4))/count(1) from table_1</li>
+<li>找到最优长度之后，创建前缀索引 : create index idx_front on table_1 (col_1(4))</li>
+</ul>
+<h3 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h3><p>MySQL 5.6引入了索引下推优化。默认开启，使用SET optimizer_switch = ‘index_condition_pushdown=off’;可以将其关闭。</p>
+<ul>
+<li>有了索引下推优化，可以在减少回表次数</li>
+<li>在InnoDB中只针对二级索引有效</li>
+</ul>
+<p>官方文档中给的例子和解释如下：</p>
+<p>在 people_table中有一个二级索引(zipcode，lastname，address)，查询是SELECT * FROM people WHERE zipcode=’95054′ AND lastname LIKE ‘%etrunia%’ AND address LIKE ‘%Main Street%’</p>
+<ul>
+<li>如果没有使用索引下推技术，则MySQL会通过zipcode=’95054’从存储引擎中查询对应的数据，返回到MySQL服务端，然后MySQL服务端基于lastname LIKE ‘%etrunia%’ and address LIKE ‘%Main Street%’来判断数据是否符合条件</li>
+<li>如果使用了索引下推技术，则MYSQL首先会返回符合zipcode=’95054’的索引，然后根据lastname LIKE ‘%etrunia%’ and address LIKE ‘%Main Street%’来判断索引是否符合条件。如果符合条件，则根据该索引来定位对应的数据，如果不符合，则直接reject掉。</li>
+</ul>
+<h3 id="索引失效"><a href="#索引失效" class="headerlink" title="索引失效"></a>索引失效</h3><ul>
+<li><p>使用!= 或者 &lt;&gt; 导致索引失效</p>
+</li>
+<li><p>类型不一致导致的索引失效</p>
+</li>
+<li><p>函数导致的索引失效</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 如果使用函数在索引列，这是不走索引的。</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="string">`user`</span> <span class="keyword">WHERE</span> <span class="built_in">DATE</span>(create_time) = <span class="string">'2020-09-03'</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>运算符导致的索引失效</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="symbol">`user`</span> <span class="keyword">WHERE</span> age - <span class="number">1</span> = <span class="number">20</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>OR引起的索引失效</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="symbol">`user`</span> <span class="keyword">WHERE</span> <span class="symbol">`name`</span> = <span class="string">'张三'</span> <span class="keyword">OR</span> height = <span class="string">'175'</span>;</span><br></pre></td></tr></table></figure>
+<p>OR导致索引是在特定情况下的，并不是所有的OR都是使索引失效，如果OR连接的是同一个字段，那么索引不会失效，反之索引失效。</p>
+</li>
+<li><p>模糊搜索导致的索引失效</p>
+<figure class="highlight n1ql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="symbol">`user`</span> <span class="keyword">WHERE</span> <span class="symbol">`name`</span> <span class="keyword">LIKE</span> <span class="string">'%冰'</span>;</span><br></pre></td></tr></table></figure>
+<p>当%放在匹配字段前是不走索引的，放在后面才会走索引。</p>
+</li>
+<li><p>NOT IN、NOT EXISTS导致索引失效</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数据库</category>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python基础</title>
+    <url>/python/%E5%9F%BA%E7%A1%80/python%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<script type="text/javascript" src="/js/src/bai.js"></script>
+
+<h2 id="Python的参数传递是值传递还是引用传递"><a href="#Python的参数传递是值传递还是引用传递" class="headerlink" title="Python的参数传递是值传递还是引用传递"></a>Python的参数传递是值传递还是引用传递</h2><p>Python的参数传递有：</p>
+<ul>
+<li>位置参数</li>
+<li>默认参数，</li>
+<li>可变参数,</li>
+<li>关键字参数</li>
+</ul>
+<p>函数的传值到底是值传递还是引用传递，要分情况</p>
+<ul>
+<li><p>不可变参数用值传递：<br>像整数和字符串这样的不可变对象，是通过拷贝进行传递的，因为你无论如何都不可能在原处改变不可变对象</p>
+</li>
+<li><p>可变参数是用引用传递的：<br>比如像列表，字典这样的对象是通过引用传递，和C语言里面的用指针传递数组很相似，可变对象能在函数内部改变.</p>
+</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="Python是如何进行内存管理的"><a href="#Python是如何进行内存管理的" class="headerlink" title="Python是如何进行内存管理的"></a>Python是如何进行内存管理的</h2><h3 id="对象的引用计数机制"><a href="#对象的引用计数机制" class="headerlink" title="对象的引用计数机制"></a>对象的引用计数机制</h3><p>Python内部使用引用计数，来保持追踪内存中的对象，所有对象都有引用计数。</p>
+<ul>
+<li><p>引用计数增加的情况：</p>
+<ul>
+<li>一个对象分配一个新名称</li>
+<li>将其放入一个容器中（如列表、元组或字典）</li>
+</ul>
+</li>
+<li><p>引用计数减少的情况：</p>
+<ul>
+<li>使用del语句对对象别名显示的销毁</li>
+<li>引用超出作用域或被重新赋值</li>
+</ul>
+</li>
+</ul>
+<h3 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h3><p>当一个对象的引用计数归零时，它将被垃圾收集机制处理掉。</p>
+<h3 id="内存池机制"><a href="#内存池机制" class="headerlink" title="内存池机制"></a>内存池机制</h3><p>Python提供了对内存的垃圾收集机制，但是它将不用的内存放到内存池而不是返回给操作系统:</p>
+<ul>
+<li>Pymalloc机制：为了加速Python的执行效率，Python引入了一个内存池机制，用于管理对小块内存的申请和释放。</li>
+<li>对于Python对象，如整数，浮点数和List，都有其独立的私有内存池，对象间不共享他们的内存池。也就是说如果你分配又释放了大量的整数，用于缓存这些整数的内存就不能再分配给浮点数。</li>
+</ul>
+<h2 id="写出你认为最Pythonic的代码"><a href="#写出你认为最Pythonic的代码" class="headerlink" title="写出你认为最Pythonic的代码"></a>写出你认为最Pythonic的代码</h2><p>下面是一些比较好的例子</p>
+<p>交互变量</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 非Pythonic</span></span><br><span class="line">temp = a</span><br><span class="line">a = b</span><br><span class="line">b = temp</span><br><span class="line"><span class="comment"># pythonic:</span></span><br><span class="line">a,b=b,a</span><br></pre></td></tr></table></figure>
+<p>判断其值真假</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">name = <span class="string">'Tim'</span></span><br><span class="line">langs = [<span class="string">'AS3'</span>, <span class="string">'Lua'</span>, <span class="string">'C'</span>]</span><br><span class="line">info = &#123;<span class="string">'name'</span>: <span class="string">'Tim'</span>, <span class="string">'sex'</span>: <span class="string">'Male'</span>, <span class="string">'age'</span>:<span class="number">23</span> &#125;  </span><br><span class="line"><span class="comment"># 非Pythonic</span></span><br><span class="line"><span class="keyword">if</span> name != <span class="string">''</span> <span class="keyword">and</span> len(langs) &gt; <span class="number">0</span> <span class="keyword">and</span> info != &#123;&#125;:</span><br><span class="line">    print(<span class="string">'All True!'</span>) </span><br><span class="line"><span class="comment"># pythonic:</span></span><br><span class="line"><span class="keyword">if</span> name <span class="keyword">and</span> langs <span class="keyword">and</span> info:</span><br><span class="line">    print(<span class="string">'All True!'</span>)</span><br></pre></td></tr></table></figure>
+<p>列表推导式</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">[x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">100</span>) <span class="keyword">if</span> x%<span class="number">2</span>==<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<p>zip创建键值对</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">keys = [<span class="string">'Name'</span>, <span class="string">'Sex'</span>, <span class="string">'Age'</span>]</span><br><span class="line">values = [<span class="string">'Jack'</span>, <span class="string">'Male'</span>, <span class="number">23</span>]</span><br><span class="line">dict(zip(keys,values))</span><br></pre></td></tr></table></figure>
+
+<h2 id="csrf是什么？如何防范？"><a href="#csrf是什么？如何防范？" class="headerlink" title="csrf是什么？如何防范？"></a>csrf是什么？如何防范？</h2><p>CSRF概念：CSRF跨站点请求伪造(Cross—Site Request Forgery)，跟XSS攻击一样，存在巨大的危害性，你可以这样来理解：</p>
+<p>攻击者盗用了你的身份，以你的名义发送恶意请求，对服务器来说这个请求是完全合法的，但是却完成了攻击者所期望的一个操作，比如以你的名义发送邮件、发消息，盗取你的账号，添加系统管理员，甚至于购买商品、虚拟货币转账等。 如下：其中Web A为存在CSRF漏洞的网站，Web B为攻击者构建的恶意网站，User C为Web A网站的合法用户。</p>
+<p> CSRF攻击攻击原理及过程如下：</p>
+<pre><code>1. 用户C打开浏览器，访问受信任网站A，输入用户名和密码请求登录网站A；
+
+2.在用户信息通过验证后，网站A产生Cookie信息并返回给浏览器，此时用户登录网站A成功，可以正常发送请求到网站A；
+
+3. 用户未退出网站A之前，在同一浏览器中，打开一个TAB页访问网站B；
+
+4. 网站B接收到用户请求后，返回一些攻击性代码，并发出一个请求要求访问第三方站点A；
+
+
+5. 浏览器在接收到这些攻击性代码后，根据网站B的请求，在用户不知情的情况下携带Cookie信息，向网站A发出请求。网站A并不知道该请求其实是由B发起的，所以会根据用户C的Cookie信息以C的权限处理该请求，导致来自网站B的恶意代码被执行。</code></pre><p> 防御CSRF攻击：</p>
+<p>目前防御 CSRF 攻击主要有三种策略：验证 HTTP Referer 字段；在请求地址中添加 token 并验证；在 HTTP 头中自定义属性并验证。</p>
+]]></content>
+      <categories>
+        <category>python</category>
+        <category>基础</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>list去重和单例</title>
+    <url>/python/%E5%9F%BA%E7%A1%80/list%E5%8E%BB%E9%87%8D%E5%92%8C%E5%8D%95%E4%BE%8B/</url>
+    <content><![CDATA[<script type="text/javascript" src="/js/src/bai.js"></script>
+
+<h2 id="python里面re模块match-和search-的区别"><a href="#python里面re模块match-和search-的区别" class="headerlink" title="python里面re模块match()和search()的区别"></a>python里面re模块match()和search()的区别</h2><ul>
+<li>match()函数指检测re是不是在str的开始位置匹配</li>
+<li>search()会扫描整个str查找匹配，会扫描整个字符串并返回第一个成功的匹配</li>
+</ul>
+<p>也就是说match()只有在0位置匹配成功的话才有返回，如果不是开始位置匹配成功的话，返回none</p>
+<h2 id="python传递可变默认参数类型，默认指向同一个引用"><a href="#python传递可变默认参数类型，默认指向同一个引用" class="headerlink" title="python传递可变默认参数类型，默认指向同一个引用"></a>python传递可变默认参数类型，默认指向同一个引用</h2><a id="more"></a>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x,l=[])</span>:</span>  </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(x):  </span><br><span class="line">        l.append(i*i)  </span><br><span class="line">    print(l)  </span><br><span class="line">f(<span class="number">2</span>)<span class="comment">#[0,1]  </span></span><br><span class="line">f(<span class="number">3</span>,[<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>])<span class="comment">#[3,2,1,0,1,4]  </span></span><br><span class="line">f(<span class="number">3</span>)<span class="comment">#[0,1,0,1,4]</span></span><br></pre></td></tr></table></figure>
+<h2 id="列表的去重方法"><a href="#列表的去重方法" class="headerlink" title="列表的去重方法"></a>列表的去重方法</h2><ul>
+<li>集合方法<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">li = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">6</span>]  </span><br><span class="line">a = []  </span><br><span class="line"><span class="comment"># 列表去重方法一：集合方法  </span></span><br><span class="line">b = set(li)  </span><br><span class="line">print(b)</span><br></pre></td></tr></table></figure></li>
+<li>遍历统计次数，删除重复选项 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> li:  </span><br><span class="line">    <span class="keyword">while</span> li.count(i) &gt; <span class="number">1</span>:  </span><br><span class="line">        <span class="keyword">del</span> li[li.index(i)]  </span><br><span class="line">print(li)</span><br></pre></td></tr></table></figure></li>
+<li>遍历列表，添加新列表对比 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = []  </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> li:  </span><br><span class="line">    <span class="keyword">if</span> i <span class="keyword">in</span> li:  </span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> a:  </span><br><span class="line">            a.append(i)  </span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure></li>
+<li>先对元素进行排序，然后从列表的最后开始扫描<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">6</span>]  </span><br><span class="line"><span class="keyword">if</span> list:  </span><br><span class="line">    list.sort()  </span><br><span class="line">    last = list[<span class="number">-1</span>]  </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(list)<span class="number">-2</span>,<span class="number">-1</span>,<span class="number">-1</span>):  </span><br><span class="line">        <span class="keyword">if</span> last == list[i]:  </span><br><span class="line">            <span class="keyword">del</span> list[i]  </span><br><span class="line">        <span class="keyword">else</span>:last = list[i]  </span><br><span class="line">  </span><br><span class="line">print(list)</span><br></pre></td></tr></table></figure></li>
+<li>利用map的fromkeys来自动过滤重复值<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">l1 = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">6</span>]  </span><br><span class="line">l2 = &#123;&#125;.fromkeys(l1).keys()  </span><br><span class="line">print(l2)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="单例"><a href="#单例" class="headerlink" title="单例"></a>单例</h2><p>所谓单例，是指一个类的实例从始至终只能被创建一次。 </p>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 如果想使得某个类从始至终最多只有一个实例，使用__new__方法会很简单。Python中类是通过__new__来创建实例的：  </span></span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span><span class="params">(object)</span>:</span>  </span><br><span class="line">    _instance = <span class="literal">None</span>  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, *args, **kw)</span>:</span>  </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> cls._instance:  </span><br><span class="line">            cls._instance = super(Singleton, cls).__new__(cls, *args, **kw)  </span><br><span class="line">        <span class="keyword">return</span> cls._instance  </span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(Singleton)</span>:</span>  </span><br><span class="line">    a = <span class="number">1</span>  </span><br><span class="line">one=MyClass()  </span><br><span class="line">two=MyClass()  </span><br><span class="line">print(id(one),id(two))</span><br></pre></td></tr></table></figure>
+<p>结果：id相同<br>在上面的代码中，我们将类的实例和一个类变量 _instance 关联起来，<br>如果 cls._instance 为 None 则创建实例，否则直接返回 cls._instance。  </p>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 有时候我们并不关心生成的实例是否具有同一id，而只关心其状态和行为方式。  </span></span><br><span class="line"><span class="comment"># 我们可以允许许多个实例被创建，但所有的实例都共享状态和行为方式：  </span></span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Borg</span><span class="params">(object)</span>:</span>     </span><br><span class="line">    _shared_state=&#123;&#125;     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls,*args,**kwargs)</span>:</span>       </span><br><span class="line">        obj=super(Borg,cls).__new__(cls,*args,**kwargs)       </span><br><span class="line">        obj.__dict__=cls._shared_state       </span><br><span class="line">        <span class="keyword">return</span> obj</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>将所有实例的<strong>dict</strong>指向同一个字典，这样实例就共享相同的方法和属性。  </p>
+</blockquote>
+<blockquote>
+<p>对任何实例的名字属性的设置，无论是在<strong>init</strong>中修改还是直接修改，所有的实例都会受到影响。</p>
+</blockquote>
+<blockquote>
+<p>不过实例的id是不同的。要保证类实例能共享属性，但不和子类共享，注意使用cls._shared_state,  </p>
+</blockquote>
+<blockquote>
+<p>而不是Borg._shared_state。<br>因为实例是不同的id，所以每个实例都可以做字典的key： </p>
+</blockquote>
+<p>如果这种行为不是你想要的，可以为Borg类添加<strong>eq</strong>和<strong>hash</strong>方法，<br>使其更接近于单例模式的行为：  </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Borg</span><span class="params">(object)</span>:</span>     </span><br><span class="line">    _shared_state=&#123;&#125;     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls,*args,**kwargs)</span>:</span>       </span><br><span class="line">        obj=super(Borg,cls).__new__(cls,*args,**kwargs)       </span><br><span class="line">        obj.__dict__=cls._shared_state       </span><br><span class="line">        <span class="keyword">return</span> obj     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__hash__</span><span class="params">(self)</span>:</span>       </span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__eq__</span><span class="params">(self,other)</span>:</span>       </span><br><span class="line">        <span class="keyword">try</span>:         </span><br><span class="line">            <span class="keyword">return</span> self.__dict__ <span class="keyword">is</span> other.__dict__       </span><br><span class="line">        <span class="keyword">except</span>:         </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span>  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:     </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Example</span><span class="params">(Borg)</span>:</span>       </span><br><span class="line">        <span class="keyword">pass</span>    </span><br><span class="line">    a=Example()     </span><br><span class="line">    b=Example()     </span><br><span class="line">    c=Example()     </span><br><span class="line">    adict=&#123;&#125;     </span><br><span class="line">    j=<span class="number">0</span>    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> a,b,c:       </span><br><span class="line">        adict[i]=j       </span><br><span class="line">        j+=<span class="number">1</span>    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> a,b,c:       </span><br><span class="line">        print(adict[i])  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 所有的实例都能当一个key使用了。</span></span><br></pre></td></tr></table></figure>
+<h3 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h3><p>当你编写一个类的时候，某种机制会使用类名字，基类元组，类字典来创建一个类对象。新型类中这种机制默认为type，而且这种机制是可编程的，称为元类<strong>metaclass</strong> 。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span><span class="params">(type)</span>:</span>     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name,bases,class_dict)</span>:</span>       </span><br><span class="line">        super(Singleton,self).__init__(name,bases,class_dict)       </span><br><span class="line">        self._instance=<span class="literal">None</span>    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self,*args,**kwargs)</span>:</span>       </span><br><span class="line">        <span class="keyword">if</span> self._instance <span class="keyword">is</span> <span class="literal">None</span>:         </span><br><span class="line">            self._instance=super(Singleton,self).__call__(*args,**kwargs)    </span><br><span class="line">        <span class="keyword">return</span> self._instance   </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:     </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span>       </span><br><span class="line">        __metaclass__=Singleton         </span><br><span class="line">    a=A()     </span><br><span class="line">    b=A()     </span><br><span class="line">    <span class="keyword">print</span> (id(a),id(b))  </span><br><span class="line"><span class="comment"># 结果：  </span></span><br><span class="line"><span class="comment"># 34248016 34248016  </span></span><br><span class="line"><span class="comment"># id是相同的。 </span></span><br><span class="line">``` </span><br><span class="line">- 例子中我们构造了一个Singleton元类，并使用__call__方法使其能够模拟函数的行为。  </span><br><span class="line">- 构造类A时，将其元类设为Singleton，那么创建类对象A时，行为发生如下：  </span><br><span class="line">- A=Singleton(name,bases,class_dict),A其实为Singleton类的一个实例。  </span><br><span class="line">- 创建A的实例时，A()=Singleton(name,bases,class_dict)()=Singleton(name,bases,class_dict).\_\_call__()，这样就将A的所有实例都指向了A的属性_instance上，这种方法与方法<span class="number">1</span>其实是相同的。  </span><br><span class="line"></span><br><span class="line"><span class="comment">### 方法四</span></span><br><span class="line">python中的模块module在程序中只被加载一次，本身就是单例的。可以直接写一个模块，将你需要的方法和属性，写在模块中当做函数和模块作用域的全局变量即可，根本不需要写类。 </span><br><span class="line">```python</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_singleton</span><span class="params">(object)</span>:</span>     </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ConstError</span><span class="params">(TypeError)</span>:</span>       </span><br><span class="line">        <span class="keyword">pass</span>    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__setattr__</span><span class="params">(self,name,value)</span>:</span>       </span><br><span class="line">        <span class="keyword">if</span> name <span class="keyword">in</span> self.__dict__:         </span><br><span class="line">            <span class="keyword">raise</span> self.ConstError       </span><br><span class="line">            self.__dict__[name]=value     </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__delattr__</span><span class="params">(self,name)</span>:</span>       </span><br><span class="line">        <span class="keyword">if</span> name <span class="keyword">in</span> self.__dict__:         </span><br><span class="line">            <span class="keyword">raise</span> self.ConstError       </span><br><span class="line">        <span class="keyword">raise</span> NameError   </span><br><span class="line"><span class="keyword">import</span> sys   </span><br><span class="line">sys.modules[__name__]=_singleton()   </span><br><span class="line"><span class="comment"># python并不会对sys.modules进行检查以确保他们是模块对象，  </span></span><br><span class="line"><span class="comment"># 我们利用这一点将模块绑定向一个类对象，而且以后都会绑定向同一个对象了。  </span></span><br><span class="line"><span class="comment"># 将代码存放在single.py中：</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">import single   </span><br><span class="line">single.<span class="attribute">a</span>=1  </span><br><span class="line">single.<span class="attribute">a</span>=2   </span><br><span class="line">  </span><br><span class="line">ConstError  </span><br><span class="line">  </span><br><span class="line">&gt;&gt;&gt; del single.a  </span><br><span class="line">ConstError</span><br></pre></td></tr></table></figure>
+<h3 id="方法五"><a href="#方法五" class="headerlink" title="方法五"></a>方法五</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 最简单的方法：  </span></span><br><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">singleton</span><span class="params">(object)</span>:</span>     </span><br><span class="line">    <span class="keyword">pass</span>  </span><br><span class="line">singleton=singleton()   </span><br><span class="line"><span class="comment"># 将名字singleton绑定到实例上，singleton就是它自己类的唯一对象了</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>python</category>
+        <category>基础</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tcp和udp的区别</title>
+    <url>/python/%E5%9F%BA%E7%A1%80/tcp%E5%92%8Cudp%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<script type="text/javascript" src="/js/src/bai.js"></script>
+
+<h2 id="tcp的特点"><a href="#tcp的特点" class="headerlink" title="tcp的特点"></a>tcp的特点</h2><ul>
+<li>面向连接， 数据发送之前先建立连接，那么这样能保证对方的ip地址是有效的</li>
+<li>应答机制， 对方收到数据以后会进行回复</li>
+<li>超时重传， 数据在发送过程中，如果对方一直没有回复，那么会隔一段时间再次发送数据，如果对方一直没有回复，那么就会认为对方掉线了。</li>
+<li>错误校验， 发送的数据和接收的数据会进行比较，如果数据不一致，会删除数据重新发送，如果是重复数据也会删除。</li>
+<li>流量控制， 如果接收方没有及时接收数据，那么发送方就不会一直发送数据，比如先发1M数据，等接收方开始接收数据的时候才开始继续发送数据。<a id="more"></a>
+
+</li>
+</ul>
+<h2 id="tcp和udp的对比"><a href="#tcp和udp的对比" class="headerlink" title="tcp和udp的对比"></a>tcp和udp的对比</h2><ul>
+<li>tcp面向连接，udp不面向连接，直接发送数据</li>
+<li>tcp能保证数据的准确性和有效性，udp保证不了</li>
+<li>tcp有超时重传机制，udp没有</li>
+<li>tcp有流量控制（果接收方没有及时接收数据，那么发送方就不会一直发送数据，），udp没有</li>
+<li>tcp因为需要建立连接，需要资源开销，udp 不需要建立连接，没有太多资源开销，那么这样tcp的传输数据不如udp</li>
+<li>tcp不适合做广播，udp适合做广播</li>
+</ul>
+<h2 id="tcp注意点"><a href="#tcp注意点" class="headerlink" title="tcp注意点"></a>tcp注意点</h2><ul>
+<li><p>tcp服务器一般情况下都需要绑定，否则客户端找不到这个服务器</p>
+</li>
+<li><p>tcp客户端一般不绑定，因为是主动链接服务器，所以只要确定好服务器的ip、port等信息就好，本地客户端可以随机</p>
+</li>
+<li><p>tcp服务器中通过listen可以将socket创建出来的主动套接字变为被动的，这是做tcp服务器时必须要做的</p>
+</li>
+<li><p>当客户端需要链接服务器时，就需要使用connect进行链接，udp是不需要链接的而是直接发送，但是tcp必须先链接，只有链接成功才能通信</p>
+</li>
+<li><p>当一个tcp客户端连接服务器时，服务器端会有1个新的套接字，这个套接字用来标记这个客户端，单独为这个客户端服务</p>
+</li>
+<li><p>listen后的套接字是被动套接字，用来接收新的客户端的链接请求的，而accept返回的新套接字是标记这个新客户端的</p>
+</li>
+<li><p>关闭listen后的套接字意味着被动套接字关闭了，会导致新的客户端不能够链接服务器，但是之前已经链接成功的客户端正常通信。</p>
+</li>
+<li><p>关闭accept返回的套接字意味着这个客户端已经服务完毕</p>
+</li>
+<li><p>当客户端的套接字调用close后，服务器端会recv解堵塞，并且返回的长度为0，因此服务器可以通过返回数据的长度来区别客户端是否已经下线</p>
+</li>
+</ul>
+<h2 id="tcp的三次握手和四次挥手"><a href="#tcp的三次握手和四次挥手" class="headerlink" title="tcp的三次握手和四次挥手"></a>tcp的三次握手和四次挥手</h2><h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><ul>
+<li>第一次握手：客户端发送syn包(syn=x)到服务器，并进入SYN_SEND状态，等待服务器确认；</li>
+<li>第二次握手：服务器收到syn包，必须确认客户的SYN（ack=x+1），同时自己也发送一个SYN包（syn=y），即SYN+ACK包，此时服务器进入SYN_RECV状态；</li>
+<li>第三次握手：客户端收到服务器的SYN＋ACK包，向服务器发送确认包ACK(ack=y+1)，此包发送完毕，客户端和服务器进入ESTABLISHED状态，完成三次握手。</li>
+</ul>
+<h3 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h3><ul>
+<li>第一次挥手：主动关闭方发送一个FIN，用来关闭主动方到被动关闭方的数据传送，也就是主动关闭方告诉被动关闭方：我已经不 会再给你发数据了(当然，在fin包之前发送出去的数据，如果没有收到对应的ack确认报文，主动关闭方依然会重发这些数据)，但是，此时主动关闭方还可 以接受数据。</li>
+<li>第二次挥手：被动关闭方收到FIN包后，发送一个ACK给对方，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号）。</li>
+<li>第三次挥手：被动关闭方发送一个FIN，用来关闭被动关闭方到主动关闭方的数据传送，也就是告诉主动关闭方，我的数据也发送完了，不会再给你发数据了。</li>
+<li>第四次挥手：主动关闭方收到FIN后，发送一个ACK给被动关闭方，确认序号为收到序号+1，至此，完成四次挥手。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>python</category>
+        <category>基础</category>
+      </categories>
+      <tags>
+        <tag>-python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程线程协程</title>
+    <url>/python/%E5%9F%BA%E7%A1%80/%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%8D%8F%E7%A8%8B/</url>
+    <content><![CDATA[<script type="text/javascript" src="/js/src/bai.js"></script>
+
+
+<h2 id="多任务的概念"><a href="#多任务的概念" class="headerlink" title="多任务的概念"></a>多任务的概念</h2><p>多任务就是操作系统同时运行多个任务。</p>
+<ul>
+<li>并发：指的是任务数多余CPU核数，通过操作系统的各种任务调度算法，实现用多个任务“一起”执行（实际上总有一些任务不在执行，因为切换的速度相当快，看上去一起执行而已）</li>
+<li>并行：指的是任务数小于等于CPU核数，即任务真的是一起执行的</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p>线程就是程序中代码的一个执行分支，默认只有一个代码执行分支，也就说是主线程，开辟多个线程好比开辟多个代码的执行分支，能够完成多个任务一起值。 线程是cpu调度的基本单位。</p>
+<ul>
+<li>线程的使用 导入threading模块</li>
+<li>多线程执行顺序是无序的</li>
+<li>主线程会等待所有子线程执行完成以后程序再退出<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建线程</span></span><br><span class="line">    xxx = threading.Thread(target=yyy)</span><br><span class="line"><span class="comment"># 设置守护主线程，主线程退出后，子线程直接销毁</span></span><br><span class="line">    xxx.setDaemon(<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 线程的启动</span></span><br><span class="line">    xxx.start()</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>1.每个线程默认有一个名字，尽管上面的例子中没有指定线程对象的name，但是python会自动为线程指定一个名字。</p>
+<p>2.无法控制线程调度程序，但可以通过别的方式来影响线程调度的方式。</p>
+<p>3.在一个进程内的所有线程共享全局变量，很方便在多个线程间共享数据</p>
+<p>4.缺点就是，线程是对全局变量随意遂改可能造成多线程之间对全局变量的混乱（即线程非安全）</p>
+<h2 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h2><p>某个线程要更改共享数据时，先将其锁定，此时资源的状态为“锁定”，其他线程不能更改；直到该线程释放资源，将资源的状态变成“非锁定”，其他的线程才能再次锁定该资源。互斥锁保证了每次只有一个线程进行写入操作，从而保证了多线程情况下数据的正确性。</p>
+<p>互斥锁为资源引入了一个状态：锁定/非锁定</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建锁</span></span><br><span class="line">mutex = threading.Lock()</span><br><span class="line"><span class="comment"># 锁定</span></span><br><span class="line">mutex.acquire()</span><br><span class="line"><span class="comment"># 释放</span></span><br><span class="line">mutex.release()</span><br></pre></td></tr></table></figure>
+<p>如果在调用acquire对这个锁上锁之前 它已经被 其他线程上了锁，那么此时acquire会堵塞，直到这个锁被解锁为止</p>
+<p>锁的好处：</p>
+<ul>
+<li>确保了某段关键代码只能有一个线程从头到尾完整地执行</li>
+</ul>
+<p>锁的坏处：</p>
+<ul>
+<li>阻止了多线程并发执行，包含锁的某段代码实际上只能以单线程模式执行，效率就大大地下降了</li>
+<li>由于可以存在多个锁，不同的线程有不同的锁，并试图获取对方持有的锁时，可能会造成死锁</li>
+</ul>
+<p>避免死锁</p>
+<ul>
+<li>程序设计时要尽量避免（银行家算法）</li>
+<li>添加超时时间等</li>
+</ul>
+<h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>程序：是一个静止的</p>
+<p>进程：一个程序运行起来后，代码+用到的资源称之为进程，她是操作系统分配资源的基本单位。</p>
+<p>进程的状态：</p>
+<ul>
+<li>就绪态 ： 运行的条件都已经慢去，正在等待CPU执行</li>
+<li>执行态 ： CPU正在执行其功能</li>
+<li>等待态 ： 等待某些条件满足，例如一个程序sleep了，此时就是等待态了</li>
+</ul>
+<p>通俗来说一个运行起来的软件或者程序叫做进程，每启动一个进程都会向操作系统索要运行资源，所以进程是操作系统资源分配的基本单位，进程只提供资源，真正干活的是进程中的线程。</p>
+<p>你可以把进程想成公司（提供资源），员工可以想成线程（真正干活的人）。线程是依附在进程里面的，没有进程就没有线程，默认请求下一个进程只有一个线程（主线程）。</p>
+<p>进程之间不共享全局变量</p>
+<h4 id="进程和线程对比"><a href="#进程和线程对比" class="headerlink" title="进程和线程对比"></a>进程和线程对比</h4><ul>
+<li><p>进程：一个运行起来的程序或者软件就叫做进程，没启动一个进程都会想操作系统索要运行资源，进程只提供资源，真正干活的是线程，进程是操作系统资源分配的基本单位，进程可以理解成公司（公司提供资源）</p>
+</li>
+<li><p>线程：线程是运行程序中（进程）执行分支，默认情况下进程中只有一个线程（主线程），多个分支可以完成多个任务一起执行。 线程是cup调度基本单位</p>
+</li>
+<li><p>进程之间不共享全局变量， 线程之间共享全局变量</p>
+</li>
+<li><p>多进程开发比多线程开发的程序稳定性和健壮性要强，因为某个进程挂掉不会影响其它进程的运行，如果是多线程模式开发，进程挂掉，进程中所有的线程都会消耗</p>
+</li>
+</ul>
+<h4 id="消息队列queue"><a href="#消息队列queue" class="headerlink" title="消息队列queue"></a>消息队列queue</h4><p>初始化Queue()对象时（例如：q=Queue()），若括号中没有指定最大可接收的消息数量，或数量为负值，那么就代表可接受的消息数量没有上限（直到内存的尽头）；</p>
+<pre><code>Queue.qsize()：返回当前队列包含的消息数量；
+
+Queue.empty()：如果队列为空，返回True，反之False ；
+
+Queue.full()：如果队列满了，返回True,反之False；</code></pre><p>Queue.get([block[, timeout]])：获取队列中的一条消息，然后将其从列队中移除，block默认值为True；</p>
+<ul>
+<li><p>如果block使用默认值，且没有设置timeout（单位秒），消息列队如果为空，此时程序将被阻塞（停在读取状态），直到从消息列队读到消息为止，如果设置了timeout，则会等待timeout秒，若还没读取到任何消息，则抛出”Queue.Empty”异常；</p>
+</li>
+<li><p>如果block值为False，消息列队如果为空，则会立刻抛出”Queue.Empty”异常；</p>
+</li>
+<li><p>Queue.get_nowait()：相当Queue.get(False)；</p>
+</li>
+</ul>
+<p>Queue.put(item,[block[, timeout]])：将item消息写入队列，block默认值为True；</p>
+<ul>
+<li><p>如果block使用默认值，且没有设置timeout（单位秒），消息列队如果已经没有空间可写入，此时程序将被阻塞（停在写入状态），直到从消息列队腾出空间为止，如果设置了timeout，则会等待timeout秒，若还没空间，则抛出”Queue.Full”异常；</p>
+</li>
+<li><p>如果block值为False，消息列队如果没有空间可写入，则会立刻抛出”Queue.Full”异常；</p>
+</li>
+<li><p>Queue.put_nowait(item)：相当Queue.put(item, False)；</p>
+</li>
+</ul>
+<p>导入消息队列</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Queue</span><br><span class="line"><span class="comment"># 初始化一个Queue对象</span></span><br><span class="line">queue = Queue() 里面参数为空代表没有上限</span><br></pre></td></tr></table></figure>
+
+<p>进程池pool</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 导入进程池</span></span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"><span class="comment"># 创建进程池</span></span><br><span class="line">po = Pool(<span class="number">5</span>)  参数<span class="number">5</span>表示最大进程数为<span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<p>multiprocessing.Pool常用函数解析：</p>
+<ul>
+<li>apply_async(func[, args[, kwds]]) ：使用非阻塞方式调用func（并行执行，堵塞方式必须等待上一个进程退出才能执行下一个进程），args为传递给func的参数列表，kwds为传递给func的关键字参数列表；</li>
+<li>close()：关闭Pool，使其不再接受新的任务；</li>
+<li>terminate()：不管任务是否完成，立即终止；</li>
+<li>join()：主进程阻塞，等待子进程的退出， 必须在close或terminate之后使用；</li>
+<li>如果要使用Pool创建进程，就需要使用multiprocessing.Manager()中的Queue()，而不是multiprocessing.Queue()</li>
+</ul>
+<h2 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h2><p>协程: </p>
+<p>又称为微线程，也是用户基线程，可以在不开劈线程的基础上完成多个任务交替值，程序员可以控制执行顺序</p>
+<p>如何理解: </p>
+<p>如果在函数里面只看一个yield关键字，那么可以理解程是协程</p>
+<p>学习协程的目的:</p>
+<p>在单线程的基础上完成多个任务，可以使用这个协程，多个任务一定是交替执行的</p>
+<p>gevent的使用：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> gevent</span><br><span class="line"><span class="comment"># 打补丁</span></span><br><span class="line"><span class="keyword">from</span> gevent <span class="keyword">import</span> monkey</span><br><span class="line"><span class="comment"># 打补丁， 让gevent能够失败系统的耗时操作，完成协程之间自动进行切换</span></span><br><span class="line"><span class="comment"># 提示： 打补丁的代码一定要先执行</span></span><br><span class="line"><span class="comment"># 提示： gevent封装的greenlet框架</span></span><br><span class="line">monkey.patch_all()</span><br><span class="line"><span class="comment"># 创建协程指派对应的任务</span></span><br><span class="line">g1 = gevent.spawn(work1)</span><br><span class="line">g2 = gevent.spawn(work2)</span><br><span class="line"><span class="comment"># 主线程不会等待所有的协程把任务执行完成以后程序在退出。</span></span><br><span class="line"><span class="comment"># 等待协程把任务执行完成以后程序在退出</span></span><br><span class="line">g1.join()</span><br><span class="line">g2.join()</span><br></pre></td></tr></table></figure>
+
+<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><p>迭代器是访问集合元素的一种方式，迭代器是一个可以记住遍历的位置的对象。迭代器对象从集合的第一个元素开始访问，知道所有元素被访问完结束。迭代器只能往前不能后退。</p>
+<p>可迭代对象有：</p>
+<p>列表、字典、元组、字符串、集合、range、</p>
+<p>判断是否是可迭代对象：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">result = isinstance（object, Iterable）</span><br></pre></td></tr></table></figure>
+<p>自定义可迭代对象</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Iterable , Iterator </span><br><span class="line">```   </span><br><span class="line">在类里面提供__iter__和__next__方法创建的对象就是迭代器，迭代器记录当前遍历位置及获取下一个位置的值。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 生成器</span></span><br><span class="line">生成器就是一种特殊的迭代器</span><br><span class="line"></span><br><span class="line">生成器的创建方式：</span><br><span class="line">- 和列表生成式类似，只不过把列表的[ ]改成了( )</span><br><span class="line">```python</span><br><span class="line">g1 = (x*<span class="number">3</span> <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>函数里面如果存在yield关键字，那么就表示是一个生成器<br>启动生成器的时候如果有代码执行遇到yield那么代码会暂停，下次在启动生成器的时候会在暂停的位置上继续往下执行</p>
+<p>生成器中使用return关键字语法上没有问题<br>在生成器执行完return操作，就会停止迭代，跑着停止迭代异常</p>
+</li>
+<li><p>return关键字： 只能返回一次结果</p>
+</li>
+<li><p>yield关键字：代码执行到yield会暂停，再次启动生成器会继续往下执行，每启动一次生成器都会返回一个值，yield会返回多个值</p>
+</li>
+</ul>
+<p>使用send方法可以给生成器传入参数</p>
+<p>第一个启动生成器一般都是用next函数，如果使用send方法启动生成器需要传入参数会None，再次启动生成器可以传入非空的数据可以不是None</p>
+<h2 id="全局解释器锁-GIL"><a href="#全局解释器锁-GIL" class="headerlink" title="全局解释器锁(GIL)"></a>全局解释器锁(GIL)</h2><p>作用：保证用一时刻只有一个线程可以执行代码</p>
+<p>Python中的多线程是假的</p>
+<p>原因：</p>
+<p>Python的解释器由c写的cpython，而cpython中就存在GIL<br>python解释器：cpython    jpython    pypython</p>
+<p>解决的办法：</p>
+<ul>
+<li>更换解释器，比如使用jpython解释器</li>
+<li>使用多进程来完成多任务的操作</li>
+</ul>
+<p>在程序当中，如果需要大量消耗内存的，比如进行科学计算时，使用多进程要比多线程快；在进行IO操作（中间有时间阻塞的操作）时，多线程要比多进程快。</p>
+]]></content>
+      <categories>
+        <category>python</category>
+        <category>基础</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>tcp_socket</title>
     <url>/python/tcp/socket/tcp-socket/</url>
     <content><![CDATA[<script type="text/javascript" src="/js/src/bai.js"></script>
