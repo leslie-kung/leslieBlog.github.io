@@ -1,7 +1,1 @@
-
-(function(){
-    var bp = document.createElement('script');
-    bp.src = '//push.zhanzhang.baidu.com/push.js';
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
+!function(){var e=document.createElement("script"),t=(e.src="//push.zhanzhang.baidu.com/push.js",document.getElementsByTagName("script")[0]);t.parentNode.insertBefore(e,t)}();

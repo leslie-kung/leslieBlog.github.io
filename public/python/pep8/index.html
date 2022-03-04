@@ -1,434 +1,4 @@
-<!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-<meta name="google-site-verification" content="4R873gXltZOCeP781AeQ8Shv0bjRQornu07N8Sth7oE" />
-<meta name="baidu-site-verification" content="sMWFNFxOSb" />
-
-
-  
-  
-    
-    
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
-  <script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误');
-                history.back();
-            }
-        }
-    })();
-</script>
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="编码规范," />
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="1 介绍(Introduction)本文档给出了包含主要Python发行版中的标准库的Python代码的编码约定。随着时间的推移，随着更多的约定被识别，过去的约定被语言本身的变化所淘汰，这种风格指南也在不断发展。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="pep8的使用">
-<meta property="og:url" content="https://blog.leslie168.com/python/pep8/index.html">
-<meta property="og:site_name" content="Leslie&#39;s Blog">
-<meta property="og:description" content="1 介绍(Introduction)本文档给出了包含主要Python发行版中的标准库的Python代码的编码约定。随着时间的推移，随着更多的约定被识别，过去的约定被语言本身的变化所淘汰，这种风格指南也在不断发展。">
-<meta property="article:published_time" content="2019-12-30T11:23:56.000Z">
-<meta property="article:modified_time" content="2022-02-25T08:37:09.088Z">
-<meta property="article:author" content="leslie">
-<meta property="article:tag" content="编码规范">
-<meta name="twitter:card" content="summary">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://blog.leslie168.com/python/pep8/"/>
-
-
-
-
-
-  <title>pep8的使用 | Leslie's Blog</title>
-  
-
-
-
-
-
-
-
-
-<meta name="generator" content="Hexo 4.2.0"></head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-    <a href="https://github.com/leslie-kung" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Leslie's Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">但行好事 莫问前程</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-guestbook">
-          <a href="/guestbook" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            留言
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.leslie168.com/python/pep8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="leslie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/person.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leslie's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">pep8的使用</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-30T19:23:56+08:00">
-                2019-12-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/python/pep8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/python/pep8/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h2 id="1-介绍-Introduction"><a href="#1-介绍-Introduction" class="headerlink" title="1 介绍(Introduction)"></a>1 介绍(Introduction)</h2><p>本文档给出了包含主要Python发行版中的标准库的Python代码的编码约定。<br>随着时间的推移，随着更多的约定被识别，过去的约定被语言本身的变化所淘汰，这种风格指南也在不断发展。</p>
-<a id="more"></a>
-<h2 id="2-代码布局-Code-Lay-Out"><a href="#2-代码布局-Code-Lay-Out" class="headerlink" title="2 代码布局(Code Lay-Out)"></a>2 代码布局(Code Lay-Out)</h2><h3 id="2-1-缩进-Indentation"><a href="#2-1-缩进-Indentation" class="headerlink" title="2.1 缩进(Indentation)"></a>2.1 缩进(Indentation)</h3><p>每个缩进需要使用4个空格。</p>
-<p>连续行所包装的元素应该要么采用Python隐式续行，即垂直对齐于圆括号、方括号和花括号，要么采用悬挂缩进。采用悬挂缩进时需考虑以下两点：第一行不应该包括参数，并且在续行中需要再缩进一级以便清楚表示。</p>
-<p>正确的写法</p>
-<pre><code># 同开始分界符(左括号)对齐
+<!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><meta name="google-site-verification" content="4R873gXltZOCeP781AeQ8Shv0bjRQornu07N8Sth7oE"><meta name="baidu-site-verification" content="sMWFNFxOSb"><script src="/lib/pace/pace.min.js?v=1.0.2"></script><link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet"><script></script><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4"><link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222"><meta name="keywords" content="编码规范,"><meta name="description" content="1 介绍(Introduction)本文档给出了包含主要Python发行版中的标准库的Python代码的编码约定。随着时间的推移，随着更多的约定被识别，过去的约定被语言本身的变化所淘汰，这种风格指南也在不断发展。"><meta property="og:type" content="article"><meta property="og:title" content="pep8的使用"><meta property="og:url" content="https://blog.leslie168.com/python/pep8/index.html"><meta property="og:site_name" content="Leslie&#39;s Blog"><meta property="og:description" content="1 介绍(Introduction)本文档给出了包含主要Python发行版中的标准库的Python代码的编码约定。随着时间的推移，随着更多的约定被识别，过去的约定被语言本身的变化所淘汰，这种风格指南也在不断发展。"><meta property="article:published_time" content="2019-12-30T11:23:56.000Z"><meta property="article:modified_time" content="2022-02-25T08:37:09.088Z"><meta property="article:author" content="leslie"><meta property="article:tag" content="编码规范"><meta name="twitter:card" content="summary"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",version:"5.1.4",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!0,onmobile:!1},fancybox:!0,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="https://blog.leslie168.com/python/pep8/"><title>pep8的使用 | Leslie's Blog</title><meta name="generator" content="Hexo 4.2.0"></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><a href="https://github.com/leslie-kung" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513;color:#fff;position:absolute;top:0;border:0;right:0" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">Leslie's Blog</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">但行好事 莫问前程</p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-guestbook"><a href="/guestbook" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i><br>留言</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i> </span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"><input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="https://blog.leslie168.com/python/pep8/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="leslie"><meta itemprop="description" content=""><meta itemprop="image" content="/images/person.png"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="Leslie's Blog"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">pep8的使用</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-30T19:23:56+08:00">2019-12-30 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/python/pep8/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/python/pep8/" itemprop="commentCount"></span></a></span></div></header><div class="post-body" itemprop="articleBody"><h2 id="1-介绍-Introduction"><a href="#1-介绍-Introduction" class="headerlink" title="1 介绍(Introduction)"></a>1 介绍(Introduction)</h2><p>本文档给出了包含主要Python发行版中的标准库的Python代码的编码约定。<br>随着时间的推移，随着更多的约定被识别，过去的约定被语言本身的变化所淘汰，这种风格指南也在不断发展。</p><a id="more"></a><h2 id="2-代码布局-Code-Lay-Out"><a href="#2-代码布局-Code-Lay-Out" class="headerlink" title="2 代码布局(Code Lay-Out)"></a>2 代码布局(Code Lay-Out)</h2><h3 id="2-1-缩进-Indentation"><a href="#2-1-缩进-Indentation" class="headerlink" title="2.1 缩进(Indentation)"></a>2.1 缩进(Indentation)</h3><p>每个缩进需要使用4个空格。</p><p>连续行所包装的元素应该要么采用Python隐式续行，即垂直对齐于圆括号、方括号和花括号，要么采用悬挂缩进。采用悬挂缩进时需考虑以下两点：第一行不应该包括参数，并且在续行中需要再缩进一级以便清楚表示。</p><p>正确的写法</p><pre><code># 同开始分界符(左括号)对齐
 foo = long_function_name(var_one, var_two,
                          var_three, var_four)
 
@@ -441,8 +11,7 @@ def long_function_name(
 # 悬挂缩进需要多缩进一级
 foo = long_function_name(
     var_one, var_two,
-    var_three, var_four)</code></pre><p>错误的写法</p>
-<pre><code># 采用悬挂缩进时第一行不应该有参数
+    var_three, var_four)</code></pre><p>错误的写法</p><pre><code># 采用悬挂缩进时第一行不应该有参数
 foo = long_function_name(var_one, var_two,
     var_three, var_four)
 
@@ -450,13 +19,10 @@ foo = long_function_name(var_one, var_two,
 def long_function_name(
     var_one, var_two, var_three,
     var_four):
-    print(var_one)</code></pre><p>对于延续行，4个空格的规则是可选使用的。</p>
-<p>同样可行的例子:</p>
-<pre><code># 悬挂缩进可以不采用4空格的缩进方法。
+    print(var_one)</code></pre><p>对于延续行，4个空格的规则是可选使用的。</p><p>同样可行的例子:</p><pre><code># 悬挂缩进可以不采用4空格的缩进方法。
 foo = long_function_name(
   var_one, var_two,
-  var_three, var_four)</code></pre><p>如果if语句太长，需要用多行书写，2个字符(例如,if)加上一个空格和一个左括号刚好是4空格的缩进，但这对多行条件语句的续行是没用的。因为这会和if语句中嵌套的其他的缩进的语句产生视觉上的冲突。这份PEP中并没有做出明确的说明应该怎样来区分条件语句和if语句中所嵌套的语句。以下几种方法都是可行的，但不仅仅只限于这几种方法：</p>
-<pre><code># 不采用额外缩进
+  var_three, var_four)</code></pre><p>如果if语句太长，需要用多行书写，2个字符(例如,if)加上一个空格和一个左括号刚好是4空格的缩进，但这对多行条件语句的续行是没用的。因为这会和if语句中嵌套的其他的缩进的语句产生视觉上的冲突。这份PEP中并没有做出明确的说明应该怎样来区分条件语句和if语句中所嵌套的语句。以下几种方法都是可行的，但不仅仅只限于这几种方法：</p><pre><code># 不采用额外缩进
 if (this_is_one_thing and
     that_is_another_thing):
     do_something()
@@ -471,58 +37,34 @@ if (this_is_one_thing and
 # 在条件语句的续行增加一级缩进
 if (this_is_one_thing
         and that_is_another_thing):
-    do_something()</code></pre><p>多行结束右圆/方/花括号可以单独一行书写，和上一行的缩进对齐：</p>
-<pre><code>my_list = [
+    do_something()</code></pre><p>多行结束右圆/方/花括号可以单独一行书写，和上一行的缩进对齐：</p><pre><code>my_list = [
     1, 2, 3,
     4, 5, 6,
     ]
 result = some_function_that_takes_arguments(
     &apos;a&apos;, &apos;b&apos;, &apos;c&apos;,
     &apos;d&apos;, &apos;e&apos;, &apos;f&apos;,
-    )</code></pre><p>也可以和多行开始的第一行的第一个字符对齐：</p>
-<pre><code>my_list = [
+    )</code></pre><p>也可以和多行开始的第一行的第一个字符对齐：</p><pre><code>my_list = [
     1, 2, 3,
     4, 5, 6,
 ]
 result = some_function_that_takes_arguments(
     &apos;a&apos;, &apos;b&apos;, &apos;c&apos;,
     &apos;d&apos;, &apos;e&apos;, &apos;f&apos;,
-)</code></pre><p>Tab还是空格？(Tab Or Space?)</p>
-<p>推荐使用空格来进行缩进。</p>
-<p>Tab应该只在现有代码已经使用tab进行缩进的情况下使用，以便和现有代码保持一致。</p>
-<p>Python 3不允许tab和空格混合使用。</p>
-<p>Python 2的代码若有tab和空格混合使用的情况，应该把tab全部转换为只有空格。</p>
-<h3 id="2-2-每行最大长度-Maximum-Line-Length"><a href="#2-2-每行最大长度-Maximum-Line-Length" class="headerlink" title="2.2 每行最大长度(Maximum Line Length)"></a>2.2 每行最大长度(Maximum Line Length)</h3><p>将所有行都限制在79个字符长度以内。</p>
-<p>对于连续大段的文字（比如文档字符串(docstring)或注释），其结构上的限制更少，这些行应该被限制在72个字符长度内。</p>
-<p>限制编辑器的窗口宽度能让好几个文件同时打开在屏幕上显示，在使用代码评审(code review)工具时在两个相邻窗口显示两个版本的代码效果很好。</p>
-<p>很多工具的默认自动换行会破坏代码的结构，使代码更难以理解。在窗口大小设置为80个字符的编辑器中，即使在换行时编辑器可能会在最后一列放置一个记号，为避免自动换行也需要限制每行字符长度。一些基于web的工具可能根本没有自动换行的功能。</p>
-<p>一些团队会强烈希望行长度比79个字符更长。当代码仅仅只由一个团队维护时，可以达成一致让行长度增加到80到100字符(实际上最大行长是99字符)，注释和文档字符串仍然是以72字符换行。</p>
-<p>Python标准库比较传统，将行长限制在79个字符以内（文档字符串/注释为72个字符）。</p>
-<p>一种推荐的换行方式是利用Python圆括号、方括号和花括号中的隐式续行。长行可以通过在括号内换行来分成多行。应该最好加上反斜杠来区别续行。</p>
-<p>隐式续行</p>
-<pre><code>a = (&apos;sdfaf&apos; 
-    &apos;test&apos;)</code></pre><p>有时续行只能使用反斜杠。例如，较长的多个with语句不能采用隐式续行，只能接受反斜杠表示换行：</p>
-<pre><code>with open(&apos;/path/to/some/file/you/want/to/read&apos;) as file_1, \
+)</code></pre><p>Tab还是空格？(Tab Or Space?)</p><p>推荐使用空格来进行缩进。</p><p>Tab应该只在现有代码已经使用tab进行缩进的情况下使用，以便和现有代码保持一致。</p><p>Python 3不允许tab和空格混合使用。</p><p>Python 2的代码若有tab和空格混合使用的情况，应该把tab全部转换为只有空格。</p><h3 id="2-2-每行最大长度-Maximum-Line-Length"><a href="#2-2-每行最大长度-Maximum-Line-Length" class="headerlink" title="2.2 每行最大长度(Maximum Line Length)"></a>2.2 每行最大长度(Maximum Line Length)</h3><p>将所有行都限制在79个字符长度以内。</p><p>对于连续大段的文字（比如文档字符串(docstring)或注释），其结构上的限制更少，这些行应该被限制在72个字符长度内。</p><p>限制编辑器的窗口宽度能让好几个文件同时打开在屏幕上显示，在使用代码评审(code review)工具时在两个相邻窗口显示两个版本的代码效果很好。</p><p>很多工具的默认自动换行会破坏代码的结构，使代码更难以理解。在窗口大小设置为80个字符的编辑器中，即使在换行时编辑器可能会在最后一列放置一个记号，为避免自动换行也需要限制每行字符长度。一些基于web的工具可能根本没有自动换行的功能。</p><p>一些团队会强烈希望行长度比79个字符更长。当代码仅仅只由一个团队维护时，可以达成一致让行长度增加到80到100字符(实际上最大行长是99字符)，注释和文档字符串仍然是以72字符换行。</p><p>Python标准库比较传统，将行长限制在79个字符以内（文档字符串/注释为72个字符）。</p><p>一种推荐的换行方式是利用Python圆括号、方括号和花括号中的隐式续行。长行可以通过在括号内换行来分成多行。应该最好加上反斜杠来区别续行。</p><p>隐式续行</p><pre><code>a = (&apos;sdfaf&apos; 
+    &apos;test&apos;)</code></pre><p>有时续行只能使用反斜杠。例如，较长的多个with语句不能采用隐式续行，只能接受反斜杠表示换行：</p><pre><code>with open(&apos;/path/to/some/file/you/want/to/read&apos;) as file_1, \
      open(&apos;/path/to/some/file/being/written&apos;, &apos;w&apos;) as file_2:
-    file_2.write(file_1.read())</code></pre><h3 id="2-3-二元运算符之前还是之后换行？-Should-a-line-break-before-or-after-a-binary-operator"><a href="#2-3-二元运算符之前还是之后换行？-Should-a-line-break-before-or-after-a-binary-operator" class="headerlink" title="2.3 二元运算符之前还是之后换行？(Should a line break before or after a binary operator?)"></a>2.3 二元运算符之前还是之后换行？(Should a line break before or after a binary operator?)</h3><p>长期以来一直推荐的风格是在二元运算符之后换行。但是这样会影响代码可读性，包括两个方面：一是运算符会分散在屏幕上的不同列上，二是每个运算符会留在前一行并远离操作数。所以，阅读代码的时候眼睛必须做更多的工作来确定哪些操作数被加，哪些操作数被减：</p>
-<pre><code># 错误的例子：运算符远离操作数
+    file_2.write(file_1.read())</code></pre><h3 id="2-3-二元运算符之前还是之后换行？-Should-a-line-break-before-or-after-a-binary-operator"><a href="#2-3-二元运算符之前还是之后换行？-Should-a-line-break-before-or-after-a-binary-operator" class="headerlink" title="2.3 二元运算符之前还是之后换行？(Should a line break before or after a binary operator?)"></a>2.3 二元运算符之前还是之后换行？(Should a line break before or after a binary operator?)</h3><p>长期以来一直推荐的风格是在二元运算符之后换行。但是这样会影响代码可读性，包括两个方面：一是运算符会分散在屏幕上的不同列上，二是每个运算符会留在前一行并远离操作数。所以，阅读代码的时候眼睛必须做更多的工作来确定哪些操作数被加，哪些操作数被减：</p><pre><code># 错误的例子：运算符远离操作数
 income = (gross_wages +
           taxable_interest +
           (dividends - qualified_dividends) -
           ira_deduction -
-          student_loan_interest)</code></pre><p>为了解决这个可读性问题，数学家及其出版商遵循相反的规定。Donald Knuth在他的“电脑和排版”系列中解释了传统的规则：“尽管在段落中的公式总是在二元运算符之后换行，但显示公式时总是在二元运算符之前换行”。</p>
-<pre><code># 正确的例子：更容易匹配运算符与操作数
+          student_loan_interest)</code></pre><p>为了解决这个可读性问题，数学家及其出版商遵循相反的规定。Donald Knuth在他的“电脑和排版”系列中解释了传统的规则：“尽管在段落中的公式总是在二元运算符之后换行，但显示公式时总是在二元运算符之前换行”。</p><pre><code># 正确的例子：更容易匹配运算符与操作数
 income = (gross_wages
           + taxable_interest
           + (dividends - qualified_dividends)
           - ira_deduction
-          - student_loan_interest)</code></pre><p>在Python代码中，只要在统一项目中约定一致，就可以在二元运算符之前或之后换行。对于新编写的代码，建议使用Knuth的风格。</p>
-<h3 id="2-4-空行-Blank-Line"><a href="#2-4-空行-Blank-Line" class="headerlink" title="2.4 空行(Blank Line)"></a>2.4 空行(Blank Line)</h3><p>使用2个空行来分隔最外层的函数(function)和类(class)定义。</p>
-<p>使用1个空行来分隔类中的方法(method)定义。</p>
-<p>可以使用额外的空行（尽量少）来分隔一组相关的函数。在一系列相关的仅占一行的函数之间，空行也可以被省略（比如一组虚函数定义）。</p>
-<p>在函数内使用空行（尽量少）使代码逻辑更清晰。</p>
-<p>例子：</p>
-<pre><code>def func():
+          - student_loan_interest)</code></pre><p>在Python代码中，只要在统一项目中约定一致，就可以在二元运算符之前或之后换行。对于新编写的代码，建议使用Knuth的风格。</p><h3 id="2-4-空行-Blank-Line"><a href="#2-4-空行-Blank-Line" class="headerlink" title="2.4 空行(Blank Line)"></a>2.4 空行(Blank Line)</h3><p>使用2个空行来分隔最外层的函数(function)和类(class)定义。</p><p>使用1个空行来分隔类中的方法(method)定义。</p><p>可以使用额外的空行（尽量少）来分隔一组相关的函数。在一系列相关的仅占一行的函数之间，空行也可以被省略（比如一组虚函数定义）。</p><p>在函数内使用空行（尽量少）使代码逻辑更清晰。</p><p>例子：</p><pre><code>def func():
 
 
     class A(object):
@@ -533,50 +75,20 @@ income = (gross_wages
 
     def func2():
         print(&apos;aaa&apos;)
-        print(&apos;bbb&apos;)</code></pre><p>Python支持control-L（如:^L）换页符作为空格；许多工具将这些符号作为分页符，因此你可以使用这些符号来分页或者区分文件中的相关区域。注意，一些编辑器和基于web的代码预览器可能不会将control-L识别为分页符，而是显示成其他符号。</p>
-<h3 id="2-5-源文件编码-Source-File-Encoding"><a href="#2-5-源文件编码-Source-File-Encoding" class="headerlink" title="2.5 源文件编码(Source File Encoding)"></a>2.5 源文件编码(Source File Encoding)</h3><p>Python核心发行版中的代码应该一直使用UTF-8（Python 2中使用ASCII）。</p>
-<p>使用ASCII（Python 2）或者UTF-8（Python 3）的文件不应该添加编码声明。</p>
-<p>在标准库中，只有用作测试目的，或者注释或文档字符串需要提及作者名字而不得不使用非ASCII字符时，才能使用非默认的编码。否则，在字符串文字中包括非ASCII数据时，推荐使用\x, \u, \U或\N等转义符。</p>
-<p>对于Python 3.0及其以后的版本中，标准库遵循以下原则（参见PEP 3131）：Python标准库中的所有标识符都必须只采用ASCII编码的标识符，在可行的条件下也应当使用英文词（很多情况下，使用的缩写和技术术语词都不是英文）。此外，字符串文字和注释应该只包括ASCII编码。只有两种例外：</p>
-<p>(a) 测试情况下为了测试非ASCII编码的特性</p>
-<p>(b) 作者名字。作者名字不是由拉丁字母组成的也必须提供一个拉丁音译名。</p>
-<p>鼓励具有全球受众的开放源码项目采用类似的原则。</p>
-<h3 id="2-6-模块引用-Imports"><a href="#2-6-模块引用-Imports" class="headerlink" title="2.6 模块引用(Imports)"></a>2.6 模块引用(Imports)</h3><p>Imports应该分行写，而不是都写在一行，例如：</p>
-<pre><code># 分开写
+        print(&apos;bbb&apos;)</code></pre><p>Python支持control-L（如:^L）换页符作为空格；许多工具将这些符号作为分页符，因此你可以使用这些符号来分页或者区分文件中的相关区域。注意，一些编辑器和基于web的代码预览器可能不会将control-L识别为分页符，而是显示成其他符号。</p><h3 id="2-5-源文件编码-Source-File-Encoding"><a href="#2-5-源文件编码-Source-File-Encoding" class="headerlink" title="2.5 源文件编码(Source File Encoding)"></a>2.5 源文件编码(Source File Encoding)</h3><p>Python核心发行版中的代码应该一直使用UTF-8（Python 2中使用ASCII）。</p><p>使用ASCII（Python 2）或者UTF-8（Python 3）的文件不应该添加编码声明。</p><p>在标准库中，只有用作测试目的，或者注释或文档字符串需要提及作者名字而不得不使用非ASCII字符时，才能使用非默认的编码。否则，在字符串文字中包括非ASCII数据时，推荐使用\x, \u, \U或\N等转义符。</p><p>对于Python 3.0及其以后的版本中，标准库遵循以下原则（参见PEP 3131）：Python标准库中的所有标识符都必须只采用ASCII编码的标识符，在可行的条件下也应当使用英文词（很多情况下，使用的缩写和技术术语词都不是英文）。此外，字符串文字和注释应该只包括ASCII编码。只有两种例外：</p><p>(a) 测试情况下为了测试非ASCII编码的特性</p><p>(b) 作者名字。作者名字不是由拉丁字母组成的也必须提供一个拉丁音译名。</p><p>鼓励具有全球受众的开放源码项目采用类似的原则。</p><h3 id="2-6-模块引用-Imports"><a href="#2-6-模块引用-Imports" class="headerlink" title="2.6 模块引用(Imports)"></a>2.6 模块引用(Imports)</h3><p>Imports应该分行写，而不是都写在一行，例如：</p><pre><code># 分开写
 import os
 import sys
 
 # 不要像下面一样写在一行
-import sys, os</code></pre><p>这样写也是可以的：</p>
-<pre><code>from subprocess import Popen, PIPE</code></pre><p>Imports应该写在代码文件的开头，位于模块(module)注释和文档字符串(docstring)之后，模块全局变量(globals)和常量(constants)声明之前。</p>
-<p>Imports应该按照下面的顺序分组来写：</p>
-<ol>
-<li>标准库imports</li>
-<li>相关第三方imports</li>
-<li>本地应用/库的特定imports</li>
-</ol>
-<p>如：</p>
-<pre><code>import re
+import sys, os</code></pre><p>这样写也是可以的：</p><pre><code>from subprocess import Popen, PIPE</code></pre><p>Imports应该写在代码文件的开头，位于模块(module)注释和文档字符串(docstring)之后，模块全局变量(globals)和常量(constants)声明之前。</p><p>Imports应该按照下面的顺序分组来写：</p><ol><li>标准库imports</li><li>相关第三方imports</li><li>本地应用/库的特定imports</li></ol><p>如：</p><pre><code>import re
 from lxml import etree
 from ak_spider.common.mongo_models import *
-from ak_spider.settings import CAPTCHA_SERVER, AK_PROXY_SERVER, logger</code></pre><p>不同组的imports之前用空格隔开。</p>
-<p>推荐使用绝对(absolute)imports，因为这样通常更易读，在import系统没有正确配置（比如中的路径以sys.path结束）的情况下，也会有更好的表现（或者至少会给出错误信息）：</p>
-<pre><code>import mypkg.sibling
+from ak_spider.settings import CAPTCHA_SERVER, AK_PROXY_SERVER, logger</code></pre><p>不同组的imports之前用空格隔开。</p><p>推荐使用绝对(absolute)imports，因为这样通常更易读，在import系统没有正确配置（比如中的路径以sys.path结束）的情况下，也会有更好的表现（或者至少会给出错误信息）：</p><pre><code>import mypkg.sibling
 from mypkg import sibling
-from mypkg.sibling import example</code></pre><p>然而，除了绝对imports，显式的相对imports也是一种可以接受的替代方式。特别是当处理复杂的包布局(package layouts)时，采用绝对imports会显得啰嗦。</p>
-<pre><code>from . import sibling
-from .sibling import example</code></pre><p>标准库代码应当一直使用绝对imports，避免复杂的包布局。</p>
-<p>隐式的相对imports应该永不使用，并且Python 3中已经被去掉了</p>
-<p>当从一个包括类的模块中import一个类时，通常可以这样写：</p>
-<pre><code>from myclass import MyClass
-from foo.bar.yourclass import YourClass</code></pre><p>如果和本地命名的拼写产生了冲突，应当直接import模块：</p>
-<pre><code>import myclass
-import foo.bar.yourclass</code></pre><p>然后使用”myclass.MyClass”和”foo.bar.yourclass.YourClass”。</p>
-<p>避免使用通配符imports(from <module> import *)，因为会造成在当前命名空间出现的命名含义不清晰，给读者和许多自动化工具造成困扰。有一个可以正当使用通配符import的情形，即将一个内部接口重新发布成公共API的一部分（比如，使用备选的加速模块中的定义去覆盖纯Python实现的接口，预先无法知晓具体哪些定义将被覆盖）。</p>
-<p>当使用这种方式重新发布命名时，指南后面关于公共和内部接口的部分仍然适用。</p>
-<h3 id="2-7-模块级的双下划线命名-Module-level-dunder-names"><a href="#2-7-模块级的双下划线命名-Module-level-dunder-names" class="headerlink" title="2.7 模块级的双下划线命名(Module level dunder names)"></a>2.7 模块级的双下划线命名(Module level dunder names)</h3><p>模块中的“双下滑线”（变量名以两个下划线开头，两个下划线结尾）变量，比如<strong>all</strong>，<strong>author，</strong>version__等，应该写在文档字符串(docstring)之后，除了form <strong>future</strong>引用(imports)的任何其它类型的引用语句之前。Python要求模块中<strong>future</strong>的导入必须出现在除文档字符串(docstring)之外的任何其他代码之前。</p>
-<p>例如：</p>
-<pre><code>&quot;&quot;&quot;This is the example module.
+from mypkg.sibling import example</code></pre><p>然而，除了绝对imports，显式的相对imports也是一种可以接受的替代方式。特别是当处理复杂的包布局(package layouts)时，采用绝对imports会显得啰嗦。</p><pre><code>from . import sibling
+from .sibling import example</code></pre><p>标准库代码应当一直使用绝对imports，避免复杂的包布局。</p><p>隐式的相对imports应该永不使用，并且Python 3中已经被去掉了</p><p>当从一个包括类的模块中import一个类时，通常可以这样写：</p><pre><code>from myclass import MyClass
+from foo.bar.yourclass import YourClass</code></pre><p>如果和本地命名的拼写产生了冲突，应当直接import模块：</p><pre><code>import myclass
+import foo.bar.yourclass</code></pre><p>然后使用”myclass.MyClass”和”foo.bar.yourclass.YourClass”。</p><p>避免使用通配符imports(from<module>import *)，因为会造成在当前命名空间出现的命名含义不清晰，给读者和许多自动化工具造成困扰。有一个可以正当使用通配符import的情形，即将一个内部接口重新发布成公共API的一部分（比如，使用备选的加速模块中的定义去覆盖纯Python实现的接口，预先无法知晓具体哪些定义将被覆盖）。</module></p><p>当使用这种方式重新发布命名时，指南后面关于公共和内部接口的部分仍然适用。</p><h3 id="2-7-模块级的双下划线命名-Module-level-dunder-names"><a href="#2-7-模块级的双下划线命名-Module-level-dunder-names" class="headerlink" title="2.7 模块级的双下划线命名(Module level dunder names)"></a>2.7 模块级的双下划线命名(Module level dunder names)</h3><p>模块中的“双下滑线”（变量名以两个下划线开头，两个下划线结尾）变量，比如<strong>all</strong>，<strong>author，</strong>version__等，应该写在文档字符串(docstring)之后，除了form <strong>future</strong>引用(imports)的任何其它类型的引用语句之前。Python要求模块中<strong>future</strong>的导入必须出现在除文档字符串(docstring)之外的任何其他代码之前。</p><p>例如：</p><pre><code>&quot;&quot;&quot;This is the example module.
 
 This module does stuff.
 &quot;&quot;&quot;
@@ -588,21 +100,15 @@ __version__ = &apos;0.1&apos;
 __author__ = &apos;Cardinal Biggles&apos;
 
 import os
-import sys</code></pre><h2 id="3-字符串引用-String-Quotes"><a href="#3-字符串引用-String-Quotes" class="headerlink" title="3 字符串引用(String Quotes)"></a>3 字符串引用(String Quotes)</h2><p>在Python中表示字符串时，不管用单引号还是双引号都是一样的。但是不推荐将这两种方式看作一样并且混用。最好选择一种规则并坚持使用。当字符串中包含单引号时，采用双引号来表示字符串，反之也是一样，这样可以避免使用反斜杠，代码也更易读。</p>
-<p>对于三引号表示的字符串，使用双引号字符来表示(即用”””而不是’’’)。</p>
-<h2 id="4-表达式和语句中的空格-Whitespace-In-Expressions-And-Statements"><a href="#4-表达式和语句中的空格-Whitespace-In-Expressions-And-Statements" class="headerlink" title="4 表达式和语句中的空格(Whitespace In Expressions And Statements)"></a>4 表达式和语句中的空格(Whitespace In Expressions And Statements)</h2><h3 id="4-1-一些痛点-Pet-Peeves"><a href="#4-1-一些痛点-Pet-Peeves" class="headerlink" title="4.1 一些痛点(Pet Peeves)"></a>4.1 一些痛点(Pet Peeves)</h3><p>在下列情形中避免使用过多的空白：</p>
-<p>方括号，圆括号和花括号之后：</p>
-<pre><code>#正确的例子:
+import sys</code></pre><h2 id="3-字符串引用-String-Quotes"><a href="#3-字符串引用-String-Quotes" class="headerlink" title="3 字符串引用(String Quotes)"></a>3 字符串引用(String Quotes)</h2><p>在Python中表示字符串时，不管用单引号还是双引号都是一样的。但是不推荐将这两种方式看作一样并且混用。最好选择一种规则并坚持使用。当字符串中包含单引号时，采用双引号来表示字符串，反之也是一样，这样可以避免使用反斜杠，代码也更易读。</p><p>对于三引号表示的字符串，使用双引号字符来表示(即用”””而不是’’’)。</p><h2 id="4-表达式和语句中的空格-Whitespace-In-Expressions-And-Statements"><a href="#4-表达式和语句中的空格-Whitespace-In-Expressions-And-Statements" class="headerlink" title="4 表达式和语句中的空格(Whitespace In Expressions And Statements)"></a>4 表达式和语句中的空格(Whitespace In Expressions And Statements)</h2><h3 id="4-1-一些痛点-Pet-Peeves"><a href="#4-1-一些痛点-Pet-Peeves" class="headerlink" title="4.1 一些痛点(Pet Peeves)"></a>4.1 一些痛点(Pet Peeves)</h3><p>在下列情形中避免使用过多的空白：</p><p>方括号，圆括号和花括号之后：</p><pre><code>#正确的例子:
 spam(ham[1], {eggs: 2})
 
 #错误的例子：
-spam( ham[ 1 ], { eggs: 2 } )</code></pre><p>逗号，分号或冒号之前：</p>
-<pre><code>#正确的例子:
+spam( ham[ 1 ], { eggs: 2 } )</code></pre><p>逗号，分号或冒号之前：</p><pre><code>#正确的例子:
 if x == 4: print x, y; x, y = y, x
 
 #错误的例子:
-if x == 4 : print x , y ; x , y = y , x</code></pre><p>不过，在切片操作时，冒号和二元运算符是一样的，应该在其左右两边保留相同数量的空格（就像对待优先级最低的运算符一样）。在扩展切片操作中，所有冒号的左右两边空格数都应该相等。不过也有例外，当切片操作中的参数被省略时，应该也忽略空格。</p>
-<pre><code>#正确的例子:
+if x == 4 : print x , y ; x , y = y , x</code></pre><p>不过，在切片操作时，冒号和二元运算符是一样的，应该在其左右两边保留相同数量的空格（就像对待优先级最低的运算符一样）。在扩展切片操作中，所有冒号的左右两边空格数都应该相等。不过也有例外，当切片操作中的参数被省略时，应该也忽略空格。</p><pre><code>#正确的例子:
 ham[1:9], ham[1:9:3], ham[:9:3], ham[1::3], ham[1:9:]
 ham[lower:upper], ham[lower:upper:], ham[lower::step]
 ham[lower+offset : upper+offset]
@@ -613,18 +119,15 @@ ham[lower + offset : upper + offset]
 ham[lower + offset:upper + offset]
 ham[1: 9], ham[1 :9], ham[1:9 :3]
 ham[lower : : upper]
-ham[ : upper]</code></pre><p>在调用函数时传递参数list的括号之前：</p>
-<pre><code>#正确的例子:
+ham[ : upper]</code></pre><p>在调用函数时传递参数list的括号之前：</p><pre><code>#正确的例子:
 spam(1)
 
 #错误的例子:
-pam (1)</code></pre><p>在索引和切片操作的左括号之前：</p>
-<pre><code>#正确的例子:
+pam (1)</code></pre><p>在索引和切片操作的左括号之前：</p><pre><code>#正确的例子:
 dct[&apos;key&apos;] = lst[index]
 
 #错误的例子:
-dct [&apos;key&apos;] = lst [index]</code></pre><p>赋值(或其他)运算符周围使用多个空格来和其他语句对齐：</p>
-<pre><code>#正确的例子:
+dct [&apos;key&apos;] = lst [index]</code></pre><p>赋值(或其他)运算符周围使用多个空格来和其他语句对齐：</p><pre><code>#正确的例子:
 x = 1
 y = 2
 long_variable = 3
@@ -632,10 +135,7 @@ long_variable = 3
 #错误的例子:
 x             = 1
 y             = 2
-long_variable = 3</code></pre><h3 id="4-2-其他建议-Other-Recommendations"><a href="#4-2-其他建议-Other-Recommendations" class="headerlink" title="4.2 其他建议(Other Recommendations)"></a>4.2 其他建议(Other Recommendations)</h3><p>避免任何行末的空格。因为它通常是不可见的，它可能会令人困惑：例如反斜杠后跟空格和换行符不会作为续行标记。一些编辑器会自动去除行末空格，许多项目（如CPython本身）都有提交前的预处理钩子来自动去除行末空格。</p>
-<p>在二元运算符的两边都使用一个空格：赋值运算符(=)，增量赋值运算符(+=, -= etc.)，比较运算符(==, &lt;, &gt;, !=, &lt;&gt;, &lt;=, &gt;=, in, not in, is, is not)，布尔运算符(and, or, not)。</p>
-<p>如果使用了优先级不同的运算符，则在优先级较低的操作符周围增加空白。请你自行判断，不过永远不要用超过1个空格，永远保持二元运算符两侧的空白数量一样。</p>
-<pre><code>#正确的例子:
+long_variable = 3</code></pre><h3 id="4-2-其他建议-Other-Recommendations"><a href="#4-2-其他建议-Other-Recommendations" class="headerlink" title="4.2 其他建议(Other Recommendations)"></a>4.2 其他建议(Other Recommendations)</h3><p>避免任何行末的空格。因为它通常是不可见的，它可能会令人困惑：例如反斜杠后跟空格和换行符不会作为续行标记。一些编辑器会自动去除行末空格，许多项目（如CPython本身）都有提交前的预处理钩子来自动去除行末空格。</p><p>在二元运算符的两边都使用一个空格：赋值运算符(=)，增量赋值运算符(+=, -= etc.)，比较运算符(==, &lt;, &gt;, !=, &lt;&gt;, &lt;=, &gt;=, in, not in, is, is not)，布尔运算符(and, or, not)。</p><p>如果使用了优先级不同的运算符，则在优先级较低的操作符周围增加空白。请你自行判断，不过永远不要用超过1个空格，永远保持二元运算符两侧的空白数量一样。</p><pre><code>#正确的例子:
 i = i + 1
 submitted += 1
 x = x*2 - 1
@@ -647,29 +147,25 @@ i=i+1
 submitted +=1
 x = x * 2 - 1
 hypot2 = x * x + y * y
-c = (a + b) * (a - b)    </code></pre><p>使用=符号来表示关键字参数或参数默认值时，不要在其周围使用空格。</p>
-<pre><code>#正确的例子:
+c = (a + b) * (a - b)    </code></pre><p>使用=符号来表示关键字参数或参数默认值时，不要在其周围使用空格。</p><pre><code>#正确的例子:
 def complex(real, imag=0.0):
 return magic(r=real, i=imag)
 
 #错误的例子:
 def complex(real, imag = 0.0):
-return magic(r = real, i = imag)</code></pre><p>函数注解中的:也遵循一般的:加空格的规则，在-&gt;两侧各使用一个空格。</p>
-<pre><code>#正确的例子:
+return magic(r = real, i = imag)</code></pre><p>函数注解中的:也遵循一般的:加空格的规则，在-&gt;两侧各使用一个空格。</p><pre><code>#正确的例子:
 def munge(input: AnyStr): ...
 def munge() -&gt; AnyStr: ...
 
 #错误的例子:
 def munge(input:AnyStr): ...
-def munge()-&gt;PosInt: ...</code></pre><p>在组合使用函数注解和参数默认值时，需要在=两侧各使用一个空格（只有当这个参数既有函数注解，又有默认值的时候）。</p>
-<pre><code>#正确的例子:
+def munge()-&gt;PosInt: ...</code></pre><p>在组合使用函数注解和参数默认值时，需要在=两侧各使用一个空格（只有当这个参数既有函数注解，又有默认值的时候）。</p><pre><code>#正确的例子:
 def munge(sep: AnyStr = None): ...
 def munge(input: AnyStr, sep: AnyStr = None, limit=1000): ...
 
 #错误的例子:
 def munge(input: AnyStr=None): ...
-def munge(input: AnyStr, limit = 1000): ...</code></pre><p>复合语句（即将多行语句写在一行）一般是不鼓励使用的。</p>
-<pre><code>#正确的例子:
+def munge(input: AnyStr, limit = 1000): ...</code></pre><p>复合语句（即将多行语句写在一行）一般是不鼓励使用的。</p><pre><code>#正确的例子:
 if foo == &apos;blah&apos;:
 do_blah_thing()
 do_one()
@@ -678,8 +174,7 @@ do_three()
 
 #最好不要这样:
 if foo == &apos;blah&apos;: do_blah_thing()
-do_one(); do_two(); do_three()</code></pre><p>有时也可以将短小的if/for/while中的语句写在一行，但对于有多个分句的语句永远不要这样做。也要避免将多行都写在一起。</p>
-<pre><code>#最好不要这样：
+do_one(); do_two(); do_three()</code></pre><p>有时也可以将短小的if/for/while中的语句写在一行，但对于有多个分句的语句永远不要这样做。也要避免将多行都写在一起。</p><pre><code>#最好不要这样：
 if foo == &apos;blah&apos;: do_blah_thing()
 for x in lst: total += x
 while t &lt; 10: t = delay()
@@ -694,13 +189,11 @@ finally: cleanup()
 do_one(); do_two(); do_three(long, argument,
 list, like, this)
 
-if foo == &apos;blah&apos;: one(); two(); three()</code></pre><h2 id="5-何时在末尾加逗号-When-to-use-trailing-commas"><a href="#5-何时在末尾加逗号-When-to-use-trailing-commas" class="headerlink" title="5 何时在末尾加逗号(When to use trailing commas)"></a>5 何时在末尾加逗号(When to use trailing commas)</h2><p>末尾逗号通常是可选的，除非在定义单元素元组(tuple)时是必需的（而且在Python 2中，它们具有print语句的语义）。为了清楚起见，建议使用括号（技术上来说是冗余的）括起来。</p>
-<pre><code>#正确的例子:
+if foo == &apos;blah&apos;: one(); two(); three()</code></pre><h2 id="5-何时在末尾加逗号-When-to-use-trailing-commas"><a href="#5-何时在末尾加逗号-When-to-use-trailing-commas" class="headerlink" title="5 何时在末尾加逗号(When to use trailing commas)"></a>5 何时在末尾加逗号(When to use trailing commas)</h2><p>末尾逗号通常是可选的，除非在定义单元素元组(tuple)时是必需的（而且在Python 2中，它们具有print语句的语义）。为了清楚起见，建议使用括号（技术上来说是冗余的）括起来。</p><pre><code>#正确的例子:
 FILES = (&apos;setup.cfg&apos;,)
 
 #也正确，但令人困惑:
-FILES = &apos;setup.cfg&apos;,</code></pre><p>当使用版本控制系统时，在将来有可能扩展的列表末尾添加冗余的逗号是有好处的。具体的做法是将每一个元素写在单独的一行，并在行尾添加逗号，右括号单独占一行。但是，与有括号在同一行的末尾元素后面加逗号是没有意义的（上述的单元素元组除外）。</p>
-<pre><code>#正确的例子:
+FILES = &apos;setup.cfg&apos;,</code></pre><p>当使用版本控制系统时，在将来有可能扩展的列表末尾添加冗余的逗号是有好处的。具体的做法是将每一个元素写在单独的一行，并在行尾添加逗号，右括号单独占一行。但是，与有括号在同一行的末尾元素后面加逗号是没有意义的（上述的单元素元组除外）。</p><pre><code>#正确的例子:
 FILES = [
     &apos;setup.cfg&apos;,
     &apos;tox.ini&apos;,
@@ -711,150 +204,31 @@ initialize(FILES,
 
 #错误的例子:
 FILES = [&apos;setup.cfg&apos;, &apos;tox.ini&apos;,]
-initialize(FILES, error=True,)</code></pre><h2 id="6-注释-Comments"><a href="#6-注释-Comments" class="headerlink" title="6 注释(Comments)"></a>6 注释(Comments)</h2><p>和代码矛盾的注释还不如没有。当代码有改动时，一定要优先更改注释使其保持最新。</p>
-<p>注释应该是完整的多个句子。如果注释是一个短语或一个句子，其首字母应该大写，除非开头是一个以小写字母开头的标识符（永远不要更改标识符的大小写）。</p>
-<p>如果注释很短，结束的句号可以被忽略。块注释通常由一段或几段完整的句子组成，每个句子都应该以句号结束。</p>
-<p>你应该在句尾的句号后再加上2个空格。</p>
-<p>使用英文写作，参考Strunk和White的《The Elements of Style》</p>
-<p>来自非英语国家的Python程序员们，请使用英文来写注释，除非你120%确定你的代码永远不会被不懂你所用语言的人阅读到。</p>
-<h3 id="6-1-块注释（Block-Comments）"><a href="#6-1-块注释（Block-Comments）" class="headerlink" title="6.1 块注释（Block Comments）"></a>6.1 块注释（Block Comments）</h3><p>块注释一般写在对应代码之前，并且和对应代码有同样的缩进级别。块注释的每一行都应该以#和一个空格开头（除非该文本是在注释内缩进对齐的）。</p>
-<p>块注释中的段落应该用只含有单个#的一行隔开。</p>
-<h3 id="6-2-行内注释（Inline-Comments）"><a href="#6-2-行内注释（Inline-Comments）" class="headerlink" title="6.2 行内注释（Inline Comments）"></a>6.2 行内注释（Inline Comments）</h3><p>尽量少用行内注释。</p>
-<p>行内注释是和代码语句写在一行内的注释。行内注释应该至少和代码语句之间有两个空格的间隔，并且以#和一个空格开始。</p>
-<p>行内注释通常不是必要的，在代码含义很明显时甚至会让人分心。请不要这样做：</p>
-<pre><code>x = x + 1                 # x自加</code></pre><p>但这样做是有用的：</p>
-<pre><code>x = x + 1                 # 边界补偿</code></pre><h3 id="6-3-文档字符串-Documentation-Strings"><a href="#6-3-文档字符串-Documentation-Strings" class="headerlink" title="6.3 文档字符串(Documentation Strings)"></a>6.3 文档字符串(Documentation Strings)</h3><p>要知道如何写出好的文档字符串（docstring），请参考PEP 257</p>
-<p>所有的公共模块，函数，类和方法都应该有文档字符串。对于非公共方法，文档字符串不是必要的，但你应该留有注释说明该方法的功能，该注释应当出现在def的下一行。</p>
-<p>PEP 257描述了好的文档字符应该遵循的规则。其中最重要的是，多行文档字符串以单行”””结尾，不能有其他字符，例如：</p>
-<pre><code>&quot;&quot;&quot;Return a foobang
+initialize(FILES, error=True,)</code></pre><h2 id="6-注释-Comments"><a href="#6-注释-Comments" class="headerlink" title="6 注释(Comments)"></a>6 注释(Comments)</h2><p>和代码矛盾的注释还不如没有。当代码有改动时，一定要优先更改注释使其保持最新。</p><p>注释应该是完整的多个句子。如果注释是一个短语或一个句子，其首字母应该大写，除非开头是一个以小写字母开头的标识符（永远不要更改标识符的大小写）。</p><p>如果注释很短，结束的句号可以被忽略。块注释通常由一段或几段完整的句子组成，每个句子都应该以句号结束。</p><p>你应该在句尾的句号后再加上2个空格。</p><p>使用英文写作，参考Strunk和White的《The Elements of Style》</p><p>来自非英语国家的Python程序员们，请使用英文来写注释，除非你120%确定你的代码永远不会被不懂你所用语言的人阅读到。</p><h3 id="6-1-块注释（Block-Comments）"><a href="#6-1-块注释（Block-Comments）" class="headerlink" title="6.1 块注释（Block Comments）"></a>6.1 块注释（Block Comments）</h3><p>块注释一般写在对应代码之前，并且和对应代码有同样的缩进级别。块注释的每一行都应该以#和一个空格开头（除非该文本是在注释内缩进对齐的）。</p><p>块注释中的段落应该用只含有单个#的一行隔开。</p><h3 id="6-2-行内注释（Inline-Comments）"><a href="#6-2-行内注释（Inline-Comments）" class="headerlink" title="6.2 行内注释（Inline Comments）"></a>6.2 行内注释（Inline Comments）</h3><p>尽量少用行内注释。</p><p>行内注释是和代码语句写在一行内的注释。行内注释应该至少和代码语句之间有两个空格的间隔，并且以#和一个空格开始。</p><p>行内注释通常不是必要的，在代码含义很明显时甚至会让人分心。请不要这样做：</p><pre><code>x = x + 1                 # x自加</code></pre><p>但这样做是有用的：</p><pre><code>x = x + 1                 # 边界补偿</code></pre><h3 id="6-3-文档字符串-Documentation-Strings"><a href="#6-3-文档字符串-Documentation-Strings" class="headerlink" title="6.3 文档字符串(Documentation Strings)"></a>6.3 文档字符串(Documentation Strings)</h3><p>要知道如何写出好的文档字符串（docstring），请参考PEP 257</p><p>所有的公共模块，函数，类和方法都应该有文档字符串。对于非公共方法，文档字符串不是必要的，但你应该留有注释说明该方法的功能，该注释应当出现在def的下一行。</p><p>PEP 257描述了好的文档字符应该遵循的规则。其中最重要的是，多行文档字符串以单行”””结尾，不能有其他字符，例如：</p><pre><code>&quot;&quot;&quot;Return a foobang
 
 Optional plotz says to frobnicate the bizbaz first.
-&quot;&quot;&quot;</code></pre><p>对于仅有一行的文档字符串，结尾处的”””应该也写在这一行。</p>
-<h2 id="7-命名约定（Naming-Conventions）"><a href="#7-命名约定（Naming-Conventions）" class="headerlink" title="7 命名约定（Naming Conventions）"></a>7 命名约定（Naming Conventions）</h2><p>Python标准库的命名约定有一些混乱，因此我们永远都无法保持一致。但如今仍然存在一些推荐的命名标准。新的模块和包（包括第三方框架）应该采用这些标准，但若是已经存在的包有另一套风格的话，还是应当与原有的风格保持内部一致。</p>
-<h3 id="7-1-首要原则（Overriding-Principle）"><a href="#7-1-首要原则（Overriding-Principle）" class="headerlink" title="7.1 首要原则（Overriding Principle）"></a>7.1 首要原则（Overriding Principle）</h3><p>对于用户可见的公共部分API，其命名应当表达出功能用途而不是其具体的实现细节。</p>
-<h3 id="7-2-描述：命名风格（Descriptive-Naming-Styles）"><a href="#7-2-描述：命名风格（Descriptive-Naming-Styles）" class="headerlink" title="7.2 描述：命名风格（Descriptive: Naming Styles）"></a>7.2 描述：命名风格（Descriptive: Naming Styles）</h3><p>存在很多不同的命名风格，最好能够独立地从命名对象的用途认出采用了哪种命名风格。</p>
-<p>通常区分以下命名样式：</p>
-<ul>
-<li>b (单个小写字母)</li>
-<li>B (单个大写字母)</li>
-<li>lowercase(小写)</li>
-<li>lower_case_with_underscores(带下划线小写)</li>
-<li>UPPERCASE(大写)</li>
-<li>UPPER_CASE_WITH_UNDERSCORES(带下划线大写)</li>
-<li>CapitalizedWords (也叫做CapWords或者CamelCase – 因为单词首字母大写看起来很像驼峰)。也被称作StudlyCaps。注意：当CapWords里包含缩写时，将缩写部分的字母都大写。HTTPServerError比HttpServerError要好。</li>
-<li>mixedCase (注意：和CapitalizedWords不同在于其首字母小写！)</li>
-<li>Capitalized_Words_With_Underscores (这种风格超丑！)</li>
-</ul>
-<p>也有风格使用简短唯一的前缀来表示一组相关的命名。这在Python中并不常见，但为了完整起见这里也捎带提一下。比如，os.stat()函数返回一个tuple，其中的元素名原本为st_mode,st-size,st_mtime等等。（这样做是为了强调和POSIX系统调用结构之间的关系，可以让程序员更熟悉。）</p>
-<p>X11库中的公共函数名都以X开头。在Python中这样的风格一般被认为是不必要的，因为属性和方法名之前已经有了对象名的前缀，而函数名前也有了模块名的前缀。</p>
-<p>此外，要区别以下划线开始或结尾的特殊形式（可以和其它的规则结合起来）：</p>
-<p>_single_leading_underscore: 以单个下划线开头是”内部使用”的弱标志。 比如， from M import *不会import下划线开头的对象。</p>
-<p>single_trailing_underscore_: 以单个下划线结尾用来避免和Python关键词产生冲突，例如:</p>
-<pre><code>Tkinter.Toplevel(master, class_=&apos;ClassName&apos;)</code></pre><p><strong>double_leading_underscore: 以双下划线开头的风格命名类属性表示触发命名修饰（在FooBar类中，</strong>boo命名会被修饰成_FooBar__boo;）。</p>
-<h3 id="7-3-规范：命名约定-Prescriptive-Naming-Conventions"><a href="#7-3-规范：命名约定-Prescriptive-Naming-Conventions" class="headerlink" title="7.3 规范：命名约定(Prescriptive: Naming Conventions)"></a>7.3 规范：命名约定(Prescriptive: Naming Conventions)</h3><h4 id="7-3-1-需要避免的命名-Names-To-Avoid"><a href="#7-3-1-需要避免的命名-Names-To-Avoid" class="headerlink" title="7.3.1 需要避免的命名(Names To Avoid)"></a>7.3.1 需要避免的命名(Names To Avoid)</h4><p>不要使用字符’l’（L的小写的字母），’O’（o大写的字母），或者’I’（i的大写的字母）来作为单个字符的变量名。</p>
-<p>在一些字体中，这些字符和数字1和0无法区别开来。比如，当想使用’l’时，使用’L’代替。</p>
-<h4 id="7-3-2-ASCII兼容性-ASCII-Compatibility"><a href="#7-3-2-ASCII兼容性-ASCII-Compatibility" class="headerlink" title="7.3.2 ASCII兼容性(ASCII Compatibility)"></a>7.3.2 ASCII兼容性(ASCII Compatibility)</h4><p>标准库中使用的标识符必须与ASCII兼容(参见PEP 3131中的<a href="https://www.python.org/dev/peps/pep-3131/#policy-specification" target="_blank" rel="noopener">policy</a>这一节) 。</p>
-<h4 id="7-3-3-包和模块命名-Package-And-Module-Names"><a href="#7-3-3-包和模块命名-Package-And-Module-Names" class="headerlink" title="7.3.3 包和模块命名(Package And Module Names)"></a>7.3.3 包和模块命名(Package And Module Names)</h4><p>模块命名应短小，且为全小写。若下划线能提高可读性，也可以在模块名中使用。Python包命名也应该短小，且为全小写，但不应使用下划线。</p>
-<p>当使用C或C++写的扩展模块有相应的Python模块提供更高级的接口时（比如，更加面向对象），C/C++模块名以下划线开头（例如，_sociket）</p>
-<h4 id="7-3-4-类命名-Class-Names"><a href="#7-3-4-类命名-Class-Names" class="headerlink" title="7.3.4 类命名(Class Names)"></a>7.3.4 类命名(Class Names)</h4><p>类命名应该使用驼峰（CapWords）的命名约定。</p>
-<p>当接口已有文档说明且主要是被用作调用时，也可以使用函数的命名约定。</p>
-<p>注意对于内建命名(builtin names)有一个特殊的约定：大部分内建名都是一个单词（或者两个一起使用的单词），驼峰(CapWords)的约定只对异常命名和内建常量使用。</p>
-<h4 id="7-3-5-类型变量命名-Type-variable-names"><a href="#7-3-5-类型变量命名-Type-variable-names" class="headerlink" title="7.3.5 类型变量命名(Type variable names)"></a>7.3.5 类型变量命名(Type variable names)</h4><p>PEP 484中引入的类型变量名称通常应使用简短的驼峰命名: T，AnyStr，Num。 建议将后缀_co或_contra添加到用于声明相应的协变(covariant)和逆变(contravariant)的行为。例如：</p>
-<pre><code>from typing import TypeVar
+&quot;&quot;&quot;</code></pre><p>对于仅有一行的文档字符串，结尾处的”””应该也写在这一行。</p><h2 id="7-命名约定（Naming-Conventions）"><a href="#7-命名约定（Naming-Conventions）" class="headerlink" title="7 命名约定（Naming Conventions）"></a>7 命名约定（Naming Conventions）</h2><p>Python标准库的命名约定有一些混乱，因此我们永远都无法保持一致。但如今仍然存在一些推荐的命名标准。新的模块和包（包括第三方框架）应该采用这些标准，但若是已经存在的包有另一套风格的话，还是应当与原有的风格保持内部一致。</p><h3 id="7-1-首要原则（Overriding-Principle）"><a href="#7-1-首要原则（Overriding-Principle）" class="headerlink" title="7.1 首要原则（Overriding Principle）"></a>7.1 首要原则（Overriding Principle）</h3><p>对于用户可见的公共部分API，其命名应当表达出功能用途而不是其具体的实现细节。</p><h3 id="7-2-描述：命名风格（Descriptive-Naming-Styles）"><a href="#7-2-描述：命名风格（Descriptive-Naming-Styles）" class="headerlink" title="7.2 描述：命名风格（Descriptive: Naming Styles）"></a>7.2 描述：命名风格（Descriptive: Naming Styles）</h3><p>存在很多不同的命名风格，最好能够独立地从命名对象的用途认出采用了哪种命名风格。</p><p>通常区分以下命名样式：</p><ul><li>b (单个小写字母)</li><li>B (单个大写字母)</li><li>lowercase(小写)</li><li>lower_case_with_underscores(带下划线小写)</li><li>UPPERCASE(大写)</li><li>UPPER_CASE_WITH_UNDERSCORES(带下划线大写)</li><li>CapitalizedWords (也叫做CapWords或者CamelCase – 因为单词首字母大写看起来很像驼峰)。也被称作StudlyCaps。注意：当CapWords里包含缩写时，将缩写部分的字母都大写。HTTPServerError比HttpServerError要好。</li><li>mixedCase (注意：和CapitalizedWords不同在于其首字母小写！)</li><li>Capitalized_Words_With_Underscores (这种风格超丑！)</li></ul><p>也有风格使用简短唯一的前缀来表示一组相关的命名。这在Python中并不常见，但为了完整起见这里也捎带提一下。比如，os.stat()函数返回一个tuple，其中的元素名原本为st_mode,st-size,st_mtime等等。（这样做是为了强调和POSIX系统调用结构之间的关系，可以让程序员更熟悉。）</p><p>X11库中的公共函数名都以X开头。在Python中这样的风格一般被认为是不必要的，因为属性和方法名之前已经有了对象名的前缀，而函数名前也有了模块名的前缀。</p><p>此外，要区别以下划线开始或结尾的特殊形式（可以和其它的规则结合起来）：</p><p>_single_leading_underscore: 以单个下划线开头是”内部使用”的弱标志。 比如， from M import *不会import下划线开头的对象。</p><p>single_trailing_underscore_: 以单个下划线结尾用来避免和Python关键词产生冲突，例如:</p><pre><code>Tkinter.Toplevel(master, class_=&apos;ClassName&apos;)</code></pre><p><strong>double_leading_underscore: 以双下划线开头的风格命名类属性表示触发命名修饰（在FooBar类中，</strong>boo命名会被修饰成_FooBar__boo;）。</p><h3 id="7-3-规范：命名约定-Prescriptive-Naming-Conventions"><a href="#7-3-规范：命名约定-Prescriptive-Naming-Conventions" class="headerlink" title="7.3 规范：命名约定(Prescriptive: Naming Conventions)"></a>7.3 规范：命名约定(Prescriptive: Naming Conventions)</h3><h4 id="7-3-1-需要避免的命名-Names-To-Avoid"><a href="#7-3-1-需要避免的命名-Names-To-Avoid" class="headerlink" title="7.3.1 需要避免的命名(Names To Avoid)"></a>7.3.1 需要避免的命名(Names To Avoid)</h4><p>不要使用字符’l’（L的小写的字母），’O’（o大写的字母），或者’I’（i的大写的字母）来作为单个字符的变量名。</p><p>在一些字体中，这些字符和数字1和0无法区别开来。比如，当想使用’l’时，使用’L’代替。</p><h4 id="7-3-2-ASCII兼容性-ASCII-Compatibility"><a href="#7-3-2-ASCII兼容性-ASCII-Compatibility" class="headerlink" title="7.3.2 ASCII兼容性(ASCII Compatibility)"></a>7.3.2 ASCII兼容性(ASCII Compatibility)</h4><p>标准库中使用的标识符必须与ASCII兼容(参见PEP 3131中的<a href="https://www.python.org/dev/peps/pep-3131/#policy-specification" target="_blank" rel="noopener">policy</a>这一节) 。</p><h4 id="7-3-3-包和模块命名-Package-And-Module-Names"><a href="#7-3-3-包和模块命名-Package-And-Module-Names" class="headerlink" title="7.3.3 包和模块命名(Package And Module Names)"></a>7.3.3 包和模块命名(Package And Module Names)</h4><p>模块命名应短小，且为全小写。若下划线能提高可读性，也可以在模块名中使用。Python包命名也应该短小，且为全小写，但不应使用下划线。</p><p>当使用C或C++写的扩展模块有相应的Python模块提供更高级的接口时（比如，更加面向对象），C/C++模块名以下划线开头（例如，_sociket）</p><h4 id="7-3-4-类命名-Class-Names"><a href="#7-3-4-类命名-Class-Names" class="headerlink" title="7.3.4 类命名(Class Names)"></a>7.3.4 类命名(Class Names)</h4><p>类命名应该使用驼峰（CapWords）的命名约定。</p><p>当接口已有文档说明且主要是被用作调用时，也可以使用函数的命名约定。</p><p>注意对于内建命名(builtin names)有一个特殊的约定：大部分内建名都是一个单词（或者两个一起使用的单词），驼峰(CapWords)的约定只对异常命名和内建常量使用。</p><h4 id="7-3-5-类型变量命名-Type-variable-names"><a href="#7-3-5-类型变量命名-Type-variable-names" class="headerlink" title="7.3.5 类型变量命名(Type variable names)"></a>7.3.5 类型变量命名(Type variable names)</h4><p>PEP 484中引入的类型变量名称通常应使用简短的驼峰命名: T，AnyStr，Num。 建议将后缀_co或_contra添加到用于声明相应的协变(covariant)和逆变(contravariant)的行为。例如：</p><pre><code>from typing import TypeVar
 
 VT_co = TypeVar(&apos;VT_co&apos;, covariant=True)
-KT_contra = TypeVar(&apos;KT_contra&apos;, contravariant=True)</code></pre><h4 id="7-3-6-异常命名-Exception-Names"><a href="#7-3-6-异常命名-Exception-Names" class="headerlink" title="7.3.6 异常命名(Exception Names)"></a>7.3.6 异常命名(Exception Names)</h4><p>由于异常实际上也是类，因此类命名约定也适用与异常。不同的是，如果异常实际上是抛出错误的话，异常名前应该加上”Error”的前缀。</p>
-<h4 id="7-3-7-全局变量命名-Global-Variable-Names"><a href="#7-3-7-全局变量命名-Global-Variable-Names" class="headerlink" title="7.3.7 全局变量命名(Global Variable Names)"></a>7.3.7 全局变量命名(Global Variable Names)</h4><p>（在此之前，我们先假定这些变量都仅在同一个模块内使用。）这些约定同样也适用于函数命名。</p>
-<p>对于引用方式设计为from M import *的模块，应该使用<strong>all</strong>机制来避免import全局变量，或者采用下划线前缀的旧约定来命名全局变量，从而表明这些变量是“模块非公开的”。</p>
-<h4 id="7-3-8-函数命名-Function-Names"><a href="#7-3-8-函数命名-Function-Names" class="headerlink" title="7.3.8 函数命名(Function Names)"></a>7.3.8 函数命名(Function Names)</h4><p>函数命名应该都是小写，必要时使用下划线来提高可读性。</p>
-<p>只有当已有代码风格已经是混合大小写时（比如threading.py），为了保留向后兼容性才使用混合大小写。</p>
-<h4 id="7-3-9-函数和方法参数-Function-And-Method-Arguments"><a href="#7-3-9-函数和方法参数-Function-And-Method-Arguments" class="headerlink" title="7.3.9 函数和方法参数(Function And Method Arguments)"></a>7.3.9 函数和方法参数(Function And Method Arguments)</h4><p>实例方法的第一参数永远都是self。</p>
-<p>类方法的第一个参数永远都是cls。</p>
-<p>在函数参数名和保留关键字冲突时，相对于使用缩写或拼写简化，使用以下划线结尾的命名一般更好。比如，class_比clss更好。（或许使用同义词避免这样的冲突是更好的方式。）</p>
-<h4 id="7-3-10-方法命名和实例变量-Method-Names-And-Instance-Variables"><a href="#7-3-10-方法命名和实例变量-Method-Names-And-Instance-Variables" class="headerlink" title="7.3.10 方法命名和实例变量(Method Names And Instance Variables)"></a>7.3.10 方法命名和实例变量(Method Names And Instance Variables)</h4><p>使用函数命名的规则：小写单词，必要时使用下划线分开以提高可读性。</p>
-<p>仅对于非公开方法和变量命名在开头使用一个下划线。</p>
-<p>避免和子类的命名冲突，使用两个下划线开头来触发Python的命名修饰机制。</p>
-<p>Python类名的命名修饰规则：如果类Foo有一个属性叫<strong>a，不能使用Foo.</strong>a的方式访问该变量。（有用户可能仍然坚持使用Foo._Foo__a的方法访问。）一般来说，两个下划线开头的命名方法仅用于避免与设计为子类的类中的属性名冲突。</p>
-<h4 id="7-3-11-常量-Constants"><a href="#7-3-11-常量-Constants" class="headerlink" title="7.3.11 常量(Constants)"></a>7.3.11 常量(Constants)</h4><p>常量通常是在模块级别定义的，使用全部大写并用下划线将单词分开。如：MAX_OVERFLOW和TOTAL 。</p>
-<h4 id="7-3-12-继承的设计-Designing-For-Inheritance"><a href="#7-3-12-继承的设计-Designing-For-Inheritance" class="headerlink" title="7.3.12 继承的设计(Designing For Inheritance)"></a>7.3.12 继承的设计(Designing For Inheritance)</h4><p>记得永远区别类的方法和实例变量（属性）应该是公开的还是非公开的。如果有疑虑的话，请选择非公开的；因为之后将非公开属性变为公开属性要容易些。</p>
-<p>公开属性是那些你希望和你定义的类无关的客户来使用的，并且确保不会出现向后不兼容的问题。非公开属性是那些不希望被第三方使用的部分，你可以不用保证非公开属性不会变化或被移除。</p>
-<p>我们在这里没有使用“私有（private）”这个词，因为在Python里没有什么属性是真正私有的（这样设计省略了大量不必要的工作）。</p>
-<p>另一类属性属于子类API的一部分（在其他语言中经常被称为”protected”）。一些类是为继承设计的，要么扩展要么修改类的部分行为。当设计这样的类时，需要谨慎明确地决定哪些属性是公开的，哪些属于子类API，哪些真的只会被你的基类调用。</p>
-<p>请记住以上几点，下面是Python风格的指南：</p>
-<ul>
-<li>公开属性不应该有开头下划线。</li>
-<li>如果公开属性的名字和保留关键字有冲突，在你的属性名尾部加上一个下划线。这比采用缩写和简写更好。（然而，和这条规则冲突的是，‘cls’对任何变量和参数来说都是一个更好地拼写，因为大家都知道这表示class，特别是在类方法的第一个参数里。）</li>
-<li>对于简单的公共数据属性，最后仅公开属性名字，不要公开复杂的调用或设值方法。请记住，如果你发现一个简单的数据属性需要增加功能行为时，Python为功能增强提供了一个简单的途径。这种情况下，使用Properties注解将功能实现隐藏在简单数据属性访问语法之后。注意 1：Properties注解仅仅对新风格类有用。<br>注意 2：尽量保证功能行为没有副作用，尽管缓存这种副作用看上去并没有什么大问题。<br>注意 3: 对计算量大的运算避免试用properties；属性的注解会让调用者相信访问的运算量是相对较小的。</li>
-<li>如果你的类将被子类继承的话，你有一些属性并不想让子类访问，考虑将他们命名为两个下划线开头并且结尾处没有下划线。这样会触发Python命名修饰算法，类名会被修饰添加到属性名中。这样可以避免属性命名冲突，以免子类会不经意间包含相同的命名。注意 1：注意命名修饰仅仅是简单地将类名加入到修饰名中，所以如果子类有相同的类名合属性名，你可能仍然会遇到命名冲突问题。<br>注意 2：命名修饰可以有特定用途，比如在调试时，__getattr__()比较不方便。然而命名修饰算法的可以很好地记录，并且容意手动执行。<br>注意 3：不是所有人都喜欢命名修饰。需要试着去平衡避免偶然命名冲突的需求和高级调用者使用的潜在可能性。</li>
-</ul>
-<h3 id="7-4-公开和内部接口-Public-And-Internal-Interfaces"><a href="#7-4-公开和内部接口-Public-And-Internal-Interfaces" class="headerlink" title="7.4 公开和内部接口(Public And Internal Interfaces)"></a>7.4 公开和内部接口(Public And Internal Interfaces)</h3><p>任何向后兼容性保证仅对公开接口适用。相应地，用户能够清楚分辨公开接口和内部接口是很重要的。</p>
-<p>文档化的接口被认为是公开的，除非文档中明确申明了它们是临时的或者内部接口，不保证向后兼容性。所有文档中未提到的接口应该被认为是内部的。</p>
-<p>为了更好审视公开接口和内部接口，模块应该在<strong>all属性中明确申明公开API是哪些。将</strong>all__设为空list表示该模块中没有公开API。</p>
-<p>即使正确设置了__all属性，内部接口（包，模块，类，函数，属性或其他命名）也应该以一个下划线开头。</p>
-<p>如果接口的任一一个命名空间（包，模块或类）是内部的，那么该接口也应该是内部的</p>
-<p>引用的命名应该永远被认为是实现细节。其他模块不应当依赖这些非直接访问的引用命名，除非它们在文档中明确地被写为模块的API，例如os.path或者包的<strong>init</strong>模块，那些从子模块展现的功能。</p>
-<h2 id="8-编程建议-Programming-Recommendations"><a href="#8-编程建议-Programming-Recommendations" class="headerlink" title="8 编程建议(Programming Recommendations)"></a>8 编程建议(Programming Recommendations)</h2><p>1 代码应该以不影响其他Python实现（PyPy，Jython，IronPython，Cython，Psyco等）的方式编写。</p>
-<p>例如，不要依赖于 CPython 在字符串拼接时的优化实现，像这种语句形式a += b和a = a + b。即使是 CPython（仅对某些类型起作用） 这种优化也是脆弱的，不是在所有的实现中都不使用引用计数。在库中性能敏感的部分，用’’.join形式来代替。这会确保在所有不同的实现中字符串拼接是线性时间的。</p>
-<p>2 与单例作比较，像None应该用is或is not，从不使用==操作符。</p>
-<p>同样的，当心if x is not None这样的写法，你是不知真的要判断x不是None。例如，测试一个默认值为None的变量或参数是否设置成了其它值，其它值有可能是某种特殊类型（如容器），这种特殊类型在逻辑运算时其值会被当作Flase来看待。</p>
-<p>用is not操作符而不是not … is。虽然这两个表达式是功能相同的，前一个是更可读的，是首选。</p>
-<p>推荐的写法:</p>
-<pre><code>if foo is not None:</code></pre><p>不推荐的写法:</p>
-<pre><code>if not foo is None:</code></pre><p>3 用富比较实现排序操作的时候，最好实现所有六个比较操作符（ __eq__ 、 __ne__ 、 __lt__ , __le__ , __gt__ , __ge__），而不是依靠其他代码来进行特定比较。</p>
-<p>为了最大限度的减少工作量，functools.total_ordering()装饰器提供了一个工具去生成缺少的比较方法。</p>
-<p>PEP 207 说明了 Python 假定的所有反射规则。因此，解释器可能使用y &gt; x替换x &lt; y，使用y &gt;= x替换x &lt;= y，也可能交换x == y和x != y的操作数。sort()和min()操作肯定会使用&lt;操作符，max()函数肯定会使用&gt;操作符。当然，最好是六个操作符都实现，以便在其他情况下不会出现混淆。</p>
-<p>4 始终使用def语句来代替直接绑定了一个lambda表达式的赋值语句。</p>
-<p>推荐的写法:</p>
-<pre><code>def f(x): return 2*x</code></pre><p>不推荐的写法:</p>
-<pre><code>f = lambda x: 2*x</code></pre><p>第一个表单意味着生成的函数对象的名称是’f’而不是通用的’<lambda>‘。通常这对异常追踪和字符串表述是更有用的。使用赋值语句消除了使用lambda表达式可以提供，而一个显式的def语句不能提供的唯一好处，如，lambda能镶嵌在一个很长的表达式里。</p>
-<p>5 异常类应派生自Exception而不是BaseException。直接继承BaseException是为Exception保留的，从BaseException继承并捕获异常这种做法几乎总是错的。</p>
-<p>设计异常的层次结构，应基于那些可能出现异常的代码，而不是引发异常的位置。编码的时候，以回答“出了什么问题？”为目标，而不是仅仅指出“这里出现了问题”（见 PEP 3151 一个内建异常结构层次的例子）。</p>
-<p>类的命名约定适用于异常，如果异常类是一个错误，你应该给异常类加一个后缀Error。用于非本地流程控制或者其他形式的信号的非错误异常不需要一个特殊的后缀。</p>
-<p>6 适当的使用异常链。在 Python 3 里，应该使用raise X from Y来指示显式替换，而不会丢失原始的追溯。</p>
-<p>当有意替换一个内部的异常时（在 Python 2 用raise X，Python 3.3+ 用raise X from None），请确保将相关详细信息转移到新异常中（例如，将KeyError转换为AttributeError时保留属性名称，或将原始异常的文本嵌入到新的异常消息中）。</p>
-<p>7 在 Python 2 里抛出异常时，用raise ValueError(‘message’)代替旧式的raise ValueError, ‘message’。</p>
-<p>在 Python 3 之后的语法里，旧式的异常抛出方式是非法的。</p>
-<p>使用括号形式的异常意味着，当你传给异常的参数过长或者包含字符串格式化时，你就不需要使用续行符了，这要感谢括号！</p>
-<p>8 捕获异常时，尽可能使用明确的异常，而不是用一个空的except:语句。</p>
-<p>例如，用：</p>
-<pre><code>try:
+KT_contra = TypeVar(&apos;KT_contra&apos;, contravariant=True)</code></pre><h4 id="7-3-6-异常命名-Exception-Names"><a href="#7-3-6-异常命名-Exception-Names" class="headerlink" title="7.3.6 异常命名(Exception Names)"></a>7.3.6 异常命名(Exception Names)</h4><p>由于异常实际上也是类，因此类命名约定也适用与异常。不同的是，如果异常实际上是抛出错误的话，异常名前应该加上”Error”的前缀。</p><h4 id="7-3-7-全局变量命名-Global-Variable-Names"><a href="#7-3-7-全局变量命名-Global-Variable-Names" class="headerlink" title="7.3.7 全局变量命名(Global Variable Names)"></a>7.3.7 全局变量命名(Global Variable Names)</h4><p>（在此之前，我们先假定这些变量都仅在同一个模块内使用。）这些约定同样也适用于函数命名。</p><p>对于引用方式设计为from M import *的模块，应该使用<strong>all</strong>机制来避免import全局变量，或者采用下划线前缀的旧约定来命名全局变量，从而表明这些变量是“模块非公开的”。</p><h4 id="7-3-8-函数命名-Function-Names"><a href="#7-3-8-函数命名-Function-Names" class="headerlink" title="7.3.8 函数命名(Function Names)"></a>7.3.8 函数命名(Function Names)</h4><p>函数命名应该都是小写，必要时使用下划线来提高可读性。</p><p>只有当已有代码风格已经是混合大小写时（比如threading.py），为了保留向后兼容性才使用混合大小写。</p><h4 id="7-3-9-函数和方法参数-Function-And-Method-Arguments"><a href="#7-3-9-函数和方法参数-Function-And-Method-Arguments" class="headerlink" title="7.3.9 函数和方法参数(Function And Method Arguments)"></a>7.3.9 函数和方法参数(Function And Method Arguments)</h4><p>实例方法的第一参数永远都是self。</p><p>类方法的第一个参数永远都是cls。</p><p>在函数参数名和保留关键字冲突时，相对于使用缩写或拼写简化，使用以下划线结尾的命名一般更好。比如，class_比clss更好。（或许使用同义词避免这样的冲突是更好的方式。）</p><h4 id="7-3-10-方法命名和实例变量-Method-Names-And-Instance-Variables"><a href="#7-3-10-方法命名和实例变量-Method-Names-And-Instance-Variables" class="headerlink" title="7.3.10 方法命名和实例变量(Method Names And Instance Variables)"></a>7.3.10 方法命名和实例变量(Method Names And Instance Variables)</h4><p>使用函数命名的规则：小写单词，必要时使用下划线分开以提高可读性。</p><p>仅对于非公开方法和变量命名在开头使用一个下划线。</p><p>避免和子类的命名冲突，使用两个下划线开头来触发Python的命名修饰机制。</p><p>Python类名的命名修饰规则：如果类Foo有一个属性叫<strong>a，不能使用Foo.</strong>a的方式访问该变量。（有用户可能仍然坚持使用Foo._Foo__a的方法访问。）一般来说，两个下划线开头的命名方法仅用于避免与设计为子类的类中的属性名冲突。</p><h4 id="7-3-11-常量-Constants"><a href="#7-3-11-常量-Constants" class="headerlink" title="7.3.11 常量(Constants)"></a>7.3.11 常量(Constants)</h4><p>常量通常是在模块级别定义的，使用全部大写并用下划线将单词分开。如：MAX_OVERFLOW和TOTAL 。</p><h4 id="7-3-12-继承的设计-Designing-For-Inheritance"><a href="#7-3-12-继承的设计-Designing-For-Inheritance" class="headerlink" title="7.3.12 继承的设计(Designing For Inheritance)"></a>7.3.12 继承的设计(Designing For Inheritance)</h4><p>记得永远区别类的方法和实例变量（属性）应该是公开的还是非公开的。如果有疑虑的话，请选择非公开的；因为之后将非公开属性变为公开属性要容易些。</p><p>公开属性是那些你希望和你定义的类无关的客户来使用的，并且确保不会出现向后不兼容的问题。非公开属性是那些不希望被第三方使用的部分，你可以不用保证非公开属性不会变化或被移除。</p><p>我们在这里没有使用“私有（private）”这个词，因为在Python里没有什么属性是真正私有的（这样设计省略了大量不必要的工作）。</p><p>另一类属性属于子类API的一部分（在其他语言中经常被称为”protected”）。一些类是为继承设计的，要么扩展要么修改类的部分行为。当设计这样的类时，需要谨慎明确地决定哪些属性是公开的，哪些属于子类API，哪些真的只会被你的基类调用。</p><p>请记住以上几点，下面是Python风格的指南：</p><ul><li>公开属性不应该有开头下划线。</li><li>如果公开属性的名字和保留关键字有冲突，在你的属性名尾部加上一个下划线。这比采用缩写和简写更好。（然而，和这条规则冲突的是，‘cls’对任何变量和参数来说都是一个更好地拼写，因为大家都知道这表示class，特别是在类方法的第一个参数里。）</li><li>对于简单的公共数据属性，最后仅公开属性名字，不要公开复杂的调用或设值方法。请记住，如果你发现一个简单的数据属性需要增加功能行为时，Python为功能增强提供了一个简单的途径。这种情况下，使用Properties注解将功能实现隐藏在简单数据属性访问语法之后。注意 1：Properties注解仅仅对新风格类有用。<br>注意 2：尽量保证功能行为没有副作用，尽管缓存这种副作用看上去并没有什么大问题。<br>注意 3: 对计算量大的运算避免试用properties；属性的注解会让调用者相信访问的运算量是相对较小的。</li><li>如果你的类将被子类继承的话，你有一些属性并不想让子类访问，考虑将他们命名为两个下划线开头并且结尾处没有下划线。这样会触发Python命名修饰算法，类名会被修饰添加到属性名中。这样可以避免属性命名冲突，以免子类会不经意间包含相同的命名。注意 1：注意命名修饰仅仅是简单地将类名加入到修饰名中，所以如果子类有相同的类名合属性名，你可能仍然会遇到命名冲突问题。<br>注意 2：命名修饰可以有特定用途，比如在调试时，__getattr__()比较不方便。然而命名修饰算法的可以很好地记录，并且容意手动执行。<br>注意 3：不是所有人都喜欢命名修饰。需要试着去平衡避免偶然命名冲突的需求和高级调用者使用的潜在可能性。</li></ul><h3 id="7-4-公开和内部接口-Public-And-Internal-Interfaces"><a href="#7-4-公开和内部接口-Public-And-Internal-Interfaces" class="headerlink" title="7.4 公开和内部接口(Public And Internal Interfaces)"></a>7.4 公开和内部接口(Public And Internal Interfaces)</h3><p>任何向后兼容性保证仅对公开接口适用。相应地，用户能够清楚分辨公开接口和内部接口是很重要的。</p><p>文档化的接口被认为是公开的，除非文档中明确申明了它们是临时的或者内部接口，不保证向后兼容性。所有文档中未提到的接口应该被认为是内部的。</p><p>为了更好审视公开接口和内部接口，模块应该在<strong>all属性中明确申明公开API是哪些。将</strong>all__设为空list表示该模块中没有公开API。</p><p>即使正确设置了__all属性，内部接口（包，模块，类，函数，属性或其他命名）也应该以一个下划线开头。</p><p>如果接口的任一一个命名空间（包，模块或类）是内部的，那么该接口也应该是内部的</p><p>引用的命名应该永远被认为是实现细节。其他模块不应当依赖这些非直接访问的引用命名，除非它们在文档中明确地被写为模块的API，例如os.path或者包的<strong>init</strong>模块，那些从子模块展现的功能。</p><h2 id="8-编程建议-Programming-Recommendations"><a href="#8-编程建议-Programming-Recommendations" class="headerlink" title="8 编程建议(Programming Recommendations)"></a>8 编程建议(Programming Recommendations)</h2><p>1 代码应该以不影响其他Python实现（PyPy，Jython，IronPython，Cython，Psyco等）的方式编写。</p><p>例如，不要依赖于 CPython 在字符串拼接时的优化实现，像这种语句形式a += b和a = a + b。即使是 CPython（仅对某些类型起作用） 这种优化也是脆弱的，不是在所有的实现中都不使用引用计数。在库中性能敏感的部分，用’’.join形式来代替。这会确保在所有不同的实现中字符串拼接是线性时间的。</p><p>2 与单例作比较，像None应该用is或is not，从不使用==操作符。</p><p>同样的，当心if x is not None这样的写法，你是不知真的要判断x不是None。例如，测试一个默认值为None的变量或参数是否设置成了其它值，其它值有可能是某种特殊类型（如容器），这种特殊类型在逻辑运算时其值会被当作Flase来看待。</p><p>用is not操作符而不是not … is。虽然这两个表达式是功能相同的，前一个是更可读的，是首选。</p><p>推荐的写法:</p><pre><code>if foo is not None:</code></pre><p>不推荐的写法:</p><pre><code>if not foo is None:</code></pre><p>3 用富比较实现排序操作的时候，最好实现所有六个比较操作符（ __eq__ 、 __ne__ 、 __lt__ , __le__ , __gt__ , __ge__），而不是依靠其他代码来进行特定比较。</p><p>为了最大限度的减少工作量，functools.total_ordering()装饰器提供了一个工具去生成缺少的比较方法。</p><p>PEP 207 说明了 Python 假定的所有反射规则。因此，解释器可能使用y &gt; x替换x &lt; y，使用y &gt;= x替换x &lt;= y，也可能交换x == y和x != y的操作数。sort()和min()操作肯定会使用&lt;操作符，max()函数肯定会使用&gt;操作符。当然，最好是六个操作符都实现，以便在其他情况下不会出现混淆。</p><p>4 始终使用def语句来代替直接绑定了一个lambda表达式的赋值语句。</p><p>推荐的写法:</p><pre><code>def f(x): return 2*x</code></pre><p>不推荐的写法:</p><pre><code>f = lambda x: 2*x</code></pre><p>第一个表单意味着生成的函数对象的名称是’f’而不是通用的’<lambda>‘。通常这对异常追踪和字符串表述是更有用的。使用赋值语句消除了使用lambda表达式可以提供，而一个显式的def语句不能提供的唯一好处，如，lambda能镶嵌在一个很长的表达式里。</lambda></p><p>5 异常类应派生自Exception而不是BaseException。直接继承BaseException是为Exception保留的，从BaseException继承并捕获异常这种做法几乎总是错的。</p><p>设计异常的层次结构，应基于那些可能出现异常的代码，而不是引发异常的位置。编码的时候，以回答“出了什么问题？”为目标，而不是仅仅指出“这里出现了问题”（见 PEP 3151 一个内建异常结构层次的例子）。</p><p>类的命名约定适用于异常，如果异常类是一个错误，你应该给异常类加一个后缀Error。用于非本地流程控制或者其他形式的信号的非错误异常不需要一个特殊的后缀。</p><p>6 适当的使用异常链。在 Python 3 里，应该使用raise X from Y来指示显式替换，而不会丢失原始的追溯。</p><p>当有意替换一个内部的异常时（在 Python 2 用raise X，Python 3.3+ 用raise X from None），请确保将相关详细信息转移到新异常中（例如，将KeyError转换为AttributeError时保留属性名称，或将原始异常的文本嵌入到新的异常消息中）。</p><p>7 在 Python 2 里抛出异常时，用raise ValueError(‘message’)代替旧式的raise ValueError, ‘message’。</p><p>在 Python 3 之后的语法里，旧式的异常抛出方式是非法的。</p><p>使用括号形式的异常意味着，当你传给异常的参数过长或者包含字符串格式化时，你就不需要使用续行符了，这要感谢括号！</p><p>8 捕获异常时，尽可能使用明确的异常，而不是用一个空的except:语句。</p><p>例如，用：</p><pre><code>try:
     import platform_specific_module
 except ImportError:
-    platform_specific_module = None</code></pre><p>一个空的except:语句将会捕获到SystemExit和KeyboardInterrupt异常，很难区分程序的中断到底是Ctrl+C还是其他问题引起的。如果你想捕获程序的所有错误，使用except Exception:(空except:等同于except BaseException)。</p>
-<p>一个好的经验是限制使用空except语句，除了这两种情况：</p>
-<ul>
-<li>如果异常处理程序会打印出或者记录回溯信息；至少用户意识到错误的存在。</li>
-<li>如果代码需要做一些清理工作，但后面用raise向上抛出异常。try .. finally是处理这种情况更好的方式。</li>
-</ul>
-<p>9 绑定异常给一个名字时，最好使用 Python 2.6 里添加的明确的名字绑定语法：</p>
-<pre><code>try:
+    platform_specific_module = None</code></pre><p>一个空的except:语句将会捕获到SystemExit和KeyboardInterrupt异常，很难区分程序的中断到底是Ctrl+C还是其他问题引起的。如果你想捕获程序的所有错误，使用except Exception:(空except:等同于except BaseException)。</p><p>一个好的经验是限制使用空except语句，除了这两种情况：</p><ul><li>如果异常处理程序会打印出或者记录回溯信息；至少用户意识到错误的存在。</li><li>如果代码需要做一些清理工作，但后面用raise向上抛出异常。try .. finally是处理这种情况更好的方式。</li></ul><p>9 绑定异常给一个名字时，最好使用 Python 2.6 里添加的明确的名字绑定语法：</p><pre><code>try:
     process_data()
 except Exception as exc:
-    raise DataProcessingFailedError(str(exc))</code></pre><p>Python 3 只支持这种语法，避免与基于逗号的旧式语法产生二义性。</p>
-<p>10 捕获操作系统错误时，最好使用 Python 3.3 里引进的明确的异常结构层次，而不是内省的errno值。</p>
-<p>11 另外，对于所有try / except子句，将try子句限制为必需的绝对最小代码量。同样，这样可以避免屏蔽错误。</p>
-<p>推荐的写法：</p>
-<pre><code>try:
+    raise DataProcessingFailedError(str(exc))</code></pre><p>Python 3 只支持这种语法，避免与基于逗号的旧式语法产生二义性。</p><p>10 捕获操作系统错误时，最好使用 Python 3.3 里引进的明确的异常结构层次，而不是内省的errno值。</p><p>11 另外，对于所有try / except子句，将try子句限制为必需的绝对最小代码量。同样，这样可以避免屏蔽错误。</p><p>推荐的写法：</p><pre><code>try:
     value = collection[key]
 except KeyError:
     return key_not_found(key)
 else:
-    return handle_value(value)</code></pre><p>不推荐的写法：</p>
-<pre><code>try:
+    return handle_value(value)</code></pre><p>不推荐的写法：</p><pre><code>try:
     # Too broad!
     return handle_value(collection[key])
 except KeyError:
     # Will also catch KeyError raised by handle_value()
-    return key_not_found(key)</code></pre><p>12 当某个资源仅被特定代码段使用，用with语句确保其在使用后被立即干净的清除了，try/finally也是也接受的。</p>
-<p>13 当它们做一些除了获取和释放资源之外的事的时候，上下文管理器应该通过单独的函数或方法调用。例如：</p>
-<p>推荐的写法:</p>
-<pre><code>with conn.begin_transaction():
-    do_stuff_in_transaction(conn)</code></pre><p>不推荐的写法：</p>
-<pre><code>with conn:
-    do_stuff_in_transaction(conn)</code></pre><p>第二个例子没有提供任何信息来表明<strong>enter</strong>和<strong>exit</strong>方法在完成一个事务后做了一些除了关闭连接以外的其它事。在这种情况下明确是很重要的。</p>
-<p>14 坚持使用return语句。函数内的return语句都应该返回一个表达式，或者None。如果一个return语句返回一个表达式，另一个没有返回值的应该用return None清晰的说明，并且在一个函数的结尾应该明确使用一个return语句（如果有返回值的话）。</p>
-<p>推荐的写法：</p>
-<pre><code>def foo(x):
+    return key_not_found(key)</code></pre><p>12 当某个资源仅被特定代码段使用，用with语句确保其在使用后被立即干净的清除了，try/finally也是也接受的。</p><p>13 当它们做一些除了获取和释放资源之外的事的时候，上下文管理器应该通过单独的函数或方法调用。例如：</p><p>推荐的写法:</p><pre><code>with conn.begin_transaction():
+    do_stuff_in_transaction(conn)</code></pre><p>不推荐的写法：</p><pre><code>with conn:
+    do_stuff_in_transaction(conn)</code></pre><p>第二个例子没有提供任何信息来表明<strong>enter</strong>和<strong>exit</strong>方法在完成一个事务后做了一些除了关闭连接以外的其它事。在这种情况下明确是很重要的。</p><p>14 坚持使用return语句。函数内的return语句都应该返回一个表达式，或者None。如果一个return语句返回一个表达式，另一个没有返回值的应该用return None清晰的说明，并且在一个函数的结尾应该明确使用一个return语句（如果有返回值的话）。</p><p>推荐的写法：</p><pre><code>def foo(x):
     if x &gt;= 0:
         return math.sqrt(x)
     else:
@@ -863,882 +237,28 @@ except KeyError:
 def bar(x):
     if x &lt; 0:
         return None
-    return math.sqrt(x)</code></pre><p>不推荐的写法：</p>
-<pre><code>def foo(x):
+    return math.sqrt(x)</code></pre><p>不推荐的写法：</p><pre><code>def foo(x):
     if x &gt;= 0:
         return math.sqrt(x)
 
 def bar(x):
     if x &lt; 0:
         return
-    return math.sqrt(x)</code></pre><p>15 用字符串方法代替字符串模块。</p>
-<p>字符串方法总是快得多，并且与unicode字符串共享相同的API。如果需要与2.0以下的Python的向后兼容，则覆盖此规则。</p>
-<p>16 用’’.startswith()和’’.endswith()代替字符串切片来检查前缀和后缀。</p>
-<p>startswith()和endswith()是更简洁的，不容易出错的。例如：</p>
-<pre><code>#推荐的写法：
+    return math.sqrt(x)</code></pre><p>15 用字符串方法代替字符串模块。</p><p>字符串方法总是快得多，并且与unicode字符串共享相同的API。如果需要与2.0以下的Python的向后兼容，则覆盖此规则。</p><p>16 用’’.startswith()和’’.endswith()代替字符串切片来检查前缀和后缀。</p><p>startswith()和endswith()是更简洁的，不容易出错的。例如：</p><pre><code>#推荐的写法：
 if foo.startswith(&apos;bar&apos;):
 
 #不推荐的写法：
-if foo[:3] == &apos;bar&apos;:</code></pre><p>17 对象类型的比较应该始终使用isinstance()而不是直接比较。</p>
-<pre><code>#推荐的写法：
+if foo[:3] == &apos;bar&apos;:</code></pre><p>17 对象类型的比较应该始终使用isinstance()而不是直接比较。</p><pre><code>#推荐的写法：
 if isinstance(obj, int):
 
 #不推荐的写法：
-if type(obj) is type(1):</code></pre><p>当比较一个对象是不是字符串时，记住它有可能也是一个 unicode 字符串！在 Python 2 里面，str和unicode有一个公共的基类叫basestring，因此你可以这样做：</p>
-<pre><code>if isinstance(obj, basestring):</code></pre><p>注意，在 Python 3 里面，unicode和basestring已经不存在了（只有str），byte对象不再是字符串的一种（被一个整数序列替代）。</p>
-<p>18 对于序列（字符串、列表、元组）来说，空的序列为False：</p>
-<p>正确的写法：</p>
-<pre><code>if not seq:
-if seq:</code></pre><p>错误的写法：</p>
-<pre><code>if len(seq):
-if not len(seq):</code></pre><p>19 不要让字符串对尾随的空格有依赖。这样的尾随空格是视觉上无法区分的，一些编辑器（或者，reindent.py）会将其裁剪掉。</p>
-<p>20 不要用==比较True和False。</p>
-<pre><code>#推荐的写法：
+if type(obj) is type(1):</code></pre><p>当比较一个对象是不是字符串时，记住它有可能也是一个 unicode 字符串！在 Python 2 里面，str和unicode有一个公共的基类叫basestring，因此你可以这样做：</p><pre><code>if isinstance(obj, basestring):</code></pre><p>注意，在 Python 3 里面，unicode和basestring已经不存在了（只有str），byte对象不再是字符串的一种（被一个整数序列替代）。</p><p>18 对于序列（字符串、列表、元组）来说，空的序列为False：</p><p>正确的写法：</p><pre><code>if not seq:
+if seq:</code></pre><p>错误的写法：</p><pre><code>if len(seq):
+if not len(seq):</code></pre><p>19 不要让字符串对尾随的空格有依赖。这样的尾随空格是视觉上无法区分的，一些编辑器（或者，reindent.py）会将其裁剪掉。</p><p>20 不要用==比较True和False。</p><pre><code>#推荐的写法：
 if greeting:
 
 #不推荐的写法：
 if greeting == True:
 
 #更加不推荐的写法：
-if greeting is True:</code></pre>
-      
-    </div>
-    
-    
-    
-	
-    
-
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>如果文章对您有所帮助，希望您能够关注一波多多支持！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="leslie 微信支付"/>
-        <p>微信支付</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="leslie 支付宝"/>
-        <p>支付宝</p>
-      </div>
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
-    
-
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    leslie
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://blog.leslie168.com/python/pep8/" title="pep8的使用">https://blog.leslie168.com/python/pep8/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-
-      </div>
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag"><i class="fa fa-tag"></i> 编码规范</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/python/python%E7%89%88%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/" rel="prev" title="python版布隆过滤器">
-                python版布隆过滤器 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/person.png"
-                alt="leslie" />
-            
-              <p class="site-author-name" itemprop="name">leslie</p>
-              <p class="site-description motion-element" itemprop="description">静而思慧 卓尔不群</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-
-                <a href="/archives">
-      
-                  <span class="site-state-item-count">34</span>
-                  <span class="site-state-item-name">文章</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a rel="external nofollow" href="https://github.com/leslie-kung" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a rel="external nofollow" href="https://blog.csdn.net/soft_kind" target="_blank" title="csdn">
-                      
-                        <i class="fa fa-fw fa-globe"></i>csdn</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a rel="external nofollow" href="https://www.cnblogs.com/gjq168" target="_blank" title="博客园">
-                      
-                        <i class="fa fa-fw fa-globe"></i>博客园</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                友情链接
-              </div>
-                
-                    <a href="https://www.luciferarmy.com" title="路西法" rel="external nofollow" target="_blank">路西法</a>
-                
-                    <a href="https://wanhong.leslie168.com" title="万红门窗" rel="external nofollow" target="_blank">万红门窗</a>
-                
-
-            </div>
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-介绍-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1 介绍(Introduction)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-代码布局-Code-Lay-Out"><span class="nav-number">2.</span> <span class="nav-text">2 代码布局(Code Lay-Out)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-缩进-Indentation"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 缩进(Indentation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-每行最大长度-Maximum-Line-Length"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 每行最大长度(Maximum Line Length)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-二元运算符之前还是之后换行？-Should-a-line-break-before-or-after-a-binary-operator"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 二元运算符之前还是之后换行？(Should a line break before or after a binary operator?)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-空行-Blank-Line"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 空行(Blank Line)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-源文件编码-Source-File-Encoding"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 源文件编码(Source File Encoding)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-模块引用-Imports"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 模块引用(Imports)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-模块级的双下划线命名-Module-level-dunder-names"><span class="nav-number">2.7.</span> <span class="nav-text">2.7 模块级的双下划线命名(Module level dunder names)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-字符串引用-String-Quotes"><span class="nav-number">3.</span> <span class="nav-text">3 字符串引用(String Quotes)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-表达式和语句中的空格-Whitespace-In-Expressions-And-Statements"><span class="nav-number">4.</span> <span class="nav-text">4 表达式和语句中的空格(Whitespace In Expressions And Statements)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-一些痛点-Pet-Peeves"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 一些痛点(Pet Peeves)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-其他建议-Other-Recommendations"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 其他建议(Other Recommendations)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-何时在末尾加逗号-When-to-use-trailing-commas"><span class="nav-number">5.</span> <span class="nav-text">5 何时在末尾加逗号(When to use trailing commas)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-注释-Comments"><span class="nav-number">6.</span> <span class="nav-text">6 注释(Comments)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-块注释（Block-Comments）"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 块注释（Block Comments）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-行内注释（Inline-Comments）"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 行内注释（Inline Comments）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-文档字符串-Documentation-Strings"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 文档字符串(Documentation Strings)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-命名约定（Naming-Conventions）"><span class="nav-number">7.</span> <span class="nav-text">7 命名约定（Naming Conventions）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-首要原则（Overriding-Principle）"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 首要原则（Overriding Principle）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-描述：命名风格（Descriptive-Naming-Styles）"><span class="nav-number">7.2.</span> <span class="nav-text">7.2 描述：命名风格（Descriptive: Naming Styles）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-规范：命名约定-Prescriptive-Naming-Conventions"><span class="nav-number">7.3.</span> <span class="nav-text">7.3 规范：命名约定(Prescriptive: Naming Conventions)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-1-需要避免的命名-Names-To-Avoid"><span class="nav-number">7.3.1.</span> <span class="nav-text">7.3.1 需要避免的命名(Names To Avoid)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-2-ASCII兼容性-ASCII-Compatibility"><span class="nav-number">7.3.2.</span> <span class="nav-text">7.3.2 ASCII兼容性(ASCII Compatibility)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-3-包和模块命名-Package-And-Module-Names"><span class="nav-number">7.3.3.</span> <span class="nav-text">7.3.3 包和模块命名(Package And Module Names)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-4-类命名-Class-Names"><span class="nav-number">7.3.4.</span> <span class="nav-text">7.3.4 类命名(Class Names)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-5-类型变量命名-Type-variable-names"><span class="nav-number">7.3.5.</span> <span class="nav-text">7.3.5 类型变量命名(Type variable names)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-6-异常命名-Exception-Names"><span class="nav-number">7.3.6.</span> <span class="nav-text">7.3.6 异常命名(Exception Names)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-7-全局变量命名-Global-Variable-Names"><span class="nav-number">7.3.7.</span> <span class="nav-text">7.3.7 全局变量命名(Global Variable Names)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-8-函数命名-Function-Names"><span class="nav-number">7.3.8.</span> <span class="nav-text">7.3.8 函数命名(Function Names)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-9-函数和方法参数-Function-And-Method-Arguments"><span class="nav-number">7.3.9.</span> <span class="nav-text">7.3.9 函数和方法参数(Function And Method Arguments)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-10-方法命名和实例变量-Method-Names-And-Instance-Variables"><span class="nav-number">7.3.10.</span> <span class="nav-text">7.3.10 方法命名和实例变量(Method Names And Instance Variables)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-11-常量-Constants"><span class="nav-number">7.3.11.</span> <span class="nav-text">7.3.11 常量(Constants)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-12-继承的设计-Designing-For-Inheritance"><span class="nav-number">7.3.12.</span> <span class="nav-text">7.3.12 继承的设计(Designing For Inheritance)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-公开和内部接口-Public-And-Internal-Interfaces"><span class="nav-number">7.4.</span> <span class="nav-text">7.4 公开和内部接口(Public And Internal Interfaces)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-编程建议-Programming-Recommendations"><span class="nav-number">8.</span> <span class="nav-text">8 编程建议(Programming Recommendations)</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-	  
-	  <!--添加音乐播放器-->
-	  
-	    <div>
-		  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="210" height="110" src="//music.163.com/outchain/player?type=0&id=3161334073&auto=1&height=66"></iframe>
-	    </div>
-	    
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">leslie</span>
-
-  
-</div>
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-
-<!-- 
-  <div class="powered-by">由 <a rel="external nofollow" class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
--->
-
-
-  <span class="post-meta-divider">|</span>
-
-<div class="theme-info">
-  <div class="powered-by"></div>
-  <span class="post-count">博客全站共35.7k字</span>
-</div>
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-          <span id="scrollpercent"><span>0</span>%</span>
-        
-      </div>
-    
-
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: false,
-        appId: 'NAq5a5hj1nNITXlgGNDonOzJ-gzGzoHsz',
-        appKey: 'N9sGHhCSkskzJHkhL0xovOmY',
-        placeholder: '欢迎留下你的宝贵意见^_^',
-        avatar:'mm',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  <script type="text/javascript" src="/lib/clipboard/clipboard.js"></script>
-<script type="text/javascript" src="/js/src/custom.js"></script>
-  <!--崩溃欺骗-->
-<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
-  <!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/clicklove.js"></script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/shizuku.model.json"},"display":{"position":"right","width":250,"height":450},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
-</html>
+if greeting is True:</code></pre></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>如果文章对您有所帮助，希望您能够关注一波多多支持！</div><button id="rewardButton" disable="enable" onclick='var qr=document.getElementById("QR");"none"===qr.style.display?qr.style.display="block":qr.style.display="none"'><span>打赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" src="/images/wechatpay.jpg" alt="leslie 微信支付"><p>微信支付</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" src="/images/alipay.jpg" alt="leslie 支付宝"><p>支付宝</p></div></div></div></div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong> leslie</li><li class="post-copyright-link"><strong>本文链接：</strong> <a href="https://blog.leslie168.com/python/pep8/" title="pep8的使用">https://blog.leslie168.com/python/pep8/</a></li><li class="post-copyright-license"><strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li></ul></div><footer class="post-footer"><div class="post-tags"><a href="/tags/%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag"><i class="fa fa-tag"></i> 编码规范</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/python/python%E7%89%88%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/" rel="prev" title="python版布隆过滤器">python版布隆过滤器 <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"></div></div></div><div class="comments" id="comments"></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap">站点概览</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/images/person.png" alt="leslie"><p class="site-author-name" itemprop="name">leslie</p><p class="site-description motion-element" itemprop="description">静而思慧 卓尔不群</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives"><span class="site-state-item-count">34</span> <span class="site-state-item-name">文章</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">13</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">17</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a rel="external nofollow" href="https://github.com/leslie-kung" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a> </span><span class="links-of-author-item"><a rel="external nofollow" href="https://blog.csdn.net/soft_kind" target="_blank" title="csdn"><i class="fa fa-fw fa-globe"></i>csdn</a> </span><span class="links-of-author-item"><a rel="external nofollow" href="https://www.cnblogs.com/gjq168" target="_blank" title="博客园"><i class="fa fa-fw fa-globe"></i>博客园</a></span></div><div class="links-of-blogroll motion-element links-of-blogroll-block"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-link"></i> 友情链接</div><a href="https://www.luciferarmy.com" title="路西法" rel="external nofollow" target="_blank">路西法</a> <a href="https://wanhong.leslie168.com" title="万红门窗" rel="external nofollow" target="_blank">万红门窗</a></div></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-介绍-Introduction"><span class="nav-number">1.</span> <span class="nav-text">1 介绍(Introduction)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-代码布局-Code-Lay-Out"><span class="nav-number">2.</span> <span class="nav-text">2 代码布局(Code Lay-Out)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-缩进-Indentation"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 缩进(Indentation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-每行最大长度-Maximum-Line-Length"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 每行最大长度(Maximum Line Length)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-二元运算符之前还是之后换行？-Should-a-line-break-before-or-after-a-binary-operator"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 二元运算符之前还是之后换行？(Should a line break before or after a binary operator?)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-空行-Blank-Line"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 空行(Blank Line)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-源文件编码-Source-File-Encoding"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 源文件编码(Source File Encoding)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-6-模块引用-Imports"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 模块引用(Imports)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-7-模块级的双下划线命名-Module-level-dunder-names"><span class="nav-number">2.7.</span> <span class="nav-text">2.7 模块级的双下划线命名(Module level dunder names)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-字符串引用-String-Quotes"><span class="nav-number">3.</span> <span class="nav-text">3 字符串引用(String Quotes)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-表达式和语句中的空格-Whitespace-In-Expressions-And-Statements"><span class="nav-number">4.</span> <span class="nav-text">4 表达式和语句中的空格(Whitespace In Expressions And Statements)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-一些痛点-Pet-Peeves"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 一些痛点(Pet Peeves)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-其他建议-Other-Recommendations"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 其他建议(Other Recommendations)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-何时在末尾加逗号-When-to-use-trailing-commas"><span class="nav-number">5.</span> <span class="nav-text">5 何时在末尾加逗号(When to use trailing commas)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-注释-Comments"><span class="nav-number">6.</span> <span class="nav-text">6 注释(Comments)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-块注释（Block-Comments）"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 块注释（Block Comments）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-行内注释（Inline-Comments）"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 行内注释（Inline Comments）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-文档字符串-Documentation-Strings"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 文档字符串(Documentation Strings)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-命名约定（Naming-Conventions）"><span class="nav-number">7.</span> <span class="nav-text">7 命名约定（Naming Conventions）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-首要原则（Overriding-Principle）"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 首要原则（Overriding Principle）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-描述：命名风格（Descriptive-Naming-Styles）"><span class="nav-number">7.2.</span> <span class="nav-text">7.2 描述：命名风格（Descriptive: Naming Styles）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-规范：命名约定-Prescriptive-Naming-Conventions"><span class="nav-number">7.3.</span> <span class="nav-text">7.3 规范：命名约定(Prescriptive: Naming Conventions)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-1-需要避免的命名-Names-To-Avoid"><span class="nav-number">7.3.1.</span> <span class="nav-text">7.3.1 需要避免的命名(Names To Avoid)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-2-ASCII兼容性-ASCII-Compatibility"><span class="nav-number">7.3.2.</span> <span class="nav-text">7.3.2 ASCII兼容性(ASCII Compatibility)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-3-包和模块命名-Package-And-Module-Names"><span class="nav-number">7.3.3.</span> <span class="nav-text">7.3.3 包和模块命名(Package And Module Names)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-4-类命名-Class-Names"><span class="nav-number">7.3.4.</span> <span class="nav-text">7.3.4 类命名(Class Names)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-5-类型变量命名-Type-variable-names"><span class="nav-number">7.3.5.</span> <span class="nav-text">7.3.5 类型变量命名(Type variable names)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-6-异常命名-Exception-Names"><span class="nav-number">7.3.6.</span> <span class="nav-text">7.3.6 异常命名(Exception Names)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-7-全局变量命名-Global-Variable-Names"><span class="nav-number">7.3.7.</span> <span class="nav-text">7.3.7 全局变量命名(Global Variable Names)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-8-函数命名-Function-Names"><span class="nav-number">7.3.8.</span> <span class="nav-text">7.3.8 函数命名(Function Names)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-9-函数和方法参数-Function-And-Method-Arguments"><span class="nav-number">7.3.9.</span> <span class="nav-text">7.3.9 函数和方法参数(Function And Method Arguments)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-10-方法命名和实例变量-Method-Names-And-Instance-Variables"><span class="nav-number">7.3.10.</span> <span class="nav-text">7.3.10 方法命名和实例变量(Method Names And Instance Variables)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-11-常量-Constants"><span class="nav-number">7.3.11.</span> <span class="nav-text">7.3.11 常量(Constants)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-12-继承的设计-Designing-For-Inheritance"><span class="nav-number">7.3.12.</span> <span class="nav-text">7.3.12 继承的设计(Designing For Inheritance)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-公开和内部接口-Public-And-Internal-Interfaces"><span class="nav-number">7.4.</span> <span class="nav-text">7.4 公开和内部接口(Public And Internal Interfaces)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-编程建议-Programming-Recommendations"><span class="nav-number">8.</span> <span class="nav-text">8 编程建议(Programming Recommendations)</span></a></li></ol></div></div></section><div><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="210" height="110" src="//music.163.com/outchain/player?type=0&id=3161334073&auto=1&height=66"></iframe></div></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright">&copy; <span itemprop="copyrightYear">2022</span> <span class="with-love"><i class="fa fa-user"></i> </span><span class="author" itemprop="copyrightHolder">leslie</span></div><div class="powered-by"><i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 本站访客数:<span id="busuanzi_value_site_uv"></span></span></div><span class="post-meta-divider">|</span><div class="theme-info"><div class="powered-by"></div><span class="post-count">博客全站共35.6k字</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span id="scrollpercent"><span>0</span>%</span></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script type="text/javascript">var GUEST=["nick","mail","link"],guest="nick,mail,link";guest=guest.split(",").filter(e=>GUEST.indexOf(e)>-1),new Valine({el:"#comments",verify:!1,notify:!1,appId:"NAq5a5hj1nNITXlgGNDonOzJ-gzGzoHsz",appKey:"N9sGHhCSkskzJHkhL0xovOmY",placeholder:"欢迎留下你的宝贵意见^_^",avatar:"mm",guest_info:guest,pageSize:"10"})</script><script type="text/javascript">var isfetched=!1,isXml=!0,search_path="search.xml";0===search_path.length?search_path="search.xml":/json$/i.test(search_path)&&(isXml=!1);var path="/"+search_path,onPopupClose=function(t){$(".popup").hide(),$("#local-search-input").val(""),$(".search-result-list").remove(),$("#no-result").remove(),$(".local-search-pop-overlay").remove(),$("body").css("overflow","")};function proceedsearch(){$("body").append('<div class="search-popup-overlay local-search-pop-overlay"></div>').css("overflow","hidden"),$(".search-popup-overlay").click(onPopupClose),$(".popup").toggle();var t=$("#local-search-input");t.attr("autocapitalize","none"),t.attr("autocorrect","off"),t.focus()}var searchFunc=function(t,e,o){"use strict";$("body").append('<div class="search-popup-overlay local-search-pop-overlay"><div id="search-loading-icon"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div>').css("overflow","hidden"),$("#search-loading-icon").css("margin","20% auto 0 auto").css("text-align","center"),$.ajax({url:t,dataType:isXml?"xml":"json",async:!0,success:function(t){isfetched=!0,$(".popup").detach().appendTo(".header-inner");var n=isXml?$("entry",t).map((function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}})).get():t,r=document.getElementById(e),s=document.getElementById(o),a=function(){var t=r.value.trim().toLowerCase(),e=t.split(/[\s\-]+/);e.length>1&&e.push(t);var o=[];if(t.length>0&&n.forEach((function(n){var r=!1,s=0,a=0,i=n.title.trim(),c=i.toLowerCase(),l=n.content.trim().replace(/<[^>]+>/g,""),h=l.toLowerCase(),p=decodeURIComponent(n.url),u=[],f=[];if(""!=i&&(e.forEach((function(t){function e(t,e,o){var n=t.length;if(0===n)return[];var r=0,s=[],a=[];for(o||(e=e.toLowerCase(),t=t.toLowerCase());(s=e.indexOf(t,r))>-1;)a.push({position:s,word:t}),r=s+n;return a}u=u.concat(e(t,c,!1)),f=f.concat(e(t,h,!1))})),(u.length>0||f.length>0)&&(r=!0,s=u.length+f.length)),r){function d(e,o,n,r){for(var s=r[r.length-1],i=s.position,c=s.word,l=[],h=0;i+c.length<=n&&0!=r.length;){c===t&&h++,l.push({position:i,length:c.length});var p=i+c.length;for(r.pop();0!=r.length&&(i=(s=r[r.length-1]).position,c=s.word,p>i);)r.pop()}return a+=h,{hits:l,start:o,end:n,searchTextCount:h}}[u,f].forEach((function(t){t.sort((function(t,e){return e.position!==t.position?e.position-t.position:t.word.length-e.word.length}))}));var g=[];0!=u.length&&g.push(d(0,0,i.length,u));for(var v=[];0!=f.length;){var $=f[f.length-1],C=$.position,m=$.word,x=C-20,w=C+80;x<0&&(x=0),w<C+m.length&&(w=C+m.length),w>l.length&&(w=l.length),v.push(d(0,x,w,f))}v.sort((function(t,e){return t.searchTextCount!==e.searchTextCount?e.searchTextCount-t.searchTextCount:t.hits.length!==e.hits.length?e.hits.length-t.hits.length:t.start-e.start}));var y=parseInt("1");function T(t,e){var o="",n=e.start;return e.hits.forEach((function(e){o+=t.substring(n,e.position);var r=e.position+e.length;o+='<b class="search-keyword">'+t.substring(e.position,r)+"</b>",n=r})),o+=t.substring(n,e.end)}y>=0&&(v=v.slice(0,y));var b="";0!=g.length?b+="<li><a href='"+p+"' class='search-result-title'>"+T(i,g[0])+"</a>":b+="<li><a href='"+p+"' class='search-result-title'>"+i+"</a>",v.forEach((function(t){b+="<a href='"+p+'\'><p class="search-result">'+T(l,t)+"...</p></a>"})),b+="</li>",o.push({item:b,searchTextCount:a,hitCount:s,id:o.length})}})),1===e.length&&""===e[0])s.innerHTML='<div id="no-result"><i class="fa fa-search fa-5x" /></div>';else if(0===o.length)s.innerHTML='<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>';else{o.sort((function(t,e){return t.searchTextCount!==e.searchTextCount?e.searchTextCount-t.searchTextCount:t.hitCount!==e.hitCount?e.hitCount-t.hitCount:e.id-t.id}));var a='<ul class="search-result-list">';o.forEach((function(t){a+=t.item})),a+="</ul>",s.innerHTML=a}};r.addEventListener("input",a),$(".local-search-pop-overlay").remove(),$("body").css("overflow",""),proceedsearch()}})};$(".popup-trigger").click((function(t){t.stopPropagation(),!1===isfetched?searchFunc(path,"local-search-input","local-search-result"):proceedsearch()})),$(".popup-btn-close").click(onPopupClose),$(".popup").click((function(t){t.stopPropagation()})),$(document).on("keyup",(function(t){27===t.which&&$(".search-popup").is(":visible")&&onPopupClose()}))</script><script type="text/javascript" src="/lib/clipboard/clipboard.js"></script><script type="text/javascript" src="/js/src/custom.js"></script><script type="text/javascript" src="/js/src/crash_cheat.js"></script><script type="text/javascript" src="/js/src/clicklove.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/shizuku.model.json"},"display":{"position":"right","width":250,"height":450},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body></html>
