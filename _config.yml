@@ -145,4 +145,8 @@ sitemap:
   path: sitemap.xml
 baidusitemap:
   path: baidusitemap.xml
+
+# 压缩
+all_minifier: true
+
   
