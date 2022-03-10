@@ -12,7 +12,7 @@ keywords: redis
 
 <script type="text/javascript" src="/js/src/bai.js"></script>
 
-[python版布隆过滤器(一)](https://blog.leslie168.com/数据库/redis/python版布隆过滤器2/)
+[python版布隆过滤器(一)](https://blog.leslie168.com/数据库/redis/python版布隆过滤器/)
 
 ## 布隆过滤器扩容和删除过期数据
 
