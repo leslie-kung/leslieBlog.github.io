@@ -1,12 +1,14 @@
 ---
-title: python版布隆过滤器
+title: python版布隆过滤器(一)
 type: categories
 copyright: true
 date: 2019-12-31 17:18:06
 tags:
     - python
-categories: python
+    - redis
+categories: [数据库, redis]
 ---
+[python版布隆过滤器(二)](https://blog.leslie168.com/数据库/redis/python版布隆过滤器/)
 
 ## 布隆过滤器介绍
 本质上布隆过滤器是一种数据结构，比较巧妙的概率型数据结构（probabilistic data structure），特点是高效地插入和查询，可以用来告诉你 “某样东西一定不存在或者可能存在”。
@@ -115,3 +117,5 @@ data = ["asfdsafweafxc", "123", "123", "hello", "hello", 'haha']
         else:
             print("find replace data : %s" % d)
 ```
+
+
