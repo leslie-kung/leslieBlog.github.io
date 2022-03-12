@@ -5,6 +5,7 @@ copyright: true
 date: 2022-03-03 17:03:00
 tags:
     - python
+    - 基础
 categories: [python, 基础]
 keywords: [内存管理, 参数传递]
 ---

@@ -4,9 +4,9 @@ type: categories
 copyright: true
 date: 2020-01-02 15:41:29
 tags:
-    - 项目
-    - lambda
-categories: [lambda]
+    - python
+    - 基础
+categories: [python, 基础]
 ---
 
 ## 记一次项目中lambda函数的应用

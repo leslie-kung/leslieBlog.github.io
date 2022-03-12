@@ -7,8 +7,8 @@ tags:
     - python
     - tcp
     - socket
-categories: [python, tcp, socket]
-keywords: tcp, socket, python
+categories: [python, tcp]
+keywords: [tcp, socket, python]
 ---
 
 <script type="text/javascript" src="/js/src/bai.js"></script>

@@ -5,7 +5,8 @@ copyright: true
 date: 2020-01-02 11:40:24
 tags:
     - python
-categories: python
+    - 项目
+categories: [python, 项目]
 ---
 #### 利用python对简单的验证码进行处理
 验证码如下所示：

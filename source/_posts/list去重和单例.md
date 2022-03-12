@@ -5,6 +5,7 @@ copyright: true
 date: 2022-03-03 16:11:51
 tags:
     - python
+    - 基础
 categories: [python, 基础]
 keywords: [单例, 列表去重]
 top: 77

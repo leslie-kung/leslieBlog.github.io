@@ -5,7 +5,8 @@ copyright: true
 date: 2022-03-03 14:44:07
 tags:
     -python
-categories: [python, 基础]
+    - tcp&udp
+categories: [python, tcp]
 keywords: [TCP, UDP]
 top: 79
 ---

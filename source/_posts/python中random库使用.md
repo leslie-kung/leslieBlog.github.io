@@ -5,7 +5,8 @@ copyright: true
 date: 2020-01-02 11:55:30
 tags:
     - python
-categories: python
+    - 基础
+categories: [python, 基础]
 ---
 
 ### 1、random.random() 生成一个随机的浮点数，范围在0.0~0.1之间；

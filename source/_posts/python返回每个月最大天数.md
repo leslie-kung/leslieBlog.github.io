@@ -5,7 +5,8 @@ copyright: true
 date: 2020-01-02 12:07:27
 tags:
     - python
-categories: python
+    - 项目
+categories: [python, 项目]
 ---
 
 ## python返回过去时间里的每月最大天数

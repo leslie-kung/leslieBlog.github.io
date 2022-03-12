@@ -5,7 +5,8 @@ copyright: true
 date: 2020-01-02 12:02:38
 tags:
     - python
-categories: python
+    - 基础
+categories: [python, 基础]
 ---
 
 ## python中元素进行替换有很多方法，下面是我学习中的一些总结

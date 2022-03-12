@@ -4,8 +4,9 @@ type: categories
 copyright: true
 date: 2020-01-02 11:09:20
 tags:
-    - python
-categories: python
+	- python
+	- 基础
+categories: [python, 基础]
 ---
 ## 1.闭包
 ### 闭包的理解

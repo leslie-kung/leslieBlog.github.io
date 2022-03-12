@@ -5,7 +5,8 @@ copyright: true
 date: 2020-01-02 10:37:05
 tags:
     - python
-categories: python
+    - 基础
+categories: [python, 基础]
 ---
 
 ## Python中的引用、浅拷贝和深拷贝
