@@ -2,10 +2,11 @@
 title: python图片转字符串
 type: categories
 copyright: true
-date: 2020-01-02 16:26:32
 tags:
-    - python
+  - python
 categories: python
+abbrlink: 3901035388
+date: 2020-01-02 16:26:32
 ---
 
 ## python 图片转成字符串

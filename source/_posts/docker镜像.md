@@ -2,10 +2,11 @@
 title: docker镜像
 type: categories
 copyright: true
-date: 2020-01-02 16:49:05
 tags:
-    - docker
+  - docker
 categories: docker
+abbrlink: 2299316085
+date: 2020-01-02 16:49:05
 ---
 
 ## docker 镜像

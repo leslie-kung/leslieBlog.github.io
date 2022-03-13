@@ -2,11 +2,14 @@
 title: numpy学习
 type: categories
 copyright: true
-date: 2020-01-02 16:32:20
 tags:
-    - 数据分析
-    - python
-categories: [python, 数据分析]
+  - 数据分析
+  - python
+categories:
+  - python
+  - 数据分析
+abbrlink: 3939334463
+date: 2020-01-02 16:32:20
 ---
 
 ## numpy学习小结

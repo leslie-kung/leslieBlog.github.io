@@ -2,11 +2,14 @@
 title: python返回每个月最大天数
 type: categories
 copyright: true
-date: 2020-01-02 12:07:27
 tags:
-    - python
-    - 项目
-categories: [python, 项目]
+  - python
+  - 项目
+categories:
+  - python
+  - 项目
+abbrlink: 1415965986
+date: 2020-01-02 12:07:27
 ---
 
 ## python返回过去时间里的每月最大天数

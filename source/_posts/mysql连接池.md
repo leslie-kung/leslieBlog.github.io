@@ -2,12 +2,15 @@
 title: mysql连接池
 type: categories
 copyright: true
-date: 2022-02-27 21:08:22
 tags:
-    - 数据库
-    - mysql
-categories: [数据库, mysql]
+  - 数据库
+  - mysql
+categories:
+  - 数据库
+  - mysql
 password: leslie
+abbrlink: 1938337745
+date: 2022-02-27 21:08:22
 ---
 
 ## mysql连接池

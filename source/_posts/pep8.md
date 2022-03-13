@@ -1,10 +1,11 @@
 ---
 title: pep8的使用
 copyright: true
-date: 2019-12-30 19:23:56
-tags: 
-	- 编码规范
+tags:
+  - 编码规范
 categories: python
+abbrlink: 1562858183
+date: 2019-12-30 19:23:56
 ---
 
 ## 1 介绍(Introduction)

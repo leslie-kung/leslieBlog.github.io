@@ -2,15 +2,17 @@
 title: mysql的回表
 type: categories
 copyright: true
-date: 2022-03-12 23:47:11
 tags:
-    - 数据库
-    - mysql
-categories: [数据库, mysql]
+  - 数据库
+  - mysql
+categories:
+  - 数据库
+  - mysql
 keywords: mysql回表
+abbrlink: 2570087719
+date: 2022-03-12 23:47:11
 ---
 
-<script type="text/javascript" src="/js/src/bai.js"></script>
 
 ## mysql回表查询的简单介绍
 

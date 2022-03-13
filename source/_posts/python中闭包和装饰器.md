@@ -2,11 +2,14 @@
 title: python中闭包和装饰器
 type: categories
 copyright: true
-date: 2020-01-02 11:09:20
 tags:
-	- python
-	- 基础
-categories: [python, 基础]
+  - python
+  - 基础
+categories:
+  - python
+  - 基础
+abbrlink: 1404355314
+date: 2020-01-02 11:09:20
 ---
 ## 1.闭包
 ### 闭包的理解

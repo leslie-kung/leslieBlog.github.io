@@ -2,15 +2,17 @@
 title: redis的高可用机制
 type: categories
 copyright: true
-date: 2022-03-11 07:57:59
 tags:
-    - 数据库
-    - redis
-categories: [数据库, redis]
+  - 数据库
+  - redis
+categories:
+  - 数据库
+  - redis
 keywords: redis
+abbrlink: 1376421695
+date: 2022-03-11 07:57:59
 ---
 
-<script type="text/javascript" src="/js/src/bai.js"></script>
 
 ## redis实现高可用机制的方法
 

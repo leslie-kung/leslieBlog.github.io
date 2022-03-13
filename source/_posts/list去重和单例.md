@@ -2,13 +2,18 @@
 title: list去重和单例
 type: categories
 copyright: true
-date: 2022-03-03 16:11:51
 tags:
-    - python
-    - 基础
-categories: [python, 基础]
-keywords: [单例, 列表去重]
+  - python
+  - 基础
+categories:
+  - python
+  - 基础
+keywords:
+  - 单例
+  - 列表去重
 top: 77
+abbrlink: 2767789526
+date: 2022-03-03 16:11:51
 ---
 
 <script type="text/javascript" src="/js/src/bai.js"></script>

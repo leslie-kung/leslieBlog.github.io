@@ -2,11 +2,14 @@
 title: mongo去重
 type: categories
 copyright: true
-date: 2020-01-02 16:06:51
 tags:
-    - 数据库
-    - mongo
-categories: [数据库, mongo]
+  - 数据库
+  - mongo
+categories:
+  - 数据库
+  - mongo
+abbrlink: 546221521
+date: 2020-01-02 16:06:51
 ---
 
 ## mongo 去重

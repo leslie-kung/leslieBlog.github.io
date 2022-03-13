@@ -2,11 +2,14 @@
 title: mysql生成sql语句
 type: categories
 copyright: true
-date: 2022-02-27 21:26:45
 tags:
-    - 数据库
-    - mysql
-categories: [数据库, mysql]
+  - 数据库
+  - mysql
+categories:
+  - 数据库
+  - mysql
+abbrlink: 2052509888
+date: 2022-02-27 21:26:45
 ---
 
 

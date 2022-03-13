@@ -2,11 +2,14 @@
 title: mysql用户创建授权
 type: categories
 copyright: true
-date: 2022-02-27 21:45:55
 tags:
-    - 数据库
-    - mysql
-categories: [数据库, mysql]
+  - 数据库
+  - mysql
+categories:
+  - 数据库
+  - mysql
+abbrlink: 1939127260
+date: 2022-02-27 21:45:55
 ---
 
 ## mysql创建用户并授权

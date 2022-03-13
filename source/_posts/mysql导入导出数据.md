@@ -2,11 +2,14 @@
 title: mysql导入导出数据
 type: categories
 copyright: true
-date: 2022-02-27 21:50:13
 tags:
-    - 数据库
-    - mysql
-categories: [数据库, mysql]
+  - 数据库
+  - mysql
+categories:
+  - 数据库
+  - mysql
+abbrlink: 1191503966
+date: 2022-02-27 21:50:13
 ---
 
 ## mysql导入导出数据

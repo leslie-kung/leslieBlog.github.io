@@ -1,1 +1,135 @@
-import ClipboardAction from"./clipboard-action";import Emitter from"tiny-emitter";import listen from"good-listener";class Clipboard extends Emitter{constructor(t,e){super(),this.resolveOptions(e),this.listenClick(t)}resolveOptions(t={}){this.action="function"==typeof t.action?t.action:this.defaultAction,this.target="function"==typeof t.target?t.target:this.defaultTarget,this.text="function"==typeof t.text?t.text:this.defaultText,this.container="object"==typeof t.container?t.container:document.body}listenClick(t){this.listener=listen(t,"click",t=>this.onClick(t))}onClick(t){t=t.delegateTarget||t.currentTarget;this.clipboardAction&&(this.clipboardAction=null),this.clipboardAction=new ClipboardAction({action:this.action(t),target:this.target(t),text:this.text(t),container:this.container,trigger:t,emitter:this})}defaultAction(t){return getAttributeValue("action",t)}defaultTarget(t){t=getAttributeValue("target",t);if(t)return document.querySelector(t)}static isSupported(t=["copy","cut"]){const e="string"==typeof t?[t]:t;let i=!!document.queryCommandSupported;return e.forEach(t=>{i=i&&!!document.queryCommandSupported(t)}),i}defaultText(t){return getAttributeValue("text",t)}destroy(){this.listener.destroy(),this.clipboardAction&&(this.clipboardAction.destroy(),this.clipboardAction=null)}}function getAttributeValue(t,e){t="data-clipboard-"+t;if(e.hasAttribute(t))return e.getAttribute(t)}module.exports=Clipboard;
+import ClipboardAction from './clipboard-action';
+import Emitter from 'tiny-emitter';
+import listen from 'good-listener';
+
+/**
+ * Base class which takes one or more elements, adds event listeners to them,
+ * and instantiates a new `ClipboardAction` on each click.
+ */
+class Clipboard extends Emitter {
+    /**
+     * @param {String|HTMLElement|HTMLCollection|NodeList} trigger
+     * @param {Object} options
+     */
+    constructor(trigger, options) {
+        super();
+
+        this.resolveOptions(options);
+        this.listenClick(trigger);
+    }
+
+    /**
+     * Defines if attributes would be resolved using internal setter functions
+     * or custom functions that were passed in the constructor.
+     * @param {Object} options
+     */
+    resolveOptions(options = {}) {
+        this.action    = (typeof options.action    === 'function') ? options.action    : this.defaultAction;
+        this.target    = (typeof options.target    === 'function') ? options.target    : this.defaultTarget;
+        this.text      = (typeof options.text      === 'function') ? options.text      : this.defaultText;
+        this.container = (typeof options.container === 'object')   ? options.container : document.body;
+    }
+
+    /**
+     * Adds a click event listener to the passed trigger.
+     * @param {String|HTMLElement|HTMLCollection|NodeList} trigger
+     */
+    listenClick(trigger) {
+        this.listener = listen(trigger, 'click', (e) => this.onClick(e));
+    }
+
+    /**
+     * Defines a new `ClipboardAction` on each click event.
+     * @param {Event} e
+     */
+    onClick(e) {
+        const trigger = e.delegateTarget || e.currentTarget;
+
+        if (this.clipboardAction) {
+            this.clipboardAction = null;
+        }
+
+        this.clipboardAction = new ClipboardAction({
+            action    : this.action(trigger),
+            target    : this.target(trigger),
+            text      : this.text(trigger),
+            container : this.container,
+            trigger   : trigger,
+            emitter   : this
+        });
+    }
+
+    /**
+     * Default `action` lookup function.
+     * @param {Element} trigger
+     */
+    defaultAction(trigger) {
+        return getAttributeValue('action', trigger);
+    }
+
+    /**
+     * Default `target` lookup function.
+     * @param {Element} trigger
+     */
+    defaultTarget(trigger) {
+        const selector = getAttributeValue('target', trigger);
+
+        if (selector) {
+            return document.querySelector(selector);
+        }
+    }
+
+    /**
+     * Returns the support of the given action, or all actions if no action is
+     * given.
+     * @param {String} [action]
+     */
+    static isSupported(action = ['copy', 'cut']) {
+        const actions = (typeof action === 'string') ? [action] : action;
+        let support = !!document.queryCommandSupported;
+
+        actions.forEach((action) => {
+            support = support && !!document.queryCommandSupported(action);
+        });
+
+        return support;
+    }
+
+    /**
+     * Default `text` lookup function.
+     * @param {Element} trigger
+     */
+    defaultText(trigger) {
+        return getAttributeValue('text', trigger);
+    }
+
+    /**
+     * Destroy lifecycle.
+     */
+    destroy() {
+        this.listener.destroy();
+
+        if (this.clipboardAction) {
+            this.clipboardAction.destroy();
+            this.clipboardAction = null;
+        }
+    }
+}
+
+
+/**
+ * Helper function to retrieve attribute value.
+ * @param {String} suffix
+ * @param {Element} element
+ */
+function getAttributeValue(suffix, element) {
+    const attribute = `data-clipboard-${suffix}`;
+
+    if (!element.hasAttribute(attribute)) {
+        return;
+    }
+
+    return element.getAttribute(attribute);
+}
+
+module.exports = Clipboard;

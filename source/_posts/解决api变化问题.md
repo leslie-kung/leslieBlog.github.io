@@ -2,12 +2,15 @@
 title: 解决api变化问题
 type: categories
 copyright: true
-date: 2020-01-02 15:48:11
 tags:
-    - 项目
-    - requests
-    - jsdom
-categories: [python, 爬虫] 
+  - 项目
+  - requests
+  - jsdom
+categories:
+  - python
+  - 爬虫
+abbrlink: 865398304
+date: 2020-01-02 15:48:11
 ---
 
 ## python解决api变化的问题

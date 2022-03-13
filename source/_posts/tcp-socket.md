@@ -2,13 +2,19 @@
 title: tcp_socket
 type: categories
 copyright: true
-date: 2022-03-01 14:52:00
 tags:
-    - python
-    - tcp
-    - socket
-categories: [python, tcp]
-keywords: [tcp, socket, python]
+  - python
+  - tcp
+  - socket
+categories:
+  - python
+  - tcp
+keywords:
+  - tcp
+  - socket
+  - python
+abbrlink: 3022795043
+date: 2022-03-01 14:52:00
 ---
 
 <script type="text/javascript" src="/js/src/bai.js"></script>

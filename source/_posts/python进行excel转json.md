@@ -2,11 +2,14 @@
 title: python进行excel转json
 type: categories
 copyright: true
-date: 2020-01-02 11:36:53
 tags:
-    - 数据分析
-    - python
-categories: [python, 数据分析]
+  - 数据分析
+  - python
+categories:
+  - python
+  - 数据分析
+abbrlink: 587870288
+date: 2020-01-02 11:36:53
 ---
 ## 使用python进行excel转json文件
 ### 1、首先导入我们需要用到的库

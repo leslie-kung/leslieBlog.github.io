@@ -2,11 +2,14 @@
 title: python中random库使用
 type: categories
 copyright: true
-date: 2020-01-02 11:55:30
 tags:
-    - python
-    - 基础
-categories: [python, 基础]
+  - python
+  - 基础
+categories:
+  - python
+  - 基础
+abbrlink: 2386226701
+date: 2020-01-02 11:55:30
 ---
 
 ### 1、random.random() 生成一个随机的浮点数，范围在0.0~0.1之间；

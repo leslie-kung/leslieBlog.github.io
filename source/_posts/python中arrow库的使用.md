@@ -2,11 +2,14 @@
 title: python中arrow库的使用
 type: categories
 copyright: true
-date: 2020-01-02 11:57:58
 tags:
-    - python
-    - 基础
-categories: [python, 基础]
+  - python
+  - 基础
+categories:
+  - python
+  - 基础
+abbrlink: 1524522455
+date: 2020-01-02 11:57:58
 ---
 
  Arrow是一个Python库，为创建，操作，格式化和转换日期，时间和时间戳提供了一种明智的，人性化的方法。 它实现和更新日期时间类型，填补功能上的空白，并提供支持许多常见创建场景的智能模块API。 简而言之，它可以帮助您使用更少的进口和更少的代码来处理日期和时间。

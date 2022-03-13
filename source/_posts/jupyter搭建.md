@@ -2,10 +2,13 @@
 title: jupyter搭建
 type: categories
 copyright: true
-date: 2020-01-02 16:11:45
 tags:
-    - jupyter
-categories: [python, jupyter]
+  - jupyter
+categories:
+  - python
+  - jupyter
+abbrlink: 273296454
+date: 2020-01-02 16:11:45
 ---
 
 ## 搭建jupyter服务器

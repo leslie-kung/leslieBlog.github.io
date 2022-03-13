@@ -2,17 +2,20 @@
 title: python版布隆过滤器(二)
 type: categories
 copyright: true
-date: 2019-12-31 17:30:00
 tags:
-    - python
-    - redis
-categories: [数据库, redis]
+  - python
+  - redis
+categories:
+  - 数据库
+  - redis
 keywords: redis
+abbrlink: 3745698069
+date: 2019-12-31 17:30:00
 ---
 
 <script type="text/javascript" src="/js/src/bai.js"></script>
 
-[python版布隆过滤器(一)](https://blog.leslie168.com/数据库/redis/python版布隆过滤器/)
+[python版布隆过滤器(一)][blom]
 
 ## 布隆过滤器扩容和删除过期数据
 
@@ -87,3 +90,4 @@ class CircleBloomFilter(object):
 我们在插入数据过程中，对每个过滤器都执行添加操作，而在查询判断的过程中，我们只需要对任意一个过滤器进行查询就可以了。
 
 
+[blom]: https://blog.leslie168.com/posts/1886603895.html

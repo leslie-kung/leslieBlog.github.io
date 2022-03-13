@@ -2,11 +2,14 @@
 title: python3中Unicode字符转中文
 type: categories
 copyright: true
-date: 2020-01-02 14:51:14
 tags:
-    - python
-    - 爬虫
-categories: [python, 爬虫]
+  - python
+  - 爬虫
+categories:
+  - python
+  - 爬虫
+abbrlink: 685354991
+date: 2020-01-02 14:51:14
 ---
 
 ## python3中将Unicode字符串转成中文

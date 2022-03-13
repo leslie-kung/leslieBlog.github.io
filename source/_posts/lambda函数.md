@@ -2,11 +2,14 @@
 title: lambda函数
 type: categories
 copyright: true
-date: 2020-01-02 15:41:29
 tags:
-    - python
-    - 基础
-categories: [python, 基础]
+  - python
+  - 基础
+categories:
+  - python
+  - 基础
+abbrlink: 676622553
+date: 2020-01-02 15:41:29
 ---
 
 ## 记一次项目中lambda函数的应用

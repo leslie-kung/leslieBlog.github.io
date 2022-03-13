@@ -2,10 +2,11 @@
 title: python字典多次嵌套
 type: categories
 copyright: true
-date: 2020-01-02 11:15:28
 tags:
-    - python
+  - python
 categories: python
+abbrlink: 1410141908
+date: 2020-01-02 11:15:28
 ---
 
 ## python实现字典多层嵌套

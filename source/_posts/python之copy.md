@@ -2,11 +2,14 @@
 title: python之copy
 type: categories
 copyright: true
-date: 2020-01-02 10:37:05
 tags:
-    - python
-    - 基础
-categories: [python, 基础]
+  - python
+  - 基础
+categories:
+  - python
+  - 基础
+abbrlink: 2800827854
+date: 2020-01-02 10:37:05
 ---
 
 ## Python中的引用、浅拷贝和深拷贝

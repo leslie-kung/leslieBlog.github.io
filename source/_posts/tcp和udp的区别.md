@@ -2,13 +2,16 @@
 title: tcp和udp的区别
 type: categories
 copyright: true
-date: 2022-03-03 14:44:07
-tags:
-    -python
-    - tcp&udp
-categories: [python, tcp]
-keywords: [TCP, UDP]
+tags: '-python - tcp&udp'
+categories:
+  - python
+  - tcp
+keywords:
+  - TCP
+  - UDP
 top: 79
+abbrlink: 810003588
+date: 2022-03-03 14:44:07
 ---
 
 <script type="text/javascript" src="/js/src/bai.js"></script>

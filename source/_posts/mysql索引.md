@@ -2,12 +2,17 @@
 title: mysql索引
 type: categories
 copyright: true
-date: 2022-03-03 17:20:21
 tags:
-    - 数据库
-    - mysql
-categories: [数据库, mysql]
-keywords: [mysql, 索引]
+  - 数据库
+  - mysql
+categories:
+  - 数据库
+  - mysql
+keywords:
+  - mysql
+  - 索引
+abbrlink: 1895910490
+date: 2022-03-03 17:20:21
 ---
 
 <script type="text/javascript" src="/js/src/bai.js"></script>

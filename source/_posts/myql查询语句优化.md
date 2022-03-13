@@ -2,15 +2,17 @@
 title: myql查询语句优化
 type: categories
 copyright: true
-date: 2022-03-03 17:41:13
 tags:
-    - 数据库
-    - mysql
-categories: [数据库, mysql]
+  - 数据库
+  - mysql
+categories:
+  - 数据库
+  - mysql
 keywords: SQL
+abbrlink: 2149736776
+date: 2022-03-03 17:41:13
 ---
 
-<script type="text/javascript" src="/js/src/bai.js"></script>
 
 ## Sql语句优化和索引
 ### Innerjoin和左连接，右连接，子查询

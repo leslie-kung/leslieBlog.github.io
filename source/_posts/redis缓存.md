@@ -2,15 +2,16 @@
 title: redis缓存
 type: categories
 copyright: true
-date: 2022-03-10 23:07:19
 tags:
-    - 数据库
-    - redis
-categories: [数据库, redis]
+  - 数据库
+  - redis
+categories:
+  - 数据库
+  - redis
 keywords: redis
+abbrlink: 3531308952
+date: 2022-03-10 23:07:19
 ---
-
-<script type="text/javascript" src="/js/src/bai.js"></script>
 
 
 ## redis关于缓存的一些问题
@@ -35,7 +36,7 @@ keywords: redis
 
 &emsp;&emsp; 2、对不存在的key直接设置空值，设置过期时间，避免用户短时间用同一个key频繁请求；
 
-&emsp;&emsp; 3、[使用布隆过滤器](https://blog.leslie168.com/数据库/redis/python版布隆过滤器/)
+&emsp;&emsp; 3、[使用布隆过滤器][blom]
 
 
 ### 缓存击穿
@@ -65,3 +66,5 @@ keywords: redis
 &emsp;&emsp; 2、分布式部署缓存的话，将热点数据均匀分布在不同的缓存数据库中；
 
 &emsp;&emsp; 3、设置热点数据不过期；
+
+[blom]: https://blog.leslie168.com/posts/1886603895.html

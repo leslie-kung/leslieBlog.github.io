@@ -2,11 +2,14 @@
 title: mysql重置root密码
 type: categories
 copyright: true
-date: 2022-02-27 21:37:21
 tags:
-    - 数据库
-    - mysql
-categories: [数据库, mysql]
+  - 数据库
+  - mysql
+categories:
+  - 数据库
+  - mysql
+abbrlink: 3789975200
+date: 2022-02-27 21:37:21
 ---
 
 ## mysql重置root密码
